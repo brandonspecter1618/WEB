@@ -1,0 +1,71 @@
+1 = Entre na pasta que quer
+
+cd '/home/brandon/Documentos/MercadoLivreBrasil' 
+
+2 = Configure git
+
++-[root]@[debian]:/home/brandon/Documentos/MercadoLivreBrasil
++--> # git config --global user.name "Brandon Specter"
+
++-[root]@[debian]:/home/brandon/Documentos/MercadoLivreBrasil
++--> # git config --global user.email "brandonspecter1618@gmail.com"
+
++-[root]@[debian]:/home/brandon/Documentos/MercadoLivreBrasil
++--> # git config -l
+user.name=Brandon Specter
+user.email=brandonspecter1618@gmail.com
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+remote.origin.url=https://github.com/brandonspecter1618/Estudo_Programacao_Web.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+
+
+3 = Criar o clone 
+
++-[root]@[debian]:/home/brandon/Documentos/MercadoLivreBrasil
++--> # git clone https://github.com/brandonspecter1618/Estudo_Programacao_Web.git
+
+
+3 = Inicie o git init
+
++-[root]@[debian]:/home/brandon/Documentos/MercadoLivreBrasil
++--> # git init
+
+3 = Adiciona tudo:
+
++-[root]@[debian]:/home/brandon/Documentos/MercadoLivreBrasil
++--> # git add *
+
+4 = Dê um commit, ou seja, salve o arquivo
+
++-[root]@[debian]:/home/brandon/Documentos/MercadoLivreBrasil
++--> # git commit -m "New Files"
+
+5 = 
+
+
+Obs: Código para colocar na página do Github pois dizem que não tem suporte
+ao +55 Brasil. Só executar no console do navegador esse comando. 
+
+var brazil = document.createElement('option');
+brazil.value = '+55';
+brazil.appendChild(document.createTextNode('Brazil +55'));
+document.querySelectorAll('#countrycode').forEach(select => select.prepend(brazil));
+brazil.selected = true;
+
+
+##############################################################################
+
+…or create a new repository on the command line
+
+
+echo "# webpage" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/brandonspecter1618/webpage.git
+git push -u origin main
+
