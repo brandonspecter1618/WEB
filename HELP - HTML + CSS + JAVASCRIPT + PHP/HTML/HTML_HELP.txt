@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">            <!-- Utilizado para utilizar a codifica��o utf-8 a fim de utilizar caracter especial-->  
+<meta name="describes" content="HTML">  <!-- utilizado para colcoar uma descri��o para padr�es de navega��o-->
+<meta name="keywords" content="HTML5, CSS3"> <!-- utilizado para colcoar uma descri��o para padr�es de navega��o-->
+<meta name="autor" content="Brandon Specter"> <!-- utilizado para colcoar uma descri��o sobre quem desenvolveu o site-->
+<meta http-equiv= "refresh" content="10"> <!-- utilizado para atualizar a p�gina automaticamente -->
+
+
+
+<meta charset="utf-8">            <!-- Utilizado para utilizar a codifica��o utf-8 a fim de utilizar caracter especial-->  
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300&family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300&family=Source+Sans+Pro:wght@300;600&display=swap" rel="stylesheet"> 
+<link href="css/index2.css" rel="stylesheet">
+
+
+Define the character set used:
+
+<meta charset="UTF-8">
+
+*****************
+
+Define keywords for search engines:
+
+<meta name="keywords" content="HTML, CSS, JavaScript">
+
+******************
+
+Define a description of your web page:
+
+<meta name="description" content="Free Web tutorials">
+
+******************
+
+Define the author of a page:
+
+<meta name="author" content="John Doe">
+
+****************
+
+Refresh document every 30 seconds:
+
+<meta http-equiv="refresh" content="30">
+
+****************
+
+Setting the viewport to make your website look good on all devices:
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+****************
+
+
+&nbsp = Ativa o espa�amento entre itens, ou seja, � como se usasse a tecla (space).
+
+
+##########################################################################
+
+<a href="contact.html" target="_blank">Contact</a>  /*Target abre uma página em um novo guia*/
+
+###########################################################################
+
+net stop was /y   -> Apache n�o inicia no W10 AGU
+
+##############################################################################
+
+
+##############################################################################
+
+Quando for necess�rio que precise subir um n�vel acima com rela��o a uma subpasta 
+(voltar uma pasta para localizar o index.html por exemplo) do site, 
+ir� precisar precisar utilizar este comando antes
+
+../  => Pra subir uma pasta pra cima
+
+../../  => Para subir duas pastas pra cima
+
+Exemplo: 
+
+<li><a href="../index.html">Home</a></li>
+
+<a href="../php_java.html">PHP/JAVA</a>
+
+Obs: Neste caso acima no exemplo a pasta php1.html estava em uma subpasta chamada "submenu" 
+e dentro dessa pasta o site n�o achava o index.html que estava na raiz do site. 
+Neste caso eu coloquei ../index.html no menu do site para que ele pudesse voltar uma pasta
+para localizar o arquivo index.html e o executar. Fazendo com que desse sucesso a volta do
+menu apartir de um submenu que estava em uma subpasta.
+
+#############################################################################
+
+HTML
+
+Cor De fundo no html
+
+<body bgcolor="#000000">
+<body bgcolor="rgb(0,0,0)">
+<body bgcolor="black">
+
+<body bgcolor="FF0000"> 
+  Este site tem o plano de fundo vermelho!
+ </body>
+
+############################################################################
+
+Colocar acento nas coisas
+
+Para ISO-8859-1:
+<html>
+<head>
+<title>Minha pagina</title>
+<meta http-equiv="Content-Type" content="text/html"; charset="iso-8859-1">
+
+Para UTF-8:
+<html>
+<head>
+<title>Minha pagina</title>
+<meta http-equiv="Content-Type" content="text/html"; charset="utf-8">
+
+
+
+<meta charset="utf-8">
+
+Obs: A diferen�a do ISO-8859-1 e do UTF-8 � que um suporta at� 256 caracteres  e o outro suporta at� 65.536 caracteres 
+
+##################################################################################
+
+Usado para comentar as linhas do HTML
+
+<!-- Aqui como declara o class(CSS) para imagem --> 
+###################################################################################
+
+<p>HTML elements are the building blocks of HTML pages. With HTML constructs, images and other objects such as interactive forms may be <br/>
+embedded into the <span> rendered page </span>.
+
+<span></span> � utilizado para escolher formata��o ou para uma �nica letra ou palavra ou frase ou at� mesmo texto juntamente � claro,
+com a ajuda do CSS como no c�digo abaixo.
+
+span { color: #FF0000;
+		   font-weight: bold;
+		   font-size: 30px;
+		
+		
+	}
+
+#####################################################################################
+&nbsp = Espaço HTML
+
+
+#########################################################################################################
+
+MENU EM HTML
+
+	<nav>
+	<ul class=menu>
+		<li><a href="index.html">Home</a></li>
+		<li><a href="produtos.html">Produtos</a></li>
+		<li><a href="php_java.html">PHP/JAVA</a></li>
+		<li><a href="contato.html">Contatos </a></li>
+		<li><a href="sign.html">Cadastre-se</a></li>
+	<ul>
+	</nav>
+
+
+                         <!--Menu Site-->
+
+
+    <div class="var_div_menu"></div>  <!--Background Of Menu-->
+
+    
+    <div class="var_position_menu">
+    <nav role="navigation" class="primary-navigation">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Product</a>
+                <ul>
+                    <li><a href="#">Web Development</a></li>
+                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#">Illustration</a></li>
+                    <li><a href="#">Iconography</a></li>
+                </ul>
+            </li>
+            <li><a href="#">PHP/JAVA</a>
+                <ul>
+                    <li><a href="#">PHP1</a></li>
+                    <li><a href="#">PHP2</a></li>
+                    <li><a href="#">PHP3</a></li>
+                    <li><a href="#">PHP4</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    </div>
+##########################################################################################################
+
+Audio
+
+<div class=audio_mv>
+	<audio controls autoplay>             <!-- utilizado para especificar que o play vai haver controle "controls" ou seja, controle de pausar algo e ainda um "autoplay" no carregamento da p�gina, ou seja, d� um outro play na p�gina-->
+	
+		<source src="Oasis_Keep The Dream Alive.mp3" type="audio/mp3">  <!-- 'source src' mostra qual o arquivo que v� ser executado-->
+		Your browser does not support the audio element.
+	
+	</audio>
+	</div>
+
+############################################################################################################
+
+EMAIL Abrir o email do usu�rio para enviar um email
+
+<div class="var_1button">
+  <a href="mailto:brandonspecter1618@gmail.com">Informações</a>
+</div>
+CSS3
+
+/* ENVIE EMAIL */
+	
+.var_1button a{
+  position: relative;
+  left: 160px;
+  top:8px;
+  border-top: 1px solid #96d1f8;
+  background: #7265d4;
+  background: -webkit-gradient(linear, left top, left bottom, from(#333785), to(#7265d4));
+  background: -webkit-linear-gradient(top, #333785, #7265d4);
+  background: -moz-linear-gradient(top, #333785, #7265d4);
+  background: -ms-linear-gradient(top, #333785, #7265d4);
+  background: -o-linear-gradient(top, #333785, #7265d4);
+  padding: 14.5px 29px;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  border-radius: 40px;
+  -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+  -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+  box-shadow: rgba(0,0,0,1) 0 1px 0;
+  text-shadow: rgba(0,0,0,.4) 0 1px 0;
+  color: white;
+  font-size: 16px;
+  font-family: Georgia, serif;
+  text-decoration: none;
+  vertical-align: middle;
+  }
+ .var_1button:hover a{
+  border-top-color: #28597a;
+  background: #28597a;
+  color: #ccc;
+  }
+ .var_1button:active a{
+  border-top-color: #1b435e;
+  background: #1b435e;
+  }
+
+}
+
+#############################################################################################################
+
+<iframe class=frame_2 width="800" height="800" src="https://pt.wikipedia.org/wiki/HTML"></iframe>  
+
+<!-- Iframe usado para colocar uma p�gina dentro de outra p�gina com a fun��o class=frame_2 pegando dados do CSS externo Estilo.css-->
+
+
+
+################################################################################################################
+
+IMAGEM
+
+	<div class=logo>
+	
+	<img src="html52.png" alt="logo" width="500" height="700">  <!-- Aqui como declara o class(CSS) para imagem-->
+	
+	</div>
+
+
+####################################################################################################################
+
+HREF LINK
+
+<a href="https://www.w3schools.com">Visit W3Schools</a> <!-- Utilizado para criar um link atrav�s de uma palavra -->
+
+<a href="https://www.w3schools.com">
+<img border="0" alt="W3Schools" src="logo_w3s.gif" width="100" height="100">
+</a>                                                                          <!-- Utilizado para criar um link atrav�s de uma imagem -->
+
+
+##############################################################################################################
+
+FORMUL�RIO
+
+HTML FORM + CSS 
+
+
+
+<div class="var_form_position">
+
+  <p class="var_p_sign_up">Sign Up</p>
+
+<form class="var_p" action="phpform.php">
+  
+  <label for="fname">First Name</label>
+  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    
+  <label for="lname">Last Name</label><br>
+  <input id="fname" type="text" name="Nome">
+  &nbsp &nbsp &nbsp &nbsp
+  <input id="lname" type="text" name="Sobrenome">
+  <br><br>
+
+  <label for="birthday">Birthday</label>
+  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+  <label for="gender">Gender</label><br>
+  <input id="birthday" type="date" name="birthday">
+  
+  &nbsp &nbsp &nbsp
+  <input type="radio" id="male" name="gender">
+  <label for="male">Male</label>
+  <input type="radio" id="female" name="gender">
+  <label for="female">Female</label> <br> <br>
+
+  <label for="email">Email</label>
+  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+  <label for="phone">Phone Number</label><br>
+  <input id="email" type="text" name="email">
+  &nbsp &nbsp &nbsp &nbsp
+  <input id="phone" type="text" name="phone"><br><br>
+
+  <label for="subject">Subject</label><br>
+  <select class="var_input_select" id="subject" name="subject">
+      <option value="choose">Choose Option</option>
+      <option values="australia">Australia</option>
+      <option values="albania">Albania</option>
+      <option values="Brazil">Brazil</option>
+      <option values="Canadá">Canada</option>
+      <option values="Dinamarca">Dinamarca</option>
+
+  </select>
+
+</form>
+
+</div>
+
+
+
+                <!--CSS3 Style Forms-->
+
+  /*Form CSS3 Style Input*/
+
+.var_form_position {
+   position: relative;
+   left: 370px;
+   border-width: 5px;
+   border-style: solid;
+   border-color: #4C4E7F;
+   border-top-left-radius: 50px;
+   border-top-right-radius: 50px;
+   border-bottom-left-radius: 50px;
+   border-bottom-right-radius: 50px;
+   background-color: #4C4E7F;
+   box-sizing: border-box;
+   padding: 20px 50px 50px 82px;
+   width: 655px;
+   height: 590px;
+
+}
+
+.var_p {
+   color:#fff;
+   font-size:18px;
+   font-family: 'Lobster', cursive;
+   box-sizing: border-box;
+  
+}
+
+.var_p_sign_up {
+   position: relative;
+   left: 190px;
+   bottom: 12px;
+   color:#fff;
+   font-size:28px;
+   font-family: 'Lobster', cursive;
+   box-sizing: border-box;
+   width: 100px;
+   padding: 0;
+
+}
+
+input[type=text] {
+  width: 220px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 100px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+input[type=date] {
+   width: 220px;
+   padding: 12px 20px;
+   margin: 8px 0;
+   display: inline-block;
+   border: 1px solid #ccc;
+   border-radius: 100px;
+   box-sizing: border-box;
+   background-color: #fff;
+   
+ }
+
+ input[type=radio] {
+   width: 50px;
+   padding: 12px 20px;
+   margin: 8px 0;
+   display: inline-block;
+   border: 1px solid #ccc;
+   border-radius: 100px;
+   box-sizing: border-box;
+   
+ }
+
+	input[type=submit] {
+  width: 500px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+	input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.var_input_select {
+  width: 475px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 100px;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #4C4E7F;
+  font-family: 'Lobster', cursive;
+  font-size: 16px;
+
+}
+
+*************************************************************
+
+PASSWORD = � utiliza
+
+<form>
+  <label for="username">Username:</label><br>
+  <input type="text" id="username" name="username"><br>
+  <label for="pwd">Password:</label><br>
+  <input type="password" id="pwd" name="pwd">
+</form>
+
+CSS:
+
+		input[type=password], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 100px;
+  box-sizing: border-box;
+  
+  
+}
+
+
+
+**************************************************************
+
+SUBMIT = � um bot�o para enviar os dados
+
+<form action="/action_page.php">
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname" value="John"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname" value="Doe"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+CSS:
+
+		input[type=password], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 100px;
+  box-sizing: border-box;
+  
+  
+}
+
+
+
+
+
+********************************************************************
+
+
+RESET = Reseta as configura��es para o padr�o.
+
+<form action="/action_page.php">
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname" value="John"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname" value="Doe"><br><br>
+  <input type="submit" value="Submit">
+  <input type="reset">
+</form>
+
+
+
+
+********************************************************************************
+
+
+RADIO = Usado para selecionar uma das op��es no formato de bolinha como a escolha de masculino ou feminino
+
+<form action="/action_page.php">
+  <input type="radio" id="male" name="gender" value="male">
+  <label for="male">Male</label><br>
+  <input type="radio" id="female" name="gender" value="female">
+  <label for="female">Female</label><br>
+  <input type="radio" id="other" name="gender" value="other">
+  <label for="other">Other</label><br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+
+
+******************************************************************************
+
+
+
+Input Type Checkbox = Utilizado para escolher mais de uma op��o 
+
+<form action="/action_page.php">
+  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+  <label for="vehicle1"> I have a bike</label><br>
+  <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+  <label for="vehicle2"> I have a car</label><br>
+  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+  <label for="vehicle3"> I have a boat</label><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+
+
+*******************************************************************************
+
+
+Input Type Date  = Adiciona um calend�rio na tabela para a pessoa colocar o ano de nascimento
+
+
+<form>
+  <label for="birthday">Birthday:</label>
+  <input type="date" id="birthday" name="birthday">
+</form>
+
+
+
+
+
+******************************************************************************************
+
+Input Type Number = Usado principalmente para a venda, para dizer qual a quantidade de produtos que vc vai querer
+
+<form action="/action_page.php">
+  <label for="quantity">Quantity (between 1 and 5):</label>
+  <input type="number" id="quantity" name="quantity" min="1" max="5">
+  <input type="submit" value="Submit">
+</form>
+
+
+****************************************************************************************
+
+Input Type File = Utilizado para selecionar um arquivo e subir ele
+
+
+<p>Show a file-select field which allows a file to be chosen for upload:</p>
+<form action="/action_page.php">
+  <label for="myfile">Select a file:</label>
+  <input type="file" id="myfile" name="myfile"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+
+################################################################################################################
+
+Pagination Numbers Down Display
+
+	<div class="pagination">
+  <a href="#">&laquo;</a>
+  <a href="index.html">1</a>
+  <a href="produtos.html">2</a>
+  <a href="#">3</a>
+  <a href="#">4</a>
+  <a href="contato.html">5</a>
+  <a href="#">&raquo;</a>
+	</div>
+
+
+
+###################################################################################################################
+Audio
+
+<div class=audio_mv>
+	<audio loop autoplay controls>   <!-- loop (Mant�m a musica sempre em execu��o
+					      autoplay (Executa a m�sica automaticamente
+					      controls ( P�em um player para controle da altura pause etc...)-->
+	
+		<source src="audio/Oasis_Keep The Dream Alive.mp3" type="audio/mp3">
+		Your browser does not support the audio element.
+	
+	</audio>
+	</div>
+
+CSS Refer�ncia:
+
+/* Audio CSS*/
+	
+	.audio_mv {
+		position: absolute;
+		left: 1000px;
+		top: 1300px;
+		
+	}
+  
+#####################################################################################################################
+Video
+
+	<div class=video_mv>
+	<video width="650" height="400" controls>                <!-- Delimita a altura (widht) e largura (height)-->
+		<source src="video/batman.mp4" type="video/mp4"> <!-- Da onde vem o video -->
+ 	 Your browser does not support HTML5 video.		 <!-- O que aparece se o navegador n�o suporta a tecnologia-->
+		</video>								
+	</div>
+
+
+CSS Refer�ncia:
+
+	/* Video CSS*/
+		
+		.video_mv {
+		position: absolute;
+		left: 920px;
+		top: 1545px;
+		border: 5px solid #DF0101;
+		
+	}
+
+#######################################################################################################################
+Video YOUTUBE atrav�s do iframe
+
+<iframe class=frame_youtube width="650" height="400" src="https://www.youtube.com/embed/wsf78BS9VE0"></iframe>
+
+Obs: S� funciona atrav�s do "embed" depois uma barra "/" e em seguida o c�digo da p�gina.
+
+CSS:
+
+	.frame_youtube {
+		   	position: absolute;
+			left: 920px;
+			top: 1980px;
+			border: 5px solid #DF0101;
+		
+	}
+######################################################################################################################
+
+<body contenteditable="true">  <!-- "Contenteditable" � um comando utilizado para fazer edi��o no site enquanto navega no mesmo. J� a subfun��o "true" permite qe fa�a edi��es j� a "false" cancela essa op��o.-->
+ 
+######################################################################################################################
+
+&lt;img &gt;  
+
+&lt = <
+
+&gt = >
+
+#####################################################################################################################
+
+Table
+
+<table>
+
+    <tr>
+
+        <th>No.</th>
+        <th>Full Name</th>
+        <th>CPF</th>
+        <th>Nascimento</th>
+        <th>Profision</th>
+
+    </tr>
+
+    <tr>
+        <td>1</td>
+        <td>Brandon Specter</td>
+        <td>03335803116</td>
+        <td>22/09/1992</td>
+        <td>Analysis Development</td>
+    </tr>
+
+    <tr>
+        <td>1</td>
+        <td>Brandon Specter</td>
+        <td>03335803116</td>
+        <td>22/09/1992</td>
+        <td>Analysis Development</td>
+    </tr>
+
+
+    <tr>
+        <td>1</td>
+        <td>Brandon Specter</td>
+        <td>03335803116</td>
+        <td>22/09/1992</td>
+        <td>Analysis Development</td>
+    </tr>
+
+
+    <tr>
+        <td>1</td>
+        <td>Brandon Specter</td>
+        <td>03335803116</td>
+        <td>22/09/1992</td>
+        <td>Analysis Development</td>
+    </tr>
+
+    <tr>
+        <td>1</td>
+        <td>Brandon Specter</td>
+        <td>03335803116</td>
+        <td>22/09/1992</td>
+        <td>Analysis Development</td>
+    </tr>
+
+
+    <tr>
+        <td>1</td>
+        <td>Brandon Specter</td>
+        <td>03335803116</td>
+        <td>22/09/1992</td>
+        <td>Analysis Development</td>
+    </tr>
+
+
+
+</table>
+
+
+
+##########################################################################
+
+Calculadora HTML 
+
+<div class="position_calc">
+  <form name="calcform" method="post" action="">
+  
+      <input type="text" name="visor" id="visor" />
+  
+      <table>
+          <tr>
+              <td><input type="button" name="num7" class="num" value="7" onclick="calcNum(7)" /></td>
+              <td><input type="button" name="num8" class="num" value="8" onclick="calcNum(8)" /></td>
+              <td><input type="button" name="num9" class="num" value="9" onclick="calcNum(9)" /></td>
+              <td><input type="button" name="somar" class="oper" value="+" onclick="calcParse('somar')" /></td>
+          </tr>
+          <tr>
+              <td><input type="button" name="num4" class="num" value="4" onclick="calcNum(4)" /></td>
+              <td><input type="button" name="num5" class="num" value="5" onclick="calcNum(5)" /></td>
+              <td><input type="button" name="num6" class="num" value="6" onclick="calcNum(6)" /></td>
+              <td><input type="button" name="subtrair" class="oper" value="-" onclick="calcParse('subtrair')" /></td>
+          </tr>
+          <tr>
+              <td><input type="button" name="num1" class="num" value="1" onclick="calcNum(1)" /></td>
+              <td><input type="button" name="num2" class="num" value="2" onclick="calcNum(2)" /></td>
+              <td><input type="button" name="num3" class="num" value="3" onclick="calcNum(3)" /></td>
+              <td><input type="button" name="multiplicar" class="oper" value="*" onclick="calcParse('multiplicar')" /></td>
+          </tr>
+          <tr>
+              <td><input type="button" name="num0" class="num" value="0" onclick="calcNum(0)" /></td>
+              <td><input type="button" name="igual" class="num" value="=" onclick="calcParse('resultado')" /></td>
+              <td><input type="button" name="limpar" class="num" value="C" onclick="calcLimpar()" /></td>
+              <td><input type="button" name="dividir" class="oper" value="/" onclick="calcParse('dividir')" /></td>
+          </tr>
+      </table>
+  </form>
+</div>
+

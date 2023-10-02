@@ -1,0 +1,1136 @@
+CSS ARQUIVO EXTERNO, INTERNO & INLINE
+
+OBS: Colocar entre as TAG's <head> </head>
+
+EXTERNO:
+
+<link href="css/arquivo.css" rel="stylesheet">
+
+
+INTERNO:
+
+OBS: S� � valido para o documento em especifico dentro da propriedade <head></head>
+
+<style>
+    p {
+        color: red;
+    }
+</style>
+
+
+
+Inline Styles
+
+<p style="color: red;">Texto</p>
+
+##########################################################################
+
+Sobrepor coisas no site inclusive submenu sobrepondo ao site
+
+z-index:99;     /*Este comando faz com que um item sobreponha o outro. No caso o submenu sobrepondo o resto do site*/
+
+##########################################################################
+Flexbox
+
+.container {
+display: flex;   <------  mant�m as coisa is flexiveis
+flex-direction: row | row-reverse | column | column-reverse  <------------------ Organiza um do lado do outro ou em modo coluna
+
+
+flex-wrap: nowrap;  <------ Organiza tudo dentro de uma �nica linha
+flex-wrap: wrap;    <------ Os itens que excedem a linha s�o movidos para baixo
+flex-wrap: wrap-reverse;   <------ Itens distribuidos de baixo pra cima.
+
+justify.content: flex-start | flex-end | center | space-between | space-around | space-evenly;  <------- Configura o espa�o entre os itens
+
+align-items: streatch | flex-start | flex-end | center | baseline;   <--- Configura de maneira transversal
+
+align-content: flex-start | flex-end | center | baseline;   <------ Melhora espa�o distribuido dentro de um conteiner
+
+align-items: stretch/flex-start/flex-end/center/space-between/space-around;
+
+flex-grow: 0;      <----------- Essa propriedade define se o item deve crescer de acordo com a propor��o
+
+flex-shrink: 0;    <----------- Essa propriedade define se o item deve diminuir de tamanho de acordo 
+}
+######################################################################
+Pixel Vs REM = O REM ele � flex�vel de acordo com o tamanho da tela. Portanto � melhor a ser usado neste caso o c�lculo � o seguinte.
+
+target � context = result   (Obs: Sendo que como estamos trabalhando com o "rem" o valor do context � sempre fixo com rela��o ao font-size do
+				  body. J� o target � justamente o valor do font-size de algo que quer converter para "rem" )
+
+Exemplo: 
+
+
+	body {
+		background-color: #333333;
+		font-size: 16px; 
+		margin-left: 200px;
+		margin-right: 200px;
+	}
+
+  	:root {
+	font-size: 16px;   <-------------context
+}
+
+				/*Par�grafo Do Site*/	
+	.var_h1 {
+		color: #FFFFFF;
+		font-size: 70px;  <----------------- target
+		font-size: 4.375rem;  <---------- result
+		font-weight: bold;
+		position: relative;
+		border: 5px solid red;
+		top: 6.25rem;
+		left: 430px;
+		width: 300px;
+		height: 20px;
+		
+		
+		
+}
+
+target(var) � context(body) = result
+
+70 � 16 = 4.375rem;
+
+Obs: Se usa no CSS para manter
+
+#######################################################################
+
+net stop was /y   -> Apache n�o inicia no W10 AGU
+
+
+#######################################################################
+
+CSS Espa�amento entre texto 
+
+line-height: 500px;
+
+#######################################################################
+CSS Mudar a cor do fundo do documento
+
+<!DOCTYPE html> (Fazer com que a p�gina seja entendida como HTML5)
+<style>
+
+body {
+background-color: #d24dff
+body {
+
+	background-image: url("../photo/pexels-daniel-absi-952670.jpg");
+	background-repeat: no-repeat;
+	background-color: #333;
+	background-size: 100% 100%;
+	margin: 0;
+	padding: 0;
+}
+</style>
+</head>
+</html>
+
+########################################################################
+
+CSS Edi��o De Par�grafo E de todo o corpo do documento:
+
+	body { background-color:#D3D3D3 } (Background cor do fundo da tela importante usar "#" antes da codifica��o.)
+	
+	h1 {font-size: 80px;
+		text-align: center;
+		color: #4F4F4F;
+	
+	}
+	
+	h2 { font-weight: italic;
+		 color: #008B8B;
+		 text-align: center;
+ 	
+	
+	}
+	
+	p {color: #008B8B;        (Cor da letra "#" importante usar antes da codifica��o dos n�meros de cor)
+	   font-family: cursive;  (Fonte da letra do site)
+	   font-style: italic;    (Estilo entre negrito, italico e sublinhado)
+	   text-align: center;    (Direcionamento Do Texto Esqueda, Direita e Centro)
+	   font-size: 19px;       (Tamanho da letra)
+	
+	}
+
+###########################################################################
+
+################################################################################
+
+
+
+####################################################################
+
+CSS Defini��o De Classe
+
+Serve para definir campos especificos dentro do CSS para seja configurado da forma que precisa. Exemplo Abaixo
+
+<html>
+<head>
+<style>
+.var1_hometown { 
+  background: yellow;  =>>> .class ou p.hometown para guardar no arquivo .CSS o que deseja fazer. 
+}
+</style>
+</head>
+<body>
+
+<p>My name is Donald.</p>
+<p class="var1_hometown">I live in Ducksburg.</p> ->>> p class"hometown" ou hometown � onde declara onde quer usar essa personaliza��o no html.
+
+<p>My name is Dolly.</p>
+<p class="var1_hometown">I also live in Ducksburg.</p>
+
+</body>
+</html>
+
+##########################################################################
+
+DECORA��O DE IMAGEM UTILIZADO PARA SUBLINHAR PALAVRAS
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1 {
+  text-decoration: overline;
+}
+
+h2 {
+  text-decoration: line-through;
+}
+
+h3 {
+  text-decoration: underline; //SUBLINHA
+}
+
+h4 {
+  text-decoration: underline overline;
+}
+</style>
+</head>
+<body>
+
+<h1>This is heading 1</h1>
+<h2>This is heading 2</h2>
+<h3>This is heading 3</h3>
+<h4>This is heading 4</h4>
+
+</body>
+</html>
+
+###################################################################
+
+POSICIONAMENTO DE IMAGENS
+
+HTML: <img src="html52.png" class=logo alt="logo" width="500" height="700">
+
+.logo { position: absolute;
+		right: 150px;
+	    left: 920px;
+		bottom: -200px;
+		top: 100px;
+
+Obs: � importante notar que n�o � sua esquerda ou direita. E sim o ponto esquerdo e direito da imagem. Sinais de negativo podem ser usados
+para ajudar a colocar a imagem no lugar. 
+
+####################################################################
+
+Controle o paragrafo com margin-left ou margin-right
+p { color: #ADFF2F;
+		text-align: left;
+		font-size: 18px;
+		font-family: cursive;
+		font-weight:bold;
+		margin-left: 10px;
+		margin-right: 500px;
+		
+		
+	}
+####################################################################
+
+CSS Utilizado para comentar c�digo
+
+/*dsasdadsasdasda*/
+
+######################################################################
+
+list-style: none; = /*utilizado para desaparecer com estilo de bolinha colocado atrav�s do <ul> e <li>
+
+border: 10px solid #4B0082; = /*utilizado para colocar uma borda no documento.
+
+
+
+#######################################################################
+
+MENU COMO FAZER
+
+
+			/*Menu Do Site*/
+
+	.menu {
+		list-style: none;
+		margin: 0;         /*Zera a margem para todos os lados left right top bottom*/
+		padding: 0;		   /*Zera o padding para todos os lados left right top bottom*/
+}
+	
+	.menu li {
+		float: left;
+		position: relative;
+		left:60px;
+		border: 5px solid #4C4E7F;  /*opcional para o menu*/
+		background-color: #4C4E7F;
+		padding: 20px 55px;	          /* Aumenta a distância entre os itens do menu*/
+}
+
+	.menu li a{
+		color: white;
+		font-weight: bold;
+		font-family: sans-serif;		
+		font-size: 18px;
+		text-decoration: none;
+		display: block;
+}
+
+.menu li a:hover {
+    font-size: 20px;
+    text-decoration: underline;
+    color: white;
+    -webkit-box-shadow:  2px 2px 4px 20px #ffffff; /*webkit é utilzado em navegadores chrome e safari na frente o nome -webkit-transition or -webkit-box-shadown*/
+    -moz-box-shadow: 2px 2px 25px 20px #ffffff;    /*moz é utilzado em navegadores chrome e safari na frente o nome -webkit-transition or -webkit-box-shadown*/
+     box-shadow: 2px 2px 30px 15px #ffffff;   /*30px esfumassa e 15px aumenta o tamanho da sombra*/
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    transform: scale(1.05);           /*Aumenta a escala, ou seja, deixa maior na hora que passa o mouse em cima
+
+}
+
+
+
+							/*Submenu Do Site*/
+	
+	.clearfix::after{
+		content: '.';
+		display: block;
+		clear: both;
+		height: 0;
+		line-break: 0;
+		font-size: 0;
+		visibility: hidden;
+		overflow: hidden;	
+	
+}
+
+
+	.menu > li:hover > .submenu {
+		display: block;
+		
+}
+
+	.menu > li:hover > .submenu2 {
+		display: block;
+		
+}
+
+
+
+	.submenu {
+		display: none;
+		position: absolute;
+		right: -530px;
+		top: 66px;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		width: 900px;
+		height: 150px;
+		
+}
+
+	.submenu2 {
+		display: none;
+		position: absolute;
+		right: 146px;
+		top: 61px;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		width: 10px;
+		padding-right: 70px;
+		height: 860px;
+		
+}
+
+
+SEGUNDO MENU
+
+.menu_div {
+	background-color: #4C4E7F;
+	height: 70px;
+	width: 1341px;                 /*Layout dentro do menu	*/
+	border: 5px solid #4C4E7F;
+	border-radius: 100px;
+	box-sizing: border-box;
+
+
+}
+
+
+nav.primary-navigation {
+	margin: 0 auto;
+	display: block;
+	padding: 120px 0 0 0;
+	text-align: center;
+	font-size: 16px;
+}
+nav.primary-navigation ul li {
+	list-style: none;
+	margin: 0 auto;
+	border-left: 2px solid #3ca0e7;   /*Cor das barras do menu*/
+	display: inline-block;
+	padding: 0 30px;           /*0 aumenta as barras do menu e o 30px aumenta o espaçamento entre as palvras do menu*/
+	position: relative;
+	text-decoration: none;
+	text-align: center;
+	font-family: 'Big Shoulders Stencil Display', cursive;   /*Fonte Do Google*/
+}
+nav.primary-navigation li a {
+	color: black;           /*Cor das palavras*/
+}
+nav.primary-navigation li a:hover {
+	color: #3ca0e7;        /*Cor de Hover*/
+}
+nav.primary-navigation li:hover {
+	cursor: pointer;
+}
+nav.primary-navigation ul li ul {
+	visibility: hidden;
+	opacity: 0;
+	position: absolute;
+	padding-left: 0;       /*Aumenta o quadro depois que passa o mouse no menu*/
+	left: 0;
+	display: none;
+	background: #4C4E7F;    /*Cor de fundo depois que passa o mouse em cima*/
+	z-index:99;     /*Este comando faz com que um item sobreponha o outro. No caso o submenu sobrepondo o resto do site*/
+}
+nav.primary-navigation ul li:hover > ul, nav.primary-navigation ul li ul:hover {
+	visibility: visible;
+	opacity: 1;								
+	display: block;
+	min-width: 250px;                    /*Tamanho do quadrado quando passa o mouse em cima da pra aumentar colocando inclusive o min-height*/
+	text-align: left;
+	padding-top: 20px;                      /*O quão longe fica o text dentro do submenu com relação ao menu principal*/
+	box-shadow: 0px 3px 5px -1px #ccc;         /*5px esfuma  -1px controla a borda da cor maior ou menor */
+}
+nav.primary-navigation ul li ul li {
+	clear: both;
+	width: 100%;
+	text-align: left;                     /*Através do 	position: relative você consegue movimentar o texto dentro do quadrado quando passa o mouse em cima*/
+	margin-bottom: 20px;
+	border-style: none;
+}
+nav.primary-navigation ul li ul li a:hover {
+	padding-left: 10px;
+	border-left: 2px solid #3ca0e7;       /*É a cor da borda left dentro do submenu*/
+	transition: all 0.3s ease;
+}
+a {
+	text-decoration: none;
+}
+a:hover {
+	color: #3ca0e7;
+}
+ul li ul li a {
+	transition: all 0.5s ease;
+}
+
+
+
+	
+##################################################################################################
+
+/* Audio CSS	*/
+	
+	.audio_mv {
+		position: absolute;
+		left: 1000px;
+		top: 1100px;
+		
+	}
+
+	audio
+	{
+	-webkit-transition:all 0.5s linear;     /*webkit é utilzado em navegadores chrome e safari na frente o nome -webkit-transition or -webkit-box-shadown*/
+	-moz-transition:all 0.5s linear;        /*moz para mozilla exemplo -moz-transition -moz-box-shadow */
+	-o-transition:all 0.5s linear;
+	transition:all 0.5s linear;
+	-moz-box-shadow: 2px 2px 25px 20px #4C4E7F;   /*25px Esfuma e o 20px aumenta as bordas*/
+	-webkit-box-shadow:  2px 2px 25px 20px #4C4E7F;  /*25px Esfuma e o 20px aumenta as bordas*/
+	box-shadow: 2px 2px 25px 20px #4C4E7F;   /*25px Esfuma e o 20px aumenta as bordas*/
+	-moz-border-radius:7px 7px 7px 7px ;
+	-webkit-border-radius:7px 7px 7px 7px ;
+	border-radius:7px 7px 7px 7px ;
+	}
+	
+	audio:hover, audio:focus, audio:active
+	{
+	-webkit-box-shadow:  2px 2px 25px 20px rgba(255,0, 0, 0.3);
+	-moz-box-shadow: 2px 2px 25px 20px rgba(255,0, 0, 0.4);
+	box-shadow: 2px 2px 25px 20px rgba(255,0, 0, 0.4);
+	-webkit-transform: scale(1.05);
+	-moz-transform: scale(1.05);
+	transform: scale(1.05);
+	}
+
+####################################################################################################
+
+BORDA e PADDING
+
+	border: 10px solid #ADFF2F; /*Tamanho da borda "10px". "solid #ADFF2F" = Cor da Borda */
+	padding-top: 50px;
+	padding-right: 50px;      /*Relógio 12pm(top) 3pm(right) 6pm(bottom) 9pm(left)*/
+	padding-bottom: 40px;
+	padding-left: 50px;
+
+
+p {
+  border-top-style: dotted;
+  border-top-width: 5px;
+  border-top-left-radius: 100px;
+  border-top-right-radius: 100px;
+  border-right-style: solid;
+  border-bottom-style: dotted;
+  border-left-style: solid;
+}
+
+
+Shorthand /*Link Curto*/
+
+border-width
+border-style (required) /*os tr�s s�o usados*/
+border-color
+
+p {
+  border: 5px solid red;  /*Resultado*/
+}
+
+p {
+  border: 2px solid red;  
+  border-radius: 5px;   /*Bordas arredondadas no canto*/
+}
+######################################################################################################
+
+	/* ENVIE EMAIL */
+
+<div class="var_1button">
+    <a href="mailto:brandonspecter1618@gmail.com">Informações</a>
+</div>
+	
+	.var_1button {          /*With the Letter "A" */
+		position: relative;
+		left: 160px;
+		top:8px;
+		border-top: 1px solid #96d1f8;
+		background: #7265d4;
+		background: -webkit-gradient(linear, left top, left bottom, from(#333785), to(#7265d4));
+		background: -webkit-linear-gradient(top, #333785, #7265d4);
+		background: -moz-linear-gradient(top, #333785, #7265d4);
+		background: -ms-linear-gradient(top, #333785, #7265d4);
+		background: -o-linear-gradient(top, #333785, #7265d4);
+		padding: 14.5px 29px;
+		-webkit-border-radius: 40px;
+		-moz-border-radius: 40px;
+		border-radius: 40px;
+		-webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+		-moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+		box-shadow: rgba(0,0,0,1) 0 1px 0;
+		text-shadow: rgba(0,0,0,.4) 0 1px 0;
+		color: white;
+		font-size: 16px;
+		font-family: Georgia, serif;
+		text-decoration: none;
+		vertical-align: middle;
+		}
+	 .var_1button:hover a{
+		border-top-color: #28597a;
+		background: #28597a;
+		color: #ccc;
+		}
+	 .var_1button:active a{
+		border-top-color: #1b435e;
+		background: #1b435e;
+		}
+##########################################################################################################
+/* Executar site dentro de site */
+
+	.frame_2 {
+		    position: absolute;
+	        right: 600px;                /*Utilizado para fazer o controle de onde a p�gina ser� como colocada na tela */
+		    top: 1150px;
+		
+	}
+
+##########################################################################################################
+
+Defini cor de fundo de borda
+
+<style>
+#example1 {
+  border: 10px dotted black;   	/*Tamanho e cor de borda*/
+  padding: 15px;               	/*Utilizado para height 25px e Widht 100px*/
+  background: lightblue;       	/*Cor De Fundo*/
+  background-clip: border-box; 	/*Personaliza��o da borda */ 
+}
+
+#example2 {
+  border: 10px dotted black;
+  padding: 15px;
+  background: lightblue;
+  background-clip: padding-box;
+}
+
+#example3 {
+  border: 10px dotted black;
+  padding: 15px;
+  background: lightblue;
+  background-clip: content-box;
+}
+</style>
+
+#############################################################################################################
+
+Dento do CSS
+div{
+    width:200px;
+    height:200px;
+    border:2px solid black;
+    padding:10px;
+    box-sizing: border-box;
+}
+
+##############################################################################################################
+
+
+		/* Bot�o De Clicar  */
+
+HTML: <button class="comprar_1">Comprar</button>
+		
+  .comprar_1{
+  display: inline-block; /*Se colocar no modo block ele espicha e fica grande para esquerda*/
+  text-align: center;
+  border-width: 1px;     /*Aumenta a grossura da borda*/
+  border-style: solid;   /*Transforma a borda em style*/
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 1.1;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: #FFFFFF;              /*Cor da letra do bot�o*
+  font-size:12px;
+  background-color: #0000FF;   /*Cor do fundo do bot�o*/
+  background-image: -webkit-linear-gradient(top, #0505ff 0%, #3e3eea 48%, #0000FF 49%, #0000FF 82%, #1c1cff 100%);
+  background-image: -moz-linear-gradient(top, #0505ff 0%, #3e3eea 48%, #0000FF 49%, #0000FF 82%, #1c1cff 100%);
+  background-image: -o-linear-gradient(top, #0505ff 0%, #3e3eea 48%, #0000FF 49%, #0000FF 82%, #1c1cff 100%);
+  background-image: linear-gradient(top, #0505ff 0%, #3e3eea 48%, #0000FF 49%, #0000FF 82%, #1c1cff 100%);
+  border-color: hsl(240, 32%, 50%);
+  -webkit-box-shadow: inset 0 0 1px 1px #7575ff, 0 0 1px 3px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: inset 0 0 1px 1px #7575ff, 0 0 1px 3px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 0 1px 1px #7575ff, 0 0 1px 3px rgba(0, 0, 0, 0.15);
+  -webkit-text-shadow: 1px 1px 1px #009;
+  -moz-text-shadow: 1px 1px 1px #009;
+  -o-text-shadow: 1px 1px 1px #009;
+  text-shadow: 1px 1px 1px #009;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  border-radius: 14px;           /*Borda do bot�o, ou seja, quanto mais aumentar mais a borda fica arredondada*/
+  padding: 19.200000000000003px 48px 19.200000000000003px 48px; 
+
+}
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+/*1� 19,20px.. (padding-top)*/
+/*2� 48px.. (padding-left)*/
+/*3� 19,20.. (padding-bottom)*/
+/*4� 48px.. (padding-right)*/
+
+	padding-top: 19.200000000000003px;
+	padding-left:48px; 
+	padding-bottom:19.200000000000003px;
+	padding-right:	48px;
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+.comprar_1 a {
+		color: #FFFFFF;              /*Colorir o nome do link caso queira transformar o c�digo de botton para href*/
+		text-decoration: none;
+		
+	}
+
+Esta linha a mais s� � necess�ria caso queira criar um bot�o para redirecionar a partir de um <a href"#"></a> e n�o de um <button></button>
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+.comprar_1 strong {
+  letter-spacing: 1px;
+  font-size: 22px;
+}
+
+.comprar_1:hover {
+  color: #FFFFFF;
+  background-color: #0f0fff;
+  background-image: -webkit-linear-gradient(top, #1414ff 0%, #4c4ceb 48%, #0f0fff 49%, #0f0fff 82%, #2b2bff 100%);
+  background-image: -moz-linear-gradient(top, #1414ff 0%, #4c4ceb 48%, #0f0fff 49%, #0f0fff 82%, #2b2bff 100%);
+  background-image: -o-linear-gradient(top, #1414ff 0%, #4c4ceb 48%, #0f0fff 49%, #0f0fff 82%, #2b2bff 100%);
+  background-image: linear-gradient(top, #1414ff 0%, #4c4ceb 48%, #0f0fff 49%, #0f0fff 82%, #2b2bff 100%);
+  border-color: hsl(240, 34%, 53%);
+  -webkit-box-shadow: inset 0 0 1px 1px #7a7aff, 0 0 1px 3px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: inset 0 0 1px 1px #7a7aff, 0 0 1px 3px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 0 1px 1px #7a7aff, 0 0 1px 3px rgba(0, 0, 0, 0.15);
+  -webkit-text-shadow: 1px 1px 1px #0000a8;
+  -moz-text-shadow: 1px 1px 1px #0000a8;
+  -o-text-shadow: 1px 1px 1px #0000a8;
+  text-shadow: 1px 1px 1px #0000a8;
+}
+
+.comprar_1:active {
+  color: #FFFFFF;
+  background-color: #0000f0;
+  background-image: -webkit-linear-gradient(top, #0000e6 0%, #0000FF 100%);
+  background-image: -moz-linear-gradient(top, #0000e6 0%, #0000FF 100%);
+  background-image: -o-linear-gradient(top, #0000e6 0%, #0000FF 100%);
+  background-image: linear-gradient(top, #0000e6 0%, #0000FF 100%);
+  padding: 20.200000000000003px 48px 18.200000000000003px 48px;
+}
+
+########################################################################################################################
+
+Margin = Margin definida para os paragr�fo
+
+p {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 150px;
+  margin-left: 80px;
+}
+
+Margin Shorthand = Link Curto
+
+margin-top 1�
+margin-right 2�
+margin-bottom 3�
+margin-left 4�
+
+p {
+  margin: 25px 50px 75px 100px;
+}
+
+#######################################################################################################################
+
+CSS Google Fonts /*Fontes diretamente do google*/
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+<style>
+body {
+  font-family: "Sofia";
+  font-size: 22px;
+}
+</style>
+</head>
+<body>
+
+<h1>Sofia Font</h1>
+<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+
+</body>
+</html>
+
+#######################################################################################################################
+
+CSS FORM
+
+
+<div class="var_form_position">
+
+  <p class="var_p_sign_up">Sign Up</p>
+
+<form class="var_p" action="phpform.php">
+  
+  <label for="fname">First Name</label>
+  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    
+  <label for="lname">Last Name</label><br>
+  <input id="fname" type="text" name="Nome">
+  &nbsp &nbsp &nbsp &nbsp
+  <input id="lname" type="text" name="Sobrenome">
+  <br><br>
+
+  <label for="birthday">Birthday</label>
+  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+  <label for="gender">Gender</label><br>
+  <input id="birthday" type="date" name="birthday">
+  
+  &nbsp &nbsp &nbsp
+  <input type="radio" id="male" name="gender">
+  <label for="male">Male</label>
+  <input type="radio" id="female" name="gender">
+  <label for="female">Female</label> <br> <br>
+
+  <label for="email">Email</label>
+  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+  <label for="phone">Phone Number</label><br>
+  <input id="email" type="text" name="email">
+  &nbsp &nbsp &nbsp &nbsp
+  <input id="phone" type="text" name="phone"><br><br>
+
+  <label for="subject">Subject</label><br>
+  <select class="var_input_select" id="subject" name="subject">
+      <option value="choose">Choose Option</option>
+      <option values="australia">Australia</option>
+      <option values="albania">Albania</option>
+      <option values="Brazil">Brazil</option>
+      <option values="Canadá">Canada</option>
+      <option values="Dinamarca">Dinamarca</option>
+
+  </select>
+
+</form>
+
+</div>
+
+
+
+                <!--CSS3 Style Forms-->
+
+  /*Form CSS3 Style Input*/
+
+.var_form_position {
+   position: relative;
+   left: 370px;
+   border-width: 5px;
+   border-style: solid;
+   border-color: #4C4E7F;
+   border-top-left-radius: 50px;
+   border-top-right-radius: 50px;
+   border-bottom-left-radius: 50px;
+   border-bottom-right-radius: 50px;
+   background-color: #4C4E7F;
+   box-sizing: border-box;
+   padding: 20px 50px 50px 82px;
+   width: 655px;
+   height: 590px;
+
+}
+
+.var_p {
+   color:#fff;
+   font-size:18px;
+   font-family: 'Lobster', cursive;
+   box-sizing: border-box;
+  
+}
+
+.var_p_sign_up {
+   position: relative;
+   left: 190px;
+   bottom: 12px;
+   color:#fff;
+   font-size:28px;
+   font-family: 'Lobster', cursive;
+   box-sizing: border-box;
+   width: 100px;
+   padding: 0;
+
+}
+
+input[type=text] {
+  width: 220px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 100px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+input[type=date] {
+   width: 220px;
+   padding: 12px 20px;
+   margin: 8px 0;
+   display: inline-block;
+   border: 1px solid #ccc;
+   border-radius: 100px;
+   box-sizing: border-box;
+   background-color: #fff;
+   
+ }
+
+ input[type=radio] {
+   width: 50px;
+   padding: 12px 20px;
+   margin: 8px 0;
+   display: inline-block;
+   border: 1px solid #ccc;
+   border-radius: 100px;
+   box-sizing: border-box;
+   
+ }
+
+	input[type=submit] {
+  width: 500px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+	input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.var_input_select {
+  width: 475px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 100px;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #4C4E7F;
+  font-family: 'Lobster', cursive;
+  font-size: 16px;
+
+}
+
+
+******************************************************
+
+Para colocar também a função select com as mesma caracteristicas
+
+input[type=text], select{
+	border-width: 5px;
+	border-style: solid;
+	border-color: red;
+	width: 220px;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #000;
+	border-radius: 100px;
+	box-sizing: border-box;
+	background-color: #fff;
+	color: #000;
+	font-family: 'Lobster', cursive;
+	font-size: 18px;
+
+  }
+
+*************************************************************
+
+***************************************************
+
+.vartextarea {
+    resize: none;      /*Disable option modify widht or height behind front end*/
+    width: 400px;
+    height: 400px;
+
+}
+
+
+#############################################################################################
+
+BORDER RADIUS FOR IMG
+
+img {
+  border-radius: 50%;
+}
+
+##############################################################################################
+
+				/* Pagination Numbers Down Display CSS  */
+							 
+		.pagination {
+  display: inline-block;
+}
+
+		.pagination a {
+  color: white;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  position: relative;
+  left: 600px;
+  top:950px;
+  border: 10px solid #000000;
+  padding-bottom: 80px;
+}
+
+.pagination a:hover:not(.active) {background-color: #FF4000;}
+###############################################################################################
+
+@media = utilizado como layout responsivo para um determinado tamanho de tela. E ainda � importante dizer, que ele verifica se tudo depois de  
+"and" � verdadeiro para que ele escolha a op��o espec�fica. Por exemplo, se a tela tiver "min-widht: 0px;" ou seja verdadeiro prosseguir, se o 
+"max-widht: 1444px" for verdeiro prosseguir, se n�o pular para o pr�ximo "@media" 
+
+@media screen and (min-width: 0px) and (max-width: 1444px) and (min-height: 0px) and (max-height: 876px)
+
+/*Screen: Serve para dizer ao @media que vai ser uma tela
+
+  and: Coloca mais algumas op��es na frente
+
+  min-widht: M�nimo de uma p�gina pela quest�o de largura
+  max-widht: � a largura m�xima
+  min-height: � altura m�nima
+  max-height: � altura m�xima
+
+Obs: Todos esses par�metros ser�o testados como verdadeiro/falso. Para que ele implemente uma determinada configura��o � necess�rio
+que todos os par�metros sejam verdadeiros 
+
+*/
+
+##################################################################000000
+
+Table .CSS
+table, th, td {
+	border-width: 1px;
+	border-style: solid;       /*The line of table*/     
+	border-color: black;
+	border-collapse: collapse;    /*Remove doble line*/
+	color: black;
+	background-color: #fff;
+	line-height: 25px;
+	box-sizing: border-box;
+	width: 700px;  
+
+
+
+}
+
+
+##########################################
+
+Calculadora .CSS
+
+                                                            /*Calculadora CSS - Meu  */
+
+.position_calc {
+
+   position: relative;
+   bottom: 250px;
+   left: 500px;
+   border-width: 5px;
+   border-color: red;
+   border-style: solid;
+   width: 0px;
+   height: 0px;
+   box-sizing: border-box;
+}
+
+#visor {
+   padding: 0px 0px 0px 0px;
+   margin: 0px 0px 0px 0px;
+   background-color: rgb(126, 120, 120);
+   box-sizing: border-box;
+   position:relative;
+   left: 63px;
+   top: 220px;
+   border-radius: 10px;
+   border-width: 10px;
+   border-style: solid;                       /*CSS Visor */
+   border-color: black;
+   height: 150px;
+   width: 290px;
+   font-size: 30px;
+   z-index: 10;
+}
+
+table {
+   background-color: #333;
+   border-style: solid;                       /*CSS da Calculadora como um todo*/
+   border-color: black;
+   border-width: 40px;
+   border-top-left-radius: 20px;
+   border-top-right-radius: 20px;
+   border-bottom-left-radius: 20px;
+   border-bottom-right-radius: 20px;
+   padding-top: 200px;
+   padding-left: 20px;
+   padding-right: 20px;
+   padding-bottom: 20px;
+   box-sizing: border-box;
+   
+}
+
+form input {
+    color: white;
+    font-size: 18pt;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: auto;
+    margin-top: 3px;                     /*CSS espaçamento entre os quadrados*/ 
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;       /*Tamanho dos números e estilos*/
+    padding: 10px;
+    overflow: hidden;
+    height: 330px;
+    width: 300px;
+    background-color: black;
+    border-radius: 20px;
+    border: 1px solid red;
+    justify-content: space-between;
+}
+
+form input.num {
+    background-color: black;
+    border-radius: 10px;
+    width:70px;                                     /*CSS de cada quadrado*/
+    height:70px;
+    border: 3px solid black;
+    -webkit-transition:all 0.2s linear;     /*webkit é utilzado em navegadores chrome e safari na frente o nome -webkit-transition or -webkit-box-shadown*/
+	 -moz-transition:all 0.2s linear;        /*moz para mozilla exemplo -moz-transition -moz-box-shadow */
+	 -o-transition:all 0.2s linear;          /*Velocidade de transformação*/
+	 transition:all 0.2s linear;
+}
+
+form input.num:hover{
+    border: 1px solid black;
+    transition: 0.0s;                            /*CSS Hover Mouse Para Número*/
+    cursor: pointer;
+    background-color: black;
+    -webkit-transform: scale(1.20);
+	 -moz-transform: scale(1.20);                 /*CSS Aumenta em tamanho*/
+	 transform: scale(1.20);
+   
+}
+
+form input.oper {
+    background-color: black;
+    border-radius: 10px;
+    width:70px;                                  /*CSS Hover Mouse Para Número*/
+    height:70px;
+    border: 1px solid black;
+    -webkit-transition:all 0.2s linear;     /*webkit é utilzado em navegadores chrome e safari na frente o nome -webkit-transition or -webkit-box-shadown*/
+	 -moz-transition:all 0.2s linear;        /*moz para mozilla exemplo -moz-transition -moz-box-shadow */
+	 -o-transition:all 0.2s linear;          /*Velocidade de transformação*/
+	 transition:all 0.2s linear;
+}
+
+form input.oper:hover{
+    border: 1px solid black;
+    transition: 0.0s;
+    cursor: pointer;
+    background-color: black;
+    -webkit-transform: scale(1.20);
+	 -moz-transform: scale(1.20);                 /*CSS Aumenta em tamanho*/
+	 transform: scale(1.20);   
+}
+
+
+/*Formulário Abrindo em outra página*/
+
+<form name="form" target="_blank" class="var_p" action="/submenu/phptest.php">
