@@ -1,0 +1,200 @@
+/*Mandando Dados para o servidor...*/
+
+/*
+    <p class="var_p" id="resultado"></p>
+    <p class="var_p" id="resultado2"></p>
+
+*/
+
+$.ajax({
+
+    method: "POST",       //Tipo de envio
+    url: "phptest.php",   //Página que vai receber os dados
+    data:{                // Os dados à serem enviados  
+        nome:"Brandon", email:"brandon@gmail.com"
+    },
+
+    beforeSend:function(){
+        $("#resultado2").html("Enviando Seu Arquivo");  //Antes De Enviar a mensagem
+    }
+})
+
+.done(function(msg){
+    $("#resultado").html(msg);  //Quando finaliza a requisição, o mesmo trás o resultado de volta.
+})
+
+.fail(function(){
+    alert(msg);    // Se falhar mostra o erro. 
+});
+
+//Código em PHP
+
+/*
+
+    <?php
+
+        $a = $_POST['nome'];
+        $b = $_POST['email'];
+
+            echo nl2br("O resultado é 
+            $a 
+            $b");
+
+    ?>
+
+*/
+
+/***********************************************************************************/
+
+//Mandando dados para o servidor PHP preenchido pelo usuário 
+
+function jsTest(){
+
+    var dados1 = $("#value1").val();
+    var dados2 = $("#value2").val();
+
+$.ajax({
+
+    url: "phptest.php",
+    method: "POST",
+    data:{
+        num1: dados1,
+        num2: dados2
+    },
+
+    beforeSend:function(){
+        window.alert("Enviando seu arquivo");
+    }
+})
+
+.done(function(arg1){
+    $("#answer").html(arg1);
+})
+
+.fail(function(arg1){
+
+    $("#answer").html(arg1);
+
+});
+
+}
+
+
+
+//OR
+
+
+$(".var_1button").bind('click',
+
+function(){
+
+    var dados1 = $("#value1").val();
+    var dados2 = $("#value2").val();
+
+    $.ajax({
+
+        url: "phptest.php",
+        method: "POST",
+        data:{
+            num1: dados1,
+            num2: dados2
+        },
+
+        beforeSend:function(){
+            window.alert("Enviando seu arquivo");
+        }
+    })
+
+    .done(function(arg1){
+        $("#answer").html(arg1);
+    })
+
+    .fail(function(arg1){
+    
+        $("#answer").html(arg1);
+    
+    });
+}
+
+)
+
+/*********************************************************************************************************/
+
+/*Só pegando algo do servidor*/
+
+$.ajax({
+
+    url: "ajax1.txt",
+    method: "POST",
+})
+
+.done(function(args){
+    $("#result").html(args);
+})
+
+.fail(function(args){
+    $("#result").html(args);
+})
+
+
+/**************************************************************************************************/
+
+var a = {
+    num1: "555",
+    num2: "444"
+}
+
+var dados = JSON.stringify(a)
+
+$.ajax({
+    url: "http://127.0.0.1/phptest.php",
+    method: "POST",
+    data:{
+        numResult: dados
+    },
+
+    beforeSend: function(){
+        window.alert("Enviando os Dados");
+    }
+})
+
+.done(function(msg){
+    $("#result").html(msg);
+})
+
+.fail(function(){
+    $("#result").html(msg);
+})
+
+
+<?php
+
+$a = $_POST['numResult'];
+
+$dadosjson = json_decode($a, true);
+
+var_dump($dadosjson);
+
+
+?>
+
+
+
+/*************************************************************************************************/
+
+const url = '../feriasConsulta.php?acao=buscarmotorista';
+const dados = {
+	num1: '123456'
+};
+const options = {
+	method: 'POST',
+	body: JSON.stringify(dados),
+	headers: {
+		'Content-Type': 'application/json'
+	}
+}
+
+fetch(url, options)
+	.then(res => res.json())
+	.then(res => console.log(res));
+/*******************************************************/

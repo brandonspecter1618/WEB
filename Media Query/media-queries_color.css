@@ -1,0 +1,31 @@
+@media (max-width: 320px) {
+  body { background-color: red; }
+}
+
+@media (min-width: 321px ) and (max-width: 375px) {
+  body { background-color: blue; }
+}
+
+@media (min-width: 376px ) and (max-width: 425px) {
+  body { background-color: orange; }
+}
+
+@media (min-width: 426px ) and (max-width: 768px) {
+  body { background-color: green; }
+}
+
+@media (min-width: 769px ) and (max-width: 1024px) {
+  body { background-color: pink; }
+}
+
+@media (min-width: 1025px ) and (max-width: 1440px) {
+  body { background-color: teal; }
+}
+
+@media (min-width: 1441px ) and (max-width: 2560px) {
+  body { background-color: yellow; }
+}
+
+@media (min-width: 2561px ) {
+  body { background-color: purple; }
+}
