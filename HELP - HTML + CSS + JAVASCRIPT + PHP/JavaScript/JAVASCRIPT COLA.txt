@@ -1,0 +1,1059 @@
+<!--Javascript-->
+<script src="/js/jsTest.js"></script> 
+//É importante executar o script em um arquivo a parte
+
+
+const jsTest = () =>{
+    let x = 10;  // Escopo precisa está somente no escopo onde precisa ser executado
+    let y = 20;  // Caso queira usar 'var' saiba que o mesmo declara essa variável como global
+    let z = (x + y) * y;
+    document.querySelector("p#result")  //querySelector trabalha mais rápido que getElementById
+        .innerHTML = "The Result " + z;
+
+}
+
+WINDOWS
+
+
+
+<img id="var1_light" class="photo_var1" src="photo/pic_bulboff.gif" style="width:100px">
+			
+<div class="button_var1">
+
+<button type="button" onclick="document.getElementById('var1_light').src='photo/pic_bulbon.gif'">Turn on the light</button> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+<button type="button" onclick="document.getElementById('var1_light').src='photo/pic_bulboff.gif'">Turn Off the light</button>
+
+</div>
+
+###################################################################################################################
+<p class="var_p" id="var1">
+			
+	Hello Men !!! If you is really men please click bolow !!!
+			
+</p>
+			
+<button type="button" onclick='document.getElementById("var1").innerHTML = "Hello javascript"'>Click Me!</button>
+
+<button type="button" onclick='document.getElementById("").innerHTML = ""'>
+##################################################################################################################
+
+Esconde elemento e o tr�s de volta com um click no bot�o
+
+
+<h3 class="var_p"> What can Javascript Do </h3>
+			
+<p class="var_p" id="var2" style="display:none" > Hello man ? Please click in button down </p>
+			
+<button class="var3_buttons" type="button" onclick="document.getElementById('var2').style.display='block'">Click Me</button>
+
+########################################################################################################################
+
+Como criar uma fun��o
+
+<h3 class="var_p"> What can Javascript Do </h3>
+			
+<p class="var_p" id="var2"> Hello man ? Please click in button down </p>
+			
+<button class="var3_buttons" type="button" onclick="myfuncion()">Click Me</button>
+			
+			
+			
+			
+	<script>
+		
+		function myfuncion() {
+			
+			document.getElementById("var2").innerHTML = "Hello Javascript !!! Thank You Click this Button";
+			
+		}
+		
+	</script>
+
+
+Varia��o de esconder algo
+
+
+<h3 class="var_p"> What can Javascript Do </h3>
+			
+<p class="var_p" id="var2" style="display:none"> Hello man ? Please click in button down </p>
+			
+	<button class="var3_buttons" type="button" onclick="myfunction()">Click Me</button>		
+			
+	<script>
+		
+		function myfunction() {
+			
+			document.getElementById("var2").style.display=("block");
+		
+		}
+		
+		
+		</script>
+
+
+#################################################################################################"
+Como executar um javascrip vindo de fora ".js"
+
+
+	<p class="var_p" id="var2" style="display:none"> Hello man ? Please click in button down </p>
+			
+	<button class="var3_buttons" type="button" onclick="myvarfunction()">Click Me</button>
+			
+	
+			
+
+		<script src="js/myjavascript.js" ></script>  /*Aqui � utilizado para pedir para um javascript de outro lugar para ser executado*/
+			
+
+
+#####################################################################################################
+
+Usado para aparecer uma janela na parte superior para aparecer algo.
+
+<script class="var4_javascript1">
+		
+	window.alert(5 + 8);
+		
+</script>
+
+ou 
+
+<button class="var3_buttons" type="button" onclick="window.alert(5 + 8)">Click Me</button>
+
+
+######################################################################################################
+
+Windows Print = Utilizado para imprimir p�gina.
+
+<button class="var3_buttons" type="button" onclick="window.print()">Click Me</button>
+
+
+######################################################################################################
+
+<script>
+		
+	var x, y, z;      /*Aqui � apresentado as vari�veis */         
+	x = 15;
+	y = 45;
+	z = x + - * / y;  /*Aqui a (soma subtra��o multiplica��o ou divis�o)  das outras op��es para dentro de z*/
+		
+
+		document.getElementById("var2").innerHTML = "This Values of z is " + z + "."; /*A op��o de "+" serve para adicionar alguma coisa a mais*/
+		
+		
+</script>
+			
+
+##########################################################################################################
+
+				<!-- Arrays Script -->
+			
+<script>  
+		
+	var cars = ["Lamb ", " Ferrari ", " BMW ", " Alpha_Romeo ", " Porsche"];
+	cars[4] = "Girl Beautiful";
+	document.getElementById("var3").innerHTML = cars + "<br>" + cars.length;
+		
+</script>
+
+
+ou
+
+
+<script>
+			
+	var people = [
+			
+		"Brandon",
+			
+		"Specter",
+			
+		28
+
+];
+			
+			document.getElementById("var1").innerHTML = people[1];
+			
+</script>	
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to create an array, then display its length.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var fruits = ["Banana", "Orange", "Apple", "Mango"];
+  document.getElementById("demo").innerHTML = fruits.length;
+}
+</script>
+
+</body>
+</html>
+
+********************************************************
+
+
+Command Alternative for create new Arrays
+
+<script>
+
+
+    function jspass1() {
+
+        var cars = new Array("Saab", "Volvo", "Ferrari", "BMW");
+        cars[3] = "Mercedes"
+
+        document.getElementById("var1").innerHTML = cars;
+
+    }
+</script>
+
+********************************************************
+push() Add Item in arrays
+
+<script>
+
+    var cars = ["Saab", "Volvo", "Ferrari", "BMW"];
+    document.getElementById("var1").innerHTML = cars;
+
+    function jspass1() {
+        cars.push("Mazda");  // Adiciona algo à um array.
+        document.getElementById("var1").innerHTML = cars;
+
+    }
+</script>
+
+
+********************************************************
+
+pop() Delete last item arrays
+
+<script>
+
+    function jspass1() {
+        var cars = ["Saab", "Volvo", "Ferrari", "BMW"];
+        cars.pop();
+        document.getElementById("var1").innerHTML = cars;
+
+    }
+</script>
+
+
+**********************************************************
+
+shift() method removes the first array element index.
+
+<script>
+
+    function jspass1() {
+        var cars = ["Saab", "Volvo", "Ferrari", "BMW"];
+        cars.shift();
+        document.getElementById("var1").innerHTML = cars;
+
+    }
+</script>
+
+***********************************************************
+
+
+LOOP ARRAYS With <ul> and <li>
+
+
+
+var fruits, text, fruits_lenght, x;
+
+	fruits = ["Banana","Orange","Apple","Mango","Wine"];
+	fruits_lenght = fruits.length;
+			
+		text = "<ul>";
+			
+			for(x = 0; x < fruits_lenght; x++) {
+				text += "<li>" + fruits[x] + "</li>";
+				
+			}
+			
+		text += "</u>";
+		
+document.getElementById("var1").innerHTML = "<span>" + text + "</span>";
+
+
+
+##########################################################################################################
+
+
+<script>
+		
+function myfunctiontest1() {
+	
+	var var_form = {
+		
+		name:"Brandon",
+		lastname: "Specter",
+		age: 28,
+		eyecolor: "green shadown",
+		
+	};
+
+	document.getElementById("var1").innerHTML = "<span>" + "My name is" + "&nbsp" + var_form.name + "&nbsp" + var_form.lastname + "<br>" 
+	+ "have older" + "&nbsp" + var_form.age + "<br>" + "and my eyes have color" + "&nbsp" + var_form.eyecolor + "</span>" + ".";
+}
+		
+		</script>
+
+
+
+
+############################################################################################################
+
+function myvar2() {
+	
+	document.getElementById("var2").innerHTML = Date(); /*Muda data na tela*/
+	window.alert (Date());      /*Mostra a hora do sistema como uma forma de alerta*/
+}
+
+var text2 = "Hello Date";
+window.alert(text2 + "Hello the Date Today " + Date());
+
+ou 
+
+function myfunctiontest2() {
+	
+	var var_date = (window.print(window.alert("Can you printer this ?" + Date())));   /*Para colocar uma fun��o dentro de uma vari�vel coloque-a entre parentese "()"*/
+	document.getElementById("var1").innerHTML =  var_date; 
+	
+	var text2 = "Hello Date";
+    window.print(window.alert(text2 + "Hello the Date Today " + Date()));
+
+	
+}
+
+function vardate() {
+
+    var text2 = "Hello Date";
+    var command2 = (window.print(window.alert(text2 + "Hello the Date Today " + Date())));
+
+    document.getElementById("var1_p").innerHTML = command2;
+}
+
+############################################################################################################
+
+Usado para substituir o objeto com o nome da vari�vel
+
+<button class="button"type="button" onclick="this.innerHTML=Date()">Printer</button>
+
+
+ou 
+
+<button class="var_1button" type="button" onclick="this.innerHTML ='Foi alterado' + '&nbsp' + myfunctiontest2()">Printers</button>
+
+#############################################################################################################
+
+Usado para identificar a quantidade de dados dentro de uma vari�vel
+
+<script>  
+		
+	var text = "dadasdasdasdawqa3wdawasdfsrgregergesrg";
+	var total = text.length;
+	document.getElementById("var2").innerHTML = "The lenght is " + total;
+
+</script>
+
+
+#############################################################################################################
+Procurar String Dentro De uma String 
+
+
+indexOf
+
+<script>
+
+
+    function jspass1() {
+
+        var varstr = "Brandon Specter Technology Informacion";
+        var result = varstr.indexOf("Technology");
+
+        document.getElementById("var1").innerHTML = result;
+
+    }
+</script>
+
+
+
+
+Search
+
+<script>
+
+
+    function jspass1() {
+
+        var varstr = "Brandon Specter Technology Informacion";
+        var result = varstr.search("Specter");
+
+        document.getElementById("var1").innerHTML = result;
+
+    }
+</script>
+
+
+
+
+
+
+
+############################################################################################
+
+Gera n�meros aleat�rios
+
+Math.PI
+
+<script>
+
+    function jspass1() {
+
+        document.getElementById("var1").innerHTML = Math.PI;
+
+    }
+</script>
+
+
+
+*****************************************************
+Math.round arredonda o número para baixo ou acima.
+
+<script>
+
+    function jspass1() {
+
+        document.getElementById("var1").innerHTML = Math.round(6.4);
+
+    }
+</script>
+
+*****************************************************
+
+Math.pow Potência de número
+
+<script>
+
+    function jspass1() {
+
+        document.getElementById("var1").innerHTML = Math.pow(2,8);
+
+    }
+</script>
+
+********************************************************
+
+<script>
+		
+	document.getElementById("var4").innerHTML = Math.floor(Math.random() * 10);
+
+Math.floor = Retorna um valor abaixo do valor que colocou em decimal por exemplo Math.floor(7.9) retorna (7)
+Math.random = Retorna valores rand�micos entre 0 e 1.
+		
+</script>
+		
+
+ou
+
+
+<button class="var_2button" type="button" 
+onclick="document.getElementById('var4').innerHTML = var_random(0,10)">Random</button>
+
+
+
+<script>
+			
+	function var_random(min, max) {
+			
+	return Math.floor(Math.random() * (max - min)) + min;
+				
+				
+}
+
+
+ou
+
+function myfunctionrandom() {
+	
+	var var_random = (Math.floor(Math.random(0,20) * 10))
+	document.getElementById("var1").innerHTML = "<span>" + var_random + "</span>";
+	
+}
+			
+</script>
+
+
+############################################################################################################################
+
+Opera��es Boleano utlizado para descobrir se os operadores s�o true or false.
+
+
+<script>
+			
+	function var_boolen() {
+				
+		document.getElementById("var1").innerHTML = Boolean(33 <= 23);
+				
+}
+			
+			
+</script>
+
+
+OR 
+
+<script>
+
+    function jspass1() {
+
+        var x, y, z;
+        x = "3535";
+        y = 3535;
+
+        document.getElementById("var1").innerHTML = Boolean(x != y); // not equal
+    }
+
+</script>
+
+OR
+
+<script>
+
+    function jspass1() {
+
+        var x, y, z;
+        x = "3535";
+        y = 3535;
+
+        document.getElementById("var1").innerHTML = Boolean(x !== y); //  	not equal value or not equal type
+    }
+
+</script>
+
+
+##############################################################################################################################
+
+Loop with IF and Else
+
+<script>
+			
+	var var_date10;
+			
+	if(new Date().getHours() <= 14) {
+		var_date10 = "Good Day";
+}
+	else {
+		var_date10 = "Good Evening"
+}
+			
+	document.getElementById("var1").innerHTML = var_date10;
+</script>
+
+
+
+ou 
+
+<script>
+	
+function myfunction_loop() {
+	
+	var hours = new Date().getHours();
+	var var1_mensagem;
+	
+	if(hours <= 12) {
+	
+		var1_mensagem = "Good Morning";
+		
+	}
+	
+	else if (hours <= 18) {
+		
+		var1_mensagem = "Good Afternoon"
+	}
+	
+	
+	else {
+		
+		var1_mensagem = "Good Evening";
+		
+	}
+	
+	document.getElementById("var5").innerHTML = var1_mensagem + "<br>" + Date();
+	
+} 
+
+</script>
+
+
+Or 
+
+<script>
+
+    function jspass1() {
+
+        var vardate = (new Date().getHours());
+        var text;
+
+        if (vardate == 6) {
+            text = "Good Morning";
+
+        }
+
+        else 
+            if (vardate <= 11.59) {
+            text = "Good Morning"
+        }
+
+        else 
+            if (vardate <= 17.59) {
+            text = "Good Afternoon";
+
+    }
+        else {
+            text = "Good Evening";
+
+        }
+
+        document.getElementById("var1").innerHTML = text;
+
+    }
+
+
+
+</script>
+
+#########################################################################################################
+
+Loop with Case
+
+
+		 /* Loop Case*/
+		 
+		 <script>
+
+function myfunction_loop_switch() {
+	
+	var WhatDay;
+			var var_date = new Date().getDay();
+			switch(var_date) {
+			
+			case 0:
+				WhatDay = "Sunday";
+			break;
+			
+			case 1:
+				WhatDay = "Monday";
+			break;
+			
+			case 2:
+				WhatDay = "Tuesday";
+			break;
+			
+			case 3:
+				WhatDay = "Wednesday";
+			break;
+			
+			case 4:
+				WhatDay = "Thursday";
+			break;
+			
+			case 5:
+				WhatDay = "Friday";
+			break;
+			
+			case 6:
+				WhatDay = "Saturday";
+			break;
+			
+			default:
+				text = "Looking forward to the Weekend"
+			
+			}
+			
+			document.getElementById("var6").innerHTML = "<span>" + WhatDay + "</span>"; 
+	
+}
+
+</script>
+
+##################################################################################################
+
+			/*Loop For*/
+
+<script>
+
+function myfunction_loop_for() {
+			
+		var var1_text = "";
+		var i;
+		for(i = 0; i <= 5; i++){
+			var1_text += "The Number is" + i + "<br>";    /*O comando "+=" significa cada vez que for solicitado coloque a mensagem de novo, se n�o fizer isso aparecer� somente a �ltima mensagem*/
+}
+		document.getElementById("var7").innerHTML = "<span>" + var1_text + "</span>";
+			
+			
+}
+
+</script>
+
+OR
+
+<script>
+
+function myfunction_loop_for() {
+			
+	var var1_text = "";
+	var i;
+		for(i = 0; i <= 1000; i++){
+			
+			if(i == 1001 || i == 10000){break;}      /*OR*/
+		var1_text += "The Number is" + i + "<br>";
+				
+}
+document.getElementById("var7").innerHTML = "<span>" + var1_text + "</span>";
+			
+	
+
+OR
+
+		
+		}
+
+
+function myfunction_loop_for() {
+			
+	var var1_text = "";
+	var i;
+		for(i = 0; i <= 1000; i++){
+				
+			if(i > 29 && i === 31) {break;}      /*AND*/
+		var1_text += "The Number is" + i + "<br>";
+				
+}
+document.getElementById("var7").innerHTML = "<span>" + var1_text + "</span>";
+			
+			
+		}
+
+		function varforif() {
+
+    var vartext = "";
+    var x;
+
+    for(x = 0; x <= 1000; x++){
+
+            if(x >= 550 && x <= 500){break}
+                vartext += "Values is " + x + "<br>";
+
+    }
+
+    document.getElementById("var1_p").innerHTML = vartext;
+}
+
+OR
+
+function myfunction_loop_for() {
+			
+	var var1_text = "";
+	var i;
+		for(i = 0; i <= 1000; i++){
+				
+			if(i > 29 && i === 31) {continue;}      /*AND*/
+		var1_text += "The Number is" + i + "<br>";
+				
+}
+document.getElementById("var7").innerHTML = "<span>" + var1_text + "</span>";
+			
+			
+		}
+
+
+#####################################################################################################
+
+			/*Loop While*/
+
+
+function myfunction_loop_while() {
+			
+	var var2_text = "";
+	var i = 0;
+	while( i <= 10) {
+		var2_text += "<br>the number is" + i; i++;   /*O comando "+=" significa cada vez que for solicitado coloque a mensagem de novo, se n�o fizer isso aparecer� somente a �ltima mensagem*/
+}
+			
+	document.getElementById("var8").innerHTML = "<span>" + var2_text + "</span>";
+
+}
+
+####################################################################################################
+
+Constructor
+
+
+<script>
+			
+document.getElementById("var1").innerHTML = 
+
+	"Brandon".constructor + "<br>" +
+	(3.141618).constructor + "<br>" +
+	true.constructor + "<br>" +
+	[1,2,3,4,5].constructor + "<br>" +
+	{name:'Brandon', lastname:'Specter', age:28}.constructor + "<br>" +
+	new Date().constructor + "<br>" +
+	function(){}.constructor;
+ 			
+			
+		
+</script>
+
+#######################################################################################################
+
+Converter Number for String
+
+<script>
+			
+	var number = 123;
+			
+	document.getElementById("var1").innerHTML = 
+			
+		String(number) + "<br>" +
+		String(123) + "<br>" +
+		String(100 + 23);
+			
+</script>
+
+OR
+
+
+<script>
+			
+var number = 123;
+			
+	document.getElementById("var1").innerHTML = 
+			
+		("The toString() converter numbers for string").toString()+ "<br>" +
+		number.toString() + "<br>" +
+		(123).toString() + "<br>" +
+		(1234+67).toString();
+			
+			
+</script>
+
+###########################################################################################
+Search Strings = Procura String
+
+<script>
+			
+	var var_str = "Visit W3Schools Ferrari!";
+	var var_search = var_str.search("Ferrari");
+			
+		document.getElementById("var1").innerHTML = var_search;
+			
+</script>
+
+OR
+
+
+<script>
+
+function jspass1() {
+
+    var x = "Visit Brandon Specter";
+    var y = x.search("Specter");
+
+    document.getElementById("var1").innerHTML = y;
+
+}
+
+</script>
+		
+
+#############################################################################################
+
+Replace Name = Troca o nome de uma string por outra
+
+function myfunctiontest1618(){
+				
+	var var_string = document.getElementById("var1").innerHTML;
+	var var_replace = var_string.replace("name","Brandon Specter");
+	document.getElementById("var1").innerHTML = var_replace;
+				
+}
+
+###############################################################################################
+
+Try and Catch and Throw
+
+		
+
+function myfunctionlooptrycatch(){
+				
+	var var_message, z;
+	var_message = document.getElementById("var_erro");
+	z = document.getElementById("var9").value;
+				
+		try {
+			if(z == "") throw "Empty"
+			if(isNaN(z)) throw "Not a number";
+			z = Number(z);
+			if(z < 5) throw "Too low";
+			if(z > 10) throw "Too High";
+					
+					
+}
+		catch(err) {
+					var_message.innerHTML = "Input is " + err;
+					
+}
+				
+			}	
+		
+ 
+OR
+
+
+function myfunctionlooptrycatch(){
+				
+	
+		var z = (document.getElementById("var9").value);
+				
+			try {
+				if(z == "") throw "Empty";
+				if(isNaN(z)) throw "Not a number";
+				z = Number(z);
+				if(z < 30) throw "Too low";
+				if(z > 100) throw "Too High";
+					
+					
+}
+		catch(err) {
+					document.getElementById("var_erro").innerHTML = "&nbsp" + "&nbsp" + "&nbsp" + "&nbsp" + 
+					"&nbsp" + "&nbsp" + "&nbsp" + "&nbsp" + "&nbsp" + "&nbsp" + 
+					"&nbsp" + "&nbsp" + "&nbsp" + "&nbsp" + "&nbsp" + "&nbsp" + 
+					"&nbsp" + "&nbsp" + "Input is " + err;
+					
+}
+				
+			}	
+
+OR
+
+<script>
+
+function jspass1() {
+
+var message, x;
+
+message = document.getElementById("varerr");
+message.innerHTML = "";
+
+x = document.getElementById("varinput").value;
+
+try {
+	if(x == "") throw "empty";
+	if(isNaN(x)) throw "not a number";
+	x = Number(x);
+	if(x < 5) throw "too low";
+	if(x > 10) throw "too high";
+	if(x > 5 || x < 10) throw "This number correct"
+}
+
+catch(err){
+	message.innerHTML = "Input is " + err;
+}
+
+}
+
+</script>
+
+
+OR
+
+
+<p class="var2_p" id="var1">Hello Man !!! Please write a number.</p>
+<button class="var_1button" type="button" onclick="jspass1()">ClickHere</button>
+<input type="text" id="varinput" placeholder="Digite um número">
+<p id="varerr"></p>
+
+<script>
+
+function jspass1() {
+	var messageerr, x;
+
+	messageerr = document.getElementById("varerr");
+	messageerr.innerHTML = "";
+
+	x = document.getElementById("varinput").value;
+
+	try{
+
+		if(x == "") throw "<p class='var2_p'>" + "Empty" + "</p>";
+		if(isNaN(x)) throw "<p class='var2_p'>" + "Not a number" + "</p>";
+		x = Number(x);
+		if(x < 5) throw "<p class='var2_p'>" + "This Number Low at 5" + "</p>";
+		if(x > 10) throw "<p class='var2_p'>" + "This Number High at 10" + "</p>";
+		if(x > 5 || x < 10) throw "<p class='var2_p'>" + "This Number are between 5 and 10" + "</p>"; 
+
+	}
+	catch(err){
+		messageerr.innerHTML = err;
+	}
+}
+
+
+
+</script>
+
+
+############################################################################
+toUpperCase = Tudo Maiusculo;
+		
+
+<script>
+
+function jspass1() {
+	var x = "kjahbdashdbasdlahewwewejsbdakjshdbasdjhabsdajshb";
+	var result = x + "<br><br>" + x.toUpperCase();
+
+document.getElementById("var1").innerHTML = "The Result is " + "<br><br>" + result;
+
+
+}
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
