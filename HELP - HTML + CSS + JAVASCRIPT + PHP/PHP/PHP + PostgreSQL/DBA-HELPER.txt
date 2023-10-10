@@ -1,0 +1,209 @@
+/*Data Type*/
+
+Data for sign
+
+Nome
+E-mail
+Telefone
+Endereço
+Data de nascimento
+Sexo
+CPF
+
+Character
+
+CHAR(n) is the fixed-length character with space padded. If you insert a string that is shorter 
+than the length of the column, PostgreSQL pads spaces. If you insert a string that is longer than the 
+length of the column, PostgreSQL will issue an error.
+
+VARCHAR(n) is the variable-length character string.  With VARCHAR(n),  
+you can store up to n characters. PostgreSQL does not pad spaces when 
+the stored string is shorter than the length of the column.
+
+TEXT is the variable-length character string. Theoretically, text data is a character string with unlimited length.
+
+********************************************
+Numeric 
+
+integers (int)
+
+bigint	-2^63 (-9,223,372,036,854,775,808) to 2^63-1 (9,223,372,036,854,775,807)	8 Bytes
+int	-2^31 (-2,147,483,648) to 2^31-1 (2,147,483,647)	4 Bytes
+smallint	-2^15 (-32,768) to 2^15-1 (32,767)	2 Bytes
+tinyint	0 to 255	1 Byte
+
+
+floating-point numbers: float(n)  is a floating-point number whose precision, at least, n, up to a maximum of 8 bytes.
+
+obs: real or float8is a 4-byte floating-point number.
+
+********************************************
+Integer
+
+Small integer ( SMALLINT) is 2-byte signed integer that has a range from -32,768 to 32,767.
+
+Integer ( INT) is a 4-byte integer that has a range from -2,147,483,648 to 2,147,483,647.
+
+Serial is the same as integer except that PostgreSQL will automatically 
+generate and populate values into the SERIAL column. This is similar to AUTO_INCREMENT 
+column in MySQL or AUTOINCREMENT column in SQLite.
+
+
+*********************************************
+DATE 
+
+DATE stores the dates only.
+TIME stores the time of day values.
+TIMESTAMP stores both date and time values.
+TIMESTAMPTZ is a timezone-aware timestamp data type. It is the abbreviation for timestamp with the time zone.
+INTERVAL stores periods of time.
+
+
+#####################################################
+
+Select = Utilizado para selecionar toda uma tabela. 
+
+select * from carros;
+
+//Utilizado para buscar um dado específico no banco de dados
+//também utilizado para comparar login e senha do usuário
+
+SELECT login, password FROM aluno WHERE login='dior@gmail.com' AND password='OL8I4m';
+
+SELECT * FROM aluno WHERE login='$login' AND password='$senha';
+
+
+
+
+######################################################
+
+Erase Table
+
+DROP TABLE contatos;  
+
+#######################################################
+
+RENAME 
+
+ALTER TABLE users1 RENAME COLUMN d_nasc to nasc
+
+
+########################################################
+
+Primary key - MYSQL
+
+ALTER TABLE table_name DROP CONSTRAINT constraint_name   /*DROP PRIMARY KEY*/
+
+
+ALTER TABLE users1 ADD CONSTRAINT PK_CPF PRIMARY KEY (cpf)    /*ADD New Primary Key*/
+
+########################################################
+
+ADD AND DROP COLUMN
+
+ALTER TABLE users1 ADD COLUMN nome varchar(50) not null
+
+DROP COLUMN
+
+ALTER TABLE users1 DROP COLUMN nome
+
+#########################################################
+
+RENAME TABLE
+
+ALTER TABLE aluno RENAME TO alunos
+
+#########################################################
+
+MODIFY COLUMN DATA TYPE number
+
+ALTER TABLE alunos ALTER COLUMN curso type varchar(100)
+
+##########################################################
+
+INSERT DATA IN TABLE
+
+INSERT INTO alunos (nome_completo, cpf, d_nasc, curso, id_fk_codigocurso) 
+VALUES ('Brendo De Almeida', 03335803116, 22091992, 'Analise e Desenvolvimento de Sistema', 1 );
+
+or
+
+INSERT INTO alunos (nome_completo, cpf, d_nasc, curso, id_fk_codigocurso) 
+VALUES ('Lorena Soares', 11256639605, 02121991, 'Gestão Pública', 2 ),
+('Katherine Specter', 11252635605, 02122991, 'Administrator', 3 ),
+('Sherry Specter', 11256639605, 02121991, 'Business Intelligent', 4 );
+
+or
+
+insert into alunos (n_completo, email, cpf, d_nascimento, sexo, telefone, curso) 
+values ('Brandon Specter', 'brandonspecter1618@gmail.com', 03335803116, 22/09/1992, 'Masculino', 6120267892, 'Analise e Desenvolvimento de Sistema');
+
+insert into alunos (n_completo, email, cpf, d_nascimento, sexo, telefone, curso) 
+values ('Katherine Specter', 'katherinespecter@gmail.com', 03345853116, 25/04/1392, 'Feminino', 61202267892, 'Administrator');
+
+insert into alunos (n_completo, email, cpf, d_nascimento, sexo, telefone, curso) 
+values ('Lorena Soares', 'lorenasoares@gmail.com', 11256639605, 02/12/1991, 'Feminino', 612011267892, 'Gestão Pública');
+
+insert into alunos (n_completo, email, cpf, d_nascimento, sexo, telefone, curso) 
+values ('Sherry Birkin', 'sherrybirkin@gmail.com', 0334522853116, 12/12/12, 'Feminino', 612202267892, 'Kill Zumbi');
+
+
+############################################################
+
+UPDATE films SET kind = 'Dramatic' WHERE kind = 'Drama';
+
+update aluno SET password='12345' WHERE password='123456789';
+
+
+
+#############################################################
+
+Deleta dados com essas atribuições;
+
+DELETE FROM produtos WHERE cod_produto = 12;
+
+
+***********
+
+Apagar dados em intervalos
+
+DELETE FROM alunos WHERE id_alunos between 1 and 70;
+
+
+
+
+#############################################################
+Create Table
+
+create table alunos (
+	
+	id_alunos serial not null,
+	n_completo varchar(90) not null,
+	email varchar(50) not null,
+	cpf bigint not null,
+	d_nascimento varchar(12) not null,
+	sexo varchar(10) not null,
+	telefone bigint not null,
+	CONSTRAINT pk_id_alunos PRIMARY KEY (id_alunos)
+);
+
+create table cursos (
+	
+	id_cursos serial not null,
+	cursos varchar(90) not null,
+	c_horaria varchar(50) not null,
+	CONSTRAINT pk_id_cursos PRIMARY KEY (id_cursos)
+);
+
+create table alunos_e_Cursos (
+	id_alunos_e_Cursos serial not null,
+	id_alunos int not null,
+	id_cursos int not null,
+	CONSTRAINT pk_id_alunos_e_Cursos PRIMARY KEY (id_alunos_e_Cursos),
+	CONSTRAINT fk_id_alunos FOREIGN KEY (id_alunos) REFERENCES alunos (id_alunos),
+	CONSTRAINT fk_id_cursos FOREIGN KEY (id_cursos) REFERENCES cursos (id_cursos)
+);
+
+insert into alunos_e_cursos (id_alunos, id_cursos) values ('1', '1');
+insert into alunos_e_cursos (id_alunos, id_cursos) values ('5', '2');
+insert into alunos_e_cursos (id_alunos, id_cursos) values ('3', '2');

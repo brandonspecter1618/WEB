@@ -1,0 +1,1454 @@
+<?php
+/*
+
+
+*/
+
+
+/*
+
+obs: Página executada é php2.php com html + css dentro da pasta htdocs do xampp
+
+*/
+
+
+
+/*Primeiro dado sendo passado para uma página em php*/
+
+
+
+    // <form name="inputform" action="phptest.php" method="post">
+
+    //     <input type="text" name="dados1" />
+    //     <br>
+    //     <input type="text" name="dados2"/>
+    //     <br>
+
+    //     <input type="submit" value="Submit me!" />
+    // </form>
+
+
+
+// <input type="button" /> //Os botões não enviarão um formulário - 
+//                         //eles não fazem nada por padrão. 
+//                         //Eles geralmente são usados ​​em conjunto com 
+//                         //JavaScript como parte de um aplicativo AJAX.
+
+// <input type="submit">   //Os botões enviarão o formulário em que estão 
+//                         //quando o usuário clicar neles, a menos que 
+//                         //você especifique o contrário com JavaScript.
+
+
+
+
+
+<?php
+
+$a =  $_POST['dados1'];  // <=   Este dado vem originalmente em array;
+$b =  $_POST['dados2'];  // <=   Este dado vem originalmente em array;
+
+$result = $a + $b;
+
+echo ($result);
+
+?>
+
+
+?????????????????
+
+<?php
+
+$a =  $_GET['dados1'];  // <= Usando o método GET com formulário;
+$b =  $_GET['dados2'];
+
+$result = $a + $b;
+
+echo ($result);
+
+?>
+
+
+?>
+
+
+############################################################################################################
+
+/***************************************Utilizando o echo ***********************************************/
+
+#Virgula separando strings e não concatenando
+
+<?php
+
+/* Vírgula não concatena string. Utilizar vírgula entre strings com echo funciona pois o echo é uma função. 
+Utilizando vírgula, você está passando vários parâmetros para esta função.*/
+
+    $a = 67;
+    $b = 333;
+
+    echo "O resultado ", "amigo ", "jack ", "brandon ", $a + $b;
+?>
+
+
+//or
+
+# Utilizando "<br>" para espaço
+
+<div class="var_p">
+    
+    <?php
+
+   
+
+        $txt = "Learn PHP";
+
+        $a = 67;
+        $b = 333;
+
+        echo  $txt . "<br><br><br>"; 
+        echo "O resultado ", "amigo ", "jack ", "brandon ","<br>", $a + $b;
+        ?>
+
+    </div>
+
+
+//or
+
+<?php
+
+   
+
+$txt = "Learn PHP";
+
+$a = "67";
+$b = 333;
+
+echo "O resultado final é " . ($a + $b);
+?>
+
+##########################################################################################
+
+
+/*Utilizando o print*/
+
+#The print statement can be used with or without parentheses: print or print().
+
+<?php
+
+   
+
+$txt = "Learn PHP";
+
+$a = "67";
+$b = 333;
+
+print "O resultado final é " . ($a + $b);
+?>
+
+
+############################################################################################
+/*
+
+PHP Data Types
+
+Variables can store data of different types, and different data types can do different things.
+
+PHP supports the following data types:
+
+    String
+    Integer
+    Float (floating point numbers - also called double)
+    Boolean
+    Array
+    Object
+    NULL
+    Resource
+
+Obs:The PHP var_dump() function returns the data type and value:
+
+*/
+
+
+<?php
+
+    function phpTest(){
+
+        $a = array(
+            "num5" => 42, 
+            "num7" => 11,
+        );
+
+                $result = $a["num5"] + $a["num7"];
+
+            echo("O resultado final é " .$result ."<br><br><br>" );
+
+        $b = [55, 33];
+        $result = $b[0] + $b[1];
+        
+            echo("O resultado final é " . $result);
+            echo("<br>");
+            var_dump($b);
+    }
+
+    phpTest();
+
+
+######################################################################
+#                                                                    #   
+#                   //PHP CONNECTION JSON                            #    
+#                                                                    #   
+######################################################################
+
+
+//PHP + JSON
+
+/*************************************************************************/
+
+/*Codificando em JSON para mandar os dados*/
+
+function phpTest(){
+
+    $a = 55;
+    $b = 33;
+    
+    $result = $a + $b;
+    
+    $response = array(
+        'message' => 'The result is ',
+        'result'  => $result
+    );
+    
+    echo(json_encode($response));
+    }
+    
+phpTest();
+
+
+//FETCH
+
+let phpJsTest = function(){
+    let a, b, c, d, url, result;
+    a = document.querySelector("input#num1").value;
+    b = document.querySelector("input#num2").value;
+    c = document.querySelector("input#num3").value;
+    d = document.querySelector("p#result");
+    
+    d = document.querySelector("p#result");
+    url = "/php/phpTest.php";
+
+    formData = new FormData();
+    formData.append("key1", a);
+    formData.append("key2", b);
+
+    let options = {
+        method: "POST",
+        mode: "cors",
+        body: formData
+    }
+
+    fetch(url, options)
+        .then(
+            function promisse(response){
+             
+                if(!response.ok){
+                    throw new Error("Error Connection");
+                    //Mostra a mensagem de erro 
+                }
+          
+
+            return response.json();
+                    //Retorno do TEXT
+                    //Retorno do JSON
+            }
+
+        )
+
+        .then(
+            function handlerPromisses(data){
+           
+                let JsonStringify = JSON.stringify(data);
+                let result = d.innerHTML = JsonStringify + "<br><br>" 
+                + data.message + data.result; 
+                
+                return result; 
+    
+            }
+        )
+
+        .catch(
+            function handleError(error){
+               d.innerHTML = error;
+            }
+
+        )   
+}
+
+/***********************************************************************/
+
+/*Contagem de string strlen*/
+
+
+<?php
+
+    function phpTest(){
+
+        $a = $_POST['key1'];
+
+        echo(strlen($a));
+    }
+
+    phpTest();
+
+/***********************************************************************/
+
+/* PHP Math*/
+
+<?php
+
+$a = $_POST['key1'];
+$b = $_POST['key2'];
+
+$max = max(33,22,11,4,5);
+$min = min(33,22,11,4,5);
+$pi = pi();
+$random = rand();
+$round = round(5.7);
+
+echo("O valor mínimo é $min");
+echo("<br>");
+echo("<br>");
+
+echo("O valor máximo é $max");
+
+echo("<br>");
+echo("<br>");
+
+echo("O valor de pi é $pi");
+
+echo("<br>");
+echo("<br>");
+
+echo("O valor randômico é $random");
+
+echo("<br>");
+echo("<br>");
+
+echo("O valor randômico é $round");
+
+echo("<br>");
+echo("<br>");
+
+var_dump($random);
+
+echo("<br>");
+echo("<br>");
+
+echo($pi * $round * $random);
+
+?>
+
+/***********************************************************************/
+
+/*
+
+define é utilizada como uma constant, ou seja, os valores
+não podem ser mudados durante a execução do script. 
+
+o padrão é (key, value) e recuperação desse valor está
+no echo(key).
+
+
+*/
+
+<?php
+
+define("num1", "Hello World");
+define("num2", "Hello Second World"); 
+echo(num1 ."<br>");
+echo(num2);
+
+?>
+
+//or
+
+<?php
+
+define("num1", ["Ferrari", "Lamb", "BMW", "Porsche"]);
+echo(num1[0] ."<br>");
+
+?>
+
+//or
+
+
+/********************************************************************/
+
+/*
+
+Condicionamento IF
+
+*/
+
+function phpTest(){
+
+    $salario = 2000;
+    $tempoServiço = 18;
+    $inputVar = $_POST['key1'];
+    $temReclamações = ($inputVar === "não");
+
+        if($salario >= 1000 && $tempoServiço >= 12 && $temReclamações == true){
+            echo("Você foi promovido !!!");
+        }else{
+            echo("Você não tem as qualificações necessárias !!!");
+        }
+    
+    echo("<br>");    
+    var_dump($temReclamações);
+
+}   
+phpTest();
+
+//or
+
+
+function phpTest(){
+
+    $timeH = date('H');
+
+        if($timeH <= 12){
+            echo("Bom Dia " .date('H:i:s :d:m:y'));
+        
+            }else
+                if($timeH <= 18){
+                    echo("Boa Tarde " .date('H:i:s :d:m:y'));
+                
+                    }else{
+                        echo("Boa Noite " .date('H:i:s :d:m:y'));
+                    }
+
+    echo($time);
+}
+
+phpTest();
+
+//or
+
+<?php
+
+$timeH = date('H');  //date
+
+    if($timeH <= 12){
+        echo("Bom Dia " .date('H:i:s :d:m:y'));
+    
+    }else
+        if($timeH <= 18){
+            echo("Boa Tarde " .date('H:i:s :d:m:y'));
+        
+            }else{
+                echo("Boa Noite " .date('H:i:s :d:m:y'));
+            }
+
+
+echo($time);
+
+?>
+
+//or
+
+<?php
+
+    function phpTest(){
+
+        $a = $_POST['key1'];
+        $b = $_POST['key2'];
+
+        var_dump(boolval(is_numeric($a)));
+
+            if(is_numeric($a) === true){
+                echo("<br>O número digitado é $a");
+            }else{
+                echo("<br>Digite um número");
+            }
+
+            echo("<br><br>");
+        var_dump(is_nan($b));
+
+            if(is_nan($b) === null){
+                echo("<br>Digite um número");
+            }else{
+                echo("<br>O número digitado é $b");
+            }
+    }
+
+    phpTest();
+
+
+
+
+//or
+
+<?php
+
+$a = $_POST['key1'];
+$b = $_POST['key2'];
+
+    function phpTest($a, $b){
+
+            if(is_numeric($a) === false || is_numeric($b) === false){
+                echo("Digite um número !!!");
+            }else{
+                $result = $a + $b;
+                echo("O resultado final é $result");
+            }
+
+            echo("<br>");
+
+            var_dump(is_numeric($a));
+    }
+    phpTest($a, $b);
+?>
+
+/********************************************************************/
+
+/*Loop FOR AND WHILE*/
+
+//////////////////////////For//////////////////////
+
+<?php
+
+    for ($x = 0; $x <= 100; $x++){
+
+        echo($x . "<br>");
+    }
+
+?>
+
+//or
+
+<?php
+
+    function phpTest(){    
+
+        for($x = 0; $x <= 100; $x++){
+            if($x % 2 === 1){
+                echo($x . "<br>");
+            }
+        }
+    }
+
+    phpTest()
+
+?>
+
+
+
+
+//////////////////////////While//////////////////////
+
+<?php
+
+    $x = 5;
+        while($x > 4){
+            echo("$x" . "<br>");
+            $x++;
+        }
+
+?>
+
+//or
+
+<?php
+
+    function phpTest(){    
+
+        $x = 0;
+            while($x <= 100){
+                if($x % 2 === 0){
+                    echo($x . "<br>");
+                }
+            $x++;
+            }
+    }
+
+    phpTest()
+
+?>
+
+/********************************************************************/
+
+/*
+
+Function PHP With Arguments
+
+*/
+
+//Functions
+
+<?php
+
+$a = $_POST['key1'];
+$b = $_POST['key2'];
+
+    function phpTest($a, $b){
+
+            if(is_numeric($a) === false || is_numeric($b) === false){
+                echo("Digite um número !!!");
+            }else{
+                $result = $a + $b;
+                echo("O resultado final é $result");
+            }
+
+            echo("<br>");
+
+            var_dump(is_numeric($a));
+    }
+    phpTest($a, $b);
+?>
+
+//or
+
+
+<?php
+
+    function familyName($fname, $year) {
+    echo "$fname Refsnes. Born in $year <br>";
+    }
+
+familyName("Hege","1975");
+familyName("Stale","1978");
+familyName("Kai Jim","1983");
+?>
+
+
+//Function Return
+
+<?php
+
+    function phpTest($a,$b){
+        return $a + $b;
+    }
+    
+    echo phpTest(20,30);
+?>
+
+/********************************************************************/
+
+
+/*Arrays*/
+
+/*
+
+Para chamar um array no PHP é necessário colocar o nome array(...)
+E count($...) é utilizado para fazer a contagem de quantos elementos
+existem dentro do array. Parecido com a opção no javascript,
+arr.length;
+
+*/
+
+####################################################
+
+//Array + For + $a[];
+
+<?php
+
+$a = array();
+
+    for($x = 0; $x <= 100; $x++){
+        $a[] = $x;
+    }
+$result = $a[44] + $a[11];
+
+echo("O resultado final é $result");
+echo("<br><br><br>");
+echo(var_dump($a));
+?>
+
+
+
+
+//or
+
+<?php
+
+    function phpTest(){
+
+        $x = array();
+
+        for($x = 0; $x <= 100; $x++){
+
+            $a[] = $x;
+        }
+
+        foreach($a as $x => $x_value){
+            echo("$x $x_value <br>");
+        }
+       
+
+    }   
+    phpTest();
+
+//or
+
+
+function phpTest(){
+
+    $nomes = [
+        'SP' => 'São Paulo',
+        'DF' => 'Brasília',
+        'RJ' => 'Rio De Janeiro',
+        'MG' => 'Minas Gerais'
+    ];
+
+    foreach($nomes as $siglas => $siglasValues){
+        echo("$siglas $siglasValues <br>");
+    }
+}
+
+phpTest();
+
+
+
+//Array + for + array_push()
+
+<?php
+
+    function phpTest(){
+        
+        $a = array();
+
+        for($x = 0; $x <= 100; $x++){
+
+            array_push($a, $x);
+        }
+
+        $result = $a[$_POST['key1']] + $a[$_POST['key2']];
+        echo("O resultado final é $result <br>");
+        var_dump($a);
+    }   
+    phpTest();
+
+
+//or
+
+<?php
+
+    function phpTest(){
+        $a = array();
+        for($x = 0; $x <= 100; $x++){
+            array_push($a, $x);
+        }
+
+            foreach($a as $a_value){
+                echo($a_value ."<br>");
+            }
+    }
+
+    phpTest();
+
+//or
+
+
+<?php
+
+    function phpTest(){
+        
+
+        for($x = 0; $x <= 100; $x++){
+
+            $a[] = $x;
+        }
+
+        $result = $a[$_POST['key1']] + $a[$_POST['key2']];
+        echo("O resultado final é $result <br>");
+        var_dump($a);
+    }   
+    phpTest();
+
+
+####################################################
+
+
+
+<?php
+
+    $arr = array("VOLVO", "BMW", "PORSCHE", "FERRARI");
+    $arrLength = count($arr);
+    echo("O que resultado final $arr[0] e tem o total de $arrLength elementos");
+    
+?>
+
+//or
+
+<?php
+
+    $arr = array("Volvo", "BMW", "Ferrari", "Porsche");
+    $arrLength = count($arr);
+
+        for($x = 0; $x <= $arrLength; $x++){
+            echo($arr[$x]);
+            echo("<br>");
+        }
+    
+?>
+
+<?php
+
+    $arr = array("Volvo", "Ferrari", "BMW", "Porsche");
+
+        foreach($arr as $arrElement){
+            echo("$arrElement <br>");
+        }
+    
+?>
+
+
+<?php
+
+    $arr = array("VOLVO" => "35", "BMW" => "36", "PORSCHE" => "37", "FERRARI" => "38");
+    
+        foreach ($arr as $x => $x_value){
+            echo("A chave é $x e o valor é $x_value <br>");
+        };
+    
+?>
+
+
+############################################################
+//Array Multidimensional 
+
+<?php
+
+$carros = array("0" => array("cor" => "Vermelho",
+                             "potencia" => "10.0",
+                             "opcionais" => "Arcondicional"),
+
+                "1" => array("cor" => "Black",
+                             "potencia" => "11.0",
+                             "opcionais" => "Batman"),
+
+
+                "2" => array("cor" => "Orange With White",
+                             "potencia" => "9.0",
+                             "opcionais" => "NF2"),
+                );
+
+foreach($carros as $x){
+    echo($x['cor'] .'<br>');
+    echo($x['potencia'] .'<br>');
+    echo($x['opcionais'] .'<br>');
+    echo("<br>");
+}
+
+
+//or
+
+<?php
+
+$carros["Ferrari"]["cor"] = "Vermelho";
+$carros["Ferrari"]["potencia"] = "10.0";
+$carros["Ferrari"]["opcionais"] = "Arcondicionado";
+
+$carros["Lamborghini"]["cor"] = "Black";
+$carros["Lamborghini"]["potencia"] = "11.0";
+$carros["Lamborghini"]["opcionais"] = "Batman";
+
+$carros["Mercedes"]["cor"] = "Orange With White";
+$carros["Mercedes"]["potencia"] = "9.0";
+$carros["Mercedes"]["opcionais"] = "NF2";
+
+foreach($carros as $x){
+    echo($x['cor'] .'<br>');
+    echo($x['potencia'] .'<br>');
+    echo($x['opcionais'] .'<br>');
+    echo("<br>");
+}
+
+
+###############################################################
+
+/*Ordem crescente sort() decresente rsort()*/
+
+<?php
+
+    $arr = array("Volvo", "Ferrari", "BMW", "Mercedez");
+    sort($arr);
+    
+
+    $arrLength = count($arr);
+
+        for($x = 0; $x < $arrLength; $x++){
+            echo($arr[$x] . "<br>");
+        }
+?>
+
+//AND
+
+
+<?php
+
+    $arr = array("Volvo", "Ferrari", "BMW", "Mercedez");
+    rsort($arr);
+    
+
+    $arrLength = count($arr);
+
+        for($x = 0; $x < $arrLength; $x++){
+            echo($arr[$x] . "<br>");
+        }
+?>
+
+/********************************************************************/
+
+// $ GLOBALS é uma variável super global de PHP que é usado para 
+// acessar as variáveis ​​globais de qualquer lugar do script PHP 
+// (também de dentro de funções ou métodos). 
+
+<?php
+
+$x = 75;
+$y = 25; 
+
+function phpTest() {
+  $GLOBALS['z'] = $GLOBALS['x'] + $GLOBALS['y'];
+}
+
+phpTest();
+echo $z;
+?>
+
+//PHP Superglobals
+
+<?php
+
+    function phpTest(){
+        echo $_SERVER['PHP_SELF'];
+        echo "<br>";
+        echo $_SERVER['SERVER_NAME'];
+        echo "<br>";
+        echo $_SERVER['HTTP_HOST'];
+        echo "<br>";
+        echo $_SERVER['HTTP_REFERER'];
+        echo "<br>";
+        echo $_SERVER['HTTP_USER_AGENT'];
+        echo "<br>";
+        echo $_SERVER['SCRIPT_NAME'];
+    }
+
+    phpTest();
+    
+?>
+
+
+##############################################################################
+
+<?php
+
+// Os modos de escrita são:
+
+// ‘w’
+
+// Abre o arquivo para apenas escrita, coloca o ponteiro do arquivo no começo do 
+// arquivo e diminui (trunca) o tamanho do arquivo para zero. Se o arquivo não existe, tenta criá-lo.
+
+
+// ‘w+’
+
+// Abre o arquivo para leitura e escrita, coloca o ponteiro do arquivo no 
+// começo e diminui (trunca) o tamanho do arquivo para zero. Se o arquivo não existe, tenta criá-lo.
+
+// ‘r’
+
+// Abre o arquivo somente para leitura, coloca o ponteiro de escrita no 
+// começo do arquivo. (Retorna um erro caso o arquivo não exista e não tenta cria-lo.).
+
+// ‘r+’
+
+// Abre para leitura e escrita, coloca o ponteiro de escrita no começo do arquivo.
+// (Retorna um erro caso o arquivo não exista e não tenta cria-lo.)
+
+// ‘a’
+
+// Abre para somente para escrita somente, coloca o ponteiro do arquivo no final. 
+// Se o arquivo não existir, tenta criá-lo.
+
+// ‘a+’
+
+// Abre o arquivo para leitura e escrita, coloca o ponteiro do arquivo no final. 
+// Se o arquivo não existir, tenta criá-lo.
+
+// ‘x’
+
+// Cria e abre o arquivo para escrita somente, coloca o ponteiro no início do arquivo. 
+// Se o arquivo já existe, a chamada a fopen() irá falhar, 
+// retornando FALSE, gerando um erro nível E_WARNING. Se o arquivo não existe, tenta criá-lo. 
+// Esta opção é suportada no PHP 4.3.2 e posteriores, e somente funciona em arquivos locais.
+
+// ‘x+’
+
+// Cria e abre um arquivo para escrita e leitura, coloca o ponteiro do arquivo no início. 
+// Se o arquivo já existe, a chamada a fopen() irá falhar, retornando FALSE, gerando um 
+// erro nível E_WARNING. Se o arquivo não existe, tenta criá-lo. Esta opção é suportada no 
+// PHP 4.3.2 e posteriores, e somente funciona em arquivos locais.
+
+$arquivo = fopen('meuarquivo.txt','a+'); 
+
+    if ($arquivo == false){
+        echo('Não foi possível criar o arquivo.');
+    }else{
+        echo("Arquivo criado na pasta deste site");
+    }
+
+$texto = "Hello World Brandon";
+$texto2 = "Brandon love Lorena";
+fwrite($arquivo, $texto);
+fwrite($arquivo, $texto2);
+fclose($arquivo);
+
+?>
+
+
+
+//or
+
+<?php
+
+$a = $_POST['key1'];
+$b = $_POST['key2'];
+
+echo("O meu nome é $a e meu email é $b");
+
+$arquivo = fopen('meuarquivo.txt','a+'); 
+
+     if ($arquivo == false){
+         echo('Não foi possível criar o arquivo.');
+    }else{
+         echo("Arquivo criado na pasta deste site");
+     }
+
+ $texto = "O meu nome é $a e meu email é $b BRANDON BRANDON BRANDON";
+ fwrite($arquivo, $texto);
+ fclose($arquivo);
+
+
+
+###############################################################
+
+/* Validação de formulário*/
+
+$last     = $_POST['lname'];
+$birthday = $_POST['birthday'];
+$gender   = $_POST['gender'];
+$email    = $_POST['email'];
+$phone    = $_POST['phone'];
+$country  = $_POST['country'];
+
+$erro = false;
+
+
+        if(empty($_POST['name']) || is_numeric($_POST['name']) === true){
+            echo("<p style='color: red; font-size: 25px;'> *Nome* Campo Vázio ou <br >com Infomações inválidas </p>");
+            }else{
+                $name = $_POST['name'];
+            }
+
+echo("Nome: $name <br> Sobrenome: $last <br> Aniversário: $birthday <br> 
+Gênero: $gender <br> Email: $email <br> Telefone: $phone <br> País: $country"); 
+
+
+######################################################################
+
+/*Validação De formulário*/
+
+<?php
+
+/*
+
+A função strip_tags() é uma função embutida em PHP 
+que é usada para retirar uma string de HTML e tags PHP. 
+Esta função retorna uma string com todos os bytes NULL, HTML e 
+tags PHP retirados de um $str dado.
+
+*/
+
+/*
+
+função trim () remove ambos os lados de uma seqüência de caracteres 
+em branco ou outros caracteres predefinidos. funções relacionadas: 
+LTRIM () - Remova o lado esquerdo de uma seqüência de caracteres em 
+branco ou outros caracteres predefinidos.
+
+echo trim('     Removendo Espaços     '); //Resultado: 'Removendo Espaços'
+
+
+*/
+
+/*Filter var é basicamente um meio para saber se a entrada é verdadeira
+um exemplo
+
+
+<?php
+var_dump(filter_var('bob@example.com', FILTER_VALIDATE_EMAIL));
+var_dump(filter_var('http://example.com', FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED));
+?>
+
+
+*/
+
+
+/*
+
+Variável Dinâmica $$chave 
+
+Com o PHP podemos criar novas variáveis definindo como o nome dessas 
+o conteúdo de outra. Para isso devemos utilizar o símbolo $$ seguido 
+do nome da variável que contém o nome para atribuição.
+
+$nome = "variable";
+
+$$nome = "Brandon Specter";
+
+echo("<br> $variable");
+
+
+*/
+
+/*Example Simple*/
+
+$a = trim(strip_tags("     <p style='color:green'>AMigo</p>"));
+var_dump($a);
+
+############################################
+
+$erro = false;
+
+    if(empty($_POST)){
+        $erro = "Nada foi postado";
+    }
+
+    foreach($_POST as $chave => $valor){
+        $$chave = trim(strip_tags($valor));
+            if(empty($valor)){
+                $erro = 'Existem campos em branco <br>';
+            }
+    }
+
+    if(is_numeric($name) || is_numeric($lname)){
+        $erro = "Não é aceito números nesse <br> campo <br>";
+    }
+
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL) && !$erro){
+        $erro = "Envie um email válido <br>";
+    }
+
+    if( !is_numeric($phone) && !$erro){
+        $erro = "O campo telefone está inválido <br>";
+    }
+
+     
+echo("<p> $erro </p>");
+
+echo("Nome: $name <br> 
+Sobrenome: $lname <br> 
+Birthday: $birthday <br>
+Gender: $gender <br>
+Email: $email <br> 
+Telefone: $phone <br><br>");
+
+
+
+######################################################################
+
+/*A página precisa está em .php para ser entendida
+
+include: Serve para incluir um arquivo de fora para
+dentro de sua página. O erro aqui é um Warning.
+
+require: Faz a mesma coisa só exibe um erro quando não
+conseguir carregar uma página.
+
+*/
+
+<?php
+
+include("phptest.php");
+
+?>
+
+<?php
+
+require("phptest.php");
+
+?>
+
+
+
+######################################################################
+
+/*readfile() serve para ler um arquivo de fora*/
+
+<?php
+    $a = $_POST['key1'];
+    $b = $_POST['key2'];
+
+    $result = $a + $b;
+
+    echo("O resultado final é $result");
+
+    $file = fopen("myfile.txt", "a+");
+        if($file == false){
+            echo("Create file Error");
+        }
+    $text = "O resultado final é $result";
+    fwrite($file, $text);
+    fclose($file);
+
+    echo("<br><br>");
+
+    readfile("myfile.txt");
+
+?>
+
+#######################################################################
+
+/*filter_var utilizado para fazer filtros de conteúdo do usuário*/
+
+<?php
+    $a = $_POST['key1'];
+
+    if(filter_var($a, FILTER_VALIDATE_INT)){  //Verify integer
+        echo("Integer is valid");
+    }else{
+        echo("Integer is not valid");
+    }
+
+    echo("<br><br>");
+
+    var_dump(filter_var($a, FILTER_VALIDATE_INT));
+
+    echo("<br><br>");
+?>
+
+
+//or
+
+<?php
+    $a = $_POST['key1'];
+
+    if(filter_var($a, FILTER_VALIDATE_IP)){  //Verify IP
+        echo("Integer is valid");
+    }else{
+        echo("Integer is not valid");
+    }
+
+    echo("<br><br>");
+
+    var_dump(boolval(filter_var($a, FILTER_VALIDATE_IP)));
+
+    echo("<br><br>");
+?>
+
+
+//or
+
+<?php
+    $a = $_POST['key1'];
+
+    if(filter_var($a, FILTER_VALIDATE_EMAIL)){   //Verify Email
+        echo("Integer is valid");
+    }else{
+        echo("Integer is not valid");
+    }
+
+    echo("<br><br>");
+
+    var_dump(boolval(filter_var($a, FILTER_VALIDATE_EMAIL)));
+
+    echo("<br><br>");
+?>
+
+
+###############################################################
+
+/*filter_input utilizado dentro de uma variável 
+para receber um valor e verificar*/
+
+<?php
+    $a = filter_input(INPUT_POST,'key1', FILTER_VALIDATE_INT);
+
+    if($a){
+        echo("Integer is valid");
+    }else{
+        echo("Integer is not valid");
+    }
+?>
+
+//or
+
+<?php
+    $a = filter_input(INPUT_POST, 'key1', FILTER_VALIDATE_INT);
+    $b = filter_input(INPUT_POST, 'key2', FILTER_VALIDATE_INT);
+
+    if($a && $b){
+        
+        $result = $a + $b;
+        echo("O resultado final é $result");
+    }else{
+        echo("Os dados de entrada são inválidos");
+    }
+?>
+
+//or
+
+<?php
+
+    function phpTest2(){
+
+        $c = 100;
+        $result2 = phpTest();
+
+        $total = $c + $result2;
+        echo("O resultado final é $total");
+
+    }
+
+    phpTest2();
+
+
+    function phpTest(){
+            $a = filter_input(INPUT_POST, 'key1', FILTER_VALIDATE_INT);
+            $b = filter_input(INPUT_POST, 'key2', FILTER_VALIDATE_INT);
+
+            if($a && $b){
+                
+                $result = $a + $b;
+                return($result);
+            }else{
+                return("Os dados de entrada são inválidos");
+            }
+    }
+
+
+?>
+
+
+################################################################
+
+#include
+
+/*phphtest.php*/
+
+<?php
+
+    function phpTest($a, $b){
+
+        $result = $a + $b;
+
+        return($result);
+    }
+
+?>
+
+
+/*phphtest2.php*/
+
+<?php
+
+include("phptest.php");
+
+$php = phptest(121,22);
+
+echo("O resultado final é $php");
+
+
+//Argumento por valor e por referência
+
+//Valor: Eu passo somente o valor para a função e ela criar
+//uma cópia e trabalha com ela. 
+
+
+<?php
+
+function phpTest($a){
+    $a *= 2;
+    //echo("$a <br>");  //Comando para verifica o valor da cópia
+                        //da variável
+}
+
+$a = 1;
+phpTest($a);
+echo($a);
+
+
+
+//Por referência: Eu passo a variável de referência e depois 
+//que a função termina ela subscreve a variável usada como 
+//referência
+
+<?php
+
+$a = $_POST['key1'];
+
+function phpTest(&$a){
+    $a *= 2;
+}
+
+phpTest($a);
+echo($a);
+
+
+######################################################################33
+
+//Copiar um arquivo
+
+<?php
+
+$a = "/home/brandon/Documentos/PHP/submenu/phptest.php";
+$b = "/home/brandon/Documentos/PHP/submenu/phptest3.php";
+
+    if(copy($a, $b)){
+        echo("Funcionou");
+        
+    }else{
+        echo("Não funcionou");
+    }
+
+
+//rename um arquivo
+
+<?php
+
+$a = "/home/brandon/Documentos/PHP/submenu/phptest.php";
+$b = "/home/brandon/Documentos/PHP/submenu/phptest2.php";
+
+    if(rename($a, $b)){
+        echo("Funcionou");
+        
+    }else{
+        echo("Não funcionou");
+    }
+
+//Diretório Original
+
+<?php
+
+echo("O diretório corrente é <br>" .getcwd());
+
+
+//Maiúsculo 
+
+<?php
+
+echo(strtoupper("hello world"));
+
+//Minúsculo 
+
+<?php
+
+echo(strtolower("HELLO WORLD"));
+
+
+
+
+
+
+
+

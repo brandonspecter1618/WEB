@@ -1,0 +1,200 @@
+<?php
+
+################################################################
+
+/*******************CLASS AND OBJECT***************************/
+
+################################################################
+
+
+class Caneta{
+
+    public  $modelo;
+    public  $cor;
+    private $ponta;
+
+        function setModelo($modelo){
+
+            $this->modelo = $modelo;
+        }
+
+        function setCor($cor){
+            
+            $this->cor = $cor;
+        }
+
+        function setPonta($ponta){
+
+            $this->ponta = $ponta;
+        }
+
+        function getValue(){
+            echo($this->modelo ."<br>");
+            echo($this->cor ."<br>");
+            echo($this->ponta);
+
+        }
+}
+
+$classCanetaObject = new Caneta;
+$classCanetaObject->setModelo("Big Cristal");
+$classCanetaObject->setCor("Azul");
+$classCanetaObject->setPonta(0.75);
+$classCanetaObject->getValue();
+
+
+//or
+
+<?php
+
+function phpTest(){
+    
+    class carro {
+        private $carroceria;
+        private $motor;
+        private $pneus;
+
+            public function setCarroValue($inpKey1, $inpKey2){
+                $this->carroceria = $inpKey1;
+                $this->motor = $inpKey2;
+
+            }
+
+            public function getCarroValue(){
+                $a = $this->carroceria;
+                echo("$a");
+            }
+    }
+
+$classCarroObj = new carro;
+$classCarroObj->setCarroValue($_POST['key1'], $_POST['key2']);
+$classCarroObj->getCarroValue();
+$classCarroObj->getReturn();
+
+}   
+phpTest();
+
+
+//or
+
+<?php
+
+function phpTest(){
+
+    class computer {
+        public $cpu;
+
+        function setComputerValue($cpuArgs){
+            $this->cpu = $cpuArgs;
+        }
+
+        function getComputerValue(){
+            echo("O computador ligou a $this->cpu");
+        }
+    }
+
+    $classComputerObj = new computer;
+    $classComputerObj->setComputerValue("500mhz");
+    $classComputerObj->getComputerValue();
+
+}   
+phpTest();
+
+
+############################################################
+
+//Calc Numbers
+
+<?php
+
+    function phpTest(){
+
+        class Carro {
+            private $a;
+            private $b;
+
+                function setValues(){
+
+                    $this->a = 16;
+                    $this->b = 16;
+
+                }
+
+                function getValues(){
+                    $valueThisA = $this->a;
+                    $valueThisB = $this->b;
+                    $result = $valueThisA + $valueThisB;
+                    echo($result);
+
+                   
+                }
+        }
+
+        $classObjCarro = new Carro;
+        $classObjCarro->setValues();
+        $classObjCarro->getValues();
+    }
+
+    phpTest();
+
+    //or
+
+    <?php
+
+    function phpTest(){
+
+        class Carro {
+            private $a;
+            private $b;
+
+                function setValues(){
+                    
+                        for($x = 0; $x <= 100; $x++){
+                            $arrays[] = $x;
+                        }
+
+                    $this->a = $arrays;
+                }
+
+                function getValues(){
+                    $valueThisA = $this->a;
+
+                        foreach($valueThisA as $arrValues){
+                            echo($arrValues ."<br>");
+                        } 
+                      
+                }
+        }
+
+        $classObjCarro = new Carro;
+        $classObjCarro->setValues();
+        $classObjCarro->getValues();
+    }
+
+    phpTest();
+
+    ######################################################
+
+    //Construct
+
+    <?php
+
+    class Carro {
+    
+          private $motor;
+    
+                function __construct($valueMotor){
+    
+                      $this->motor = $valueMotor;
+                }
+    
+                function getValue(){
+                      return $this->motor;
+                }
+    }
+    
+    $newClassCarro = new Carro("Motor 10.0 Ferrari");
+    echo $newClassCarro->getValue();
+
+        $newClassCarro = new Carro("Moto");
+        echo $newClassCarro->getValue();
