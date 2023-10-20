@@ -1,0 +1,218 @@
+                /*CSS PHP Index*/
+
+
+body {
+
+    background: radial-gradient(circle, #322538, #1f1f1f);
+    padding:75px;
+    font-size: 18px; 
+}
+
+
+/*Menu Site*/
+
+nav {
+    position: relative;
+    top: 50px;
+    font-family: 'Oswald', sans-serif;
+  }
+  
+  .menu-4 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .menu-4 * {
+    box-sizing: border-box;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+    z-index: 100;
+  }
+  .menu-4 li {
+    display: inline-block;
+    list-style: outside none none;
+    margin: 0 1.5em;
+    overflow: hidden;
+  }
+  .menu-4 a {
+    padding: 0.3em 0;
+    color: #fff;   /*Cor Do menu*/
+    position: relative;
+    display: inline-block;
+    letter-spacing: 1px;
+    margin: 0;
+    text-decoration: none;
+  }
+  .menu-4 a:before,
+  .menu-4 a:after {
+    position: absolute;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+  }
+  .menu-4 a:before {
+    bottom: 100%;
+    display: block;
+    height: 3px;
+    width: 100%;
+    content: "";
+    background-color: #e67e22;
+  }
+  .menu-4 a:after {
+    padding: 0.3em 0;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    content: attr(data-hover);
+    color: #fff;  /*Cor Do menu mouse hover*/
+    white-space: nowrap;
+  }
+  .menu-4 li:hover a,
+  .menu-4 .current a {
+    transform: translateY(100%);
+  }
+  
+  /*Menu Site*/
+
+
+/*Paragraph*/
+
+p {
+
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 30px;
+  color: #fff;
+
+}
+
+
+/*Calculator*/
+
+.position_calc {
+    position: relative;
+    top: -100px;
+    left: 650px;
+    width: 0px;
+    height: 0px;
+    box-sizing: border-box;
+ }
+ 
+ #visor {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    background-color: rgb(126, 120, 120);
+    box-sizing: border-box;
+    position:relative;
+    left: 63px;
+    top: 220px;
+    border-radius: 10px;
+    border-width: 10px;
+    border-style: solid;                       /*CSS Visor */
+    border-color: black;
+    height: 150px;
+    width: 290px;
+    font-size: 30px;
+    z-index: 10;
+ }
+ 
+ table {
+    background-color: #333;
+    border-style: solid;                       /*CSS da Calculadora como um todo*/
+    border-color: black;
+    border-width: 40px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding-top: 200px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+    
+ }
+ 
+ form input {
+     color: white;
+     font-size: 18pt;
+     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+     margin: auto;
+     margin-top: 3px;                     /*CSS espaçamento entre os quadrados*/ 
+     display: grid;
+     grid-template-rows: 1fr 1fr 1fr 1fr;
+     grid-template-columns: 1fr 1fr 1fr 1fr;       /*Tamanho dos números e estilos*/
+     padding: 10px;
+     overflow: hidden;
+     height: 330px;
+     width: 300px;
+     background-color: black;
+     border-radius: 20px;
+     border: 1px solid red;
+     justify-content: space-between;
+ }
+ 
+ form input.num {
+     background-color: black;
+     border-radius: 10px;
+     width:70px;                                     /*CSS de cada quadrado*/
+     height:70px;
+     border: 3px solid black;
+     -webkit-transition:all 0.2s linear;     /*webkit é utilzado em navegadores chrome e safari na frente o nome -webkit-transition or -webkit-box-shadown*/
+      -moz-transition:all 0.2s linear;        /*moz para mozilla exemplo -moz-transition -moz-box-shadow */
+      -o-transition:all 0.2s linear;          /*Velocidade de transformação*/
+      transition:all 0.2s linear;
+ }
+ 
+ form input.num:hover{
+     border: 1px solid black;
+     transition: 0.0s;                            /*CSS Hover Mouse Para Número*/
+     cursor: pointer;
+     background-color: black;
+     -webkit-transform: scale(1.20);
+      -moz-transform: scale(1.20);                 /*CSS Aumenta em tamanho*/
+      transform: scale(1.20);
+    
+ }
+ 
+ form input.oper {
+     background-color: black;
+     border-radius: 10px;
+     width:70px;                                  /*CSS Hover Mouse Para Número*/
+     height:70px;
+     border: 1px solid black;
+     -webkit-transition:all 0.2s linear;     /*webkit é utilzado em navegadores chrome e safari na frente o nome -webkit-transition or -webkit-box-shadown*/
+      -moz-transition:all 0.2s linear;        /*moz para mozilla exemplo -moz-transition -moz-box-shadow */
+      -o-transition:all 0.2s linear;          /*Velocidade de transformação*/
+      transition:all 0.2s linear;
+ }
+ 
+ form input.oper:hover{
+     border: 1px solid black;
+     transition: 0.0s;
+     cursor: pointer;
+     background-color: black;
+     -webkit-transform: scale(1.20);
+      -moz-transform: scale(1.20);                 /*CSS Aumenta em tamanho*/
+      transform: scale(1.20);   
+ }
+
+
+ /***********************************************************/
+
+
+.var_h {
+
+    height: 50px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 40px;
+    color: #fff;
+
+}
+
+ .var_p2{
+        height: 50px;
+        font-family: 'Noto Sans JP', sans-serif;
+        font-size: 30px;
+        color: #fff;
+
+}
+ 
