@@ -2,7 +2,281 @@
 
 ######################################################################
 #                                                                    #   
+#                          SESSION LOGIN                             #    
+#                                                                    #   
+######################################################################
+
+//Session PHP
+//É usado para não permitir que o usuário entre em qualquer página
+//Sem usar um login antes
+
+
+
+/* 
+
+Sessões são uma forma simples de armazenar dados para usuários individuais 
+usando um ID de sessão único. Sessões podem ser usadas para persistir 
+informações entre requisições de páginas. IDs de sessão normalmente são 
+enviados ao navegador através de cookies de sessão e o ID é usado para 
+recuperar dados da sessão existente. A ausência de um ID ou cookie de 
+sessão permite que o PHP saiba que deve criar uma nova sessão e gerar um 
+novo ID de sessão.
+
+Sessões seguem um fluxo simples. Quando uma sessão é iniciada, o PHP 
+recupera uma sessão existente usando o ID informado (normalmente de um 
+cookie de sessão) ou se nenhum é informado então será criada uma nova sessão. 
+O PHP preencherá a super global $_SESSION com todos os dados de sessão 
+depois que a sessão iniciar. Quando o PHP finalizar, automaticamente ele 
+pegará o conteúdo da super global $_SESSION, então vai serializá-lo e enviá-lo 
+para armazenamento usando o manipulador de gravação da sessão.
+
+Por padrão, o PHP usa o manipulador de gravação interno files que é configurado 
+por session.save_handler. Isto salva os dados da sessão no servidor no local 
+configurado pela diretiva de configuração session.save_path.
+
+Sessões podem ser iniciadas manualmente usando a função session_start(). 
+Se a diretiva session.auto_start estiver configurada como 1, 
+a sessão será iniciada automaticamente no início da requisição.
+
+Sessões normalmente se encerram automaticamente quando o PHP termina de executar 
+um script, mas podem ser encerradas manualmente usando a função 
+session_write_close(). 
+
+*/
+
+session_start();
+
+if (!isset($_SESSION['sessionStart'])) {  //Retorna um false, porém por conta do "!" inverte e se torna verdadeira, e ai o IF continua sua execução
+    // Verifica se não foi setado algum valor na variável $_Session, ou se ela tem um valor diferente de true
+    //neste caso seria false, neste caso, em resumo se não existir uma sessão, e se o valor for diferente de true
+    //é executado o código abaixo.
+  header('Location: index.php'); //Onde será redirecionado se não tiver uma sessão ativa
+  exit();  // Se verdadeiro, termina a execução da página aqui
+}
+
+var_dump(isset($_SESSION['sessionStart']));
+echo($_SESSION['sessionStart']);
+
+?>
+
+
+/***************************************************************/
+
+
+<?php
+
+######################################################################
+#                                                                    #   
 #                              TEXT                                  #    
+#                                                                    #   
+######################################################################
+
+######################################################################
+#                                                                    #   
+#                   PHP LOGIN + POSTGRESQL TEXT                      #    
+#                                                                    #   
+######################################################################
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script src="/js/phpJsLogin.js"></script>
+	
+</head>
+<body>
+	
+	<div class="container">
+		<div class="container-login">
+			<div class="wrap-login">
+				<div class="login-form">
+					<span class="login-form-title">
+						Faça o login
+					</span>
+
+					<div class="wrap-input margin-top-35 margin-bottom-35">
+						<input class="input-form" type="text" id="num1" autocomplete="off">
+						<span class="focus-input-form" data-placeholder="E-mail"></span>
+					</div>
+
+					<div class="wrap-input margin-bottom-35">
+						<input class="input-form" type="password" id="num2">
+						<span class="focus-input-form" data-placeholder="Senha"></span>
+					</div>
+
+					<div class="container-login-form-btn">
+						<button class="login-form-btn" onclick="phpJsLogin()">Login</button>
+				
+					</div>
+
+					<ul class="login-utils">
+						<li class="margin-bottom-8 margin-top-8">
+							<span class="text1">
+								Esqueceu sua
+							</span>
+
+							<a href="reset.php" class="text2">
+								senha?
+							</a>
+						</li>
+
+						<li>
+							<span class="text1">
+								Não tem conta?
+							</span>
+
+							<a href="register.php" class="text2">
+								Criar
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<img src="images/login.png" width="300" height="300" class="margin-left-50" />
+		</div>
+	</div>
+	
+	<p id="result"></p>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</body>
+</html>
+
+//PHP LOGIN TEXT
+
+<?php
+
+function customErrorHandler($errno, $errstr, $errfile, $errline) {
+    $response = array(
+        'success'   => false,
+        'error'     => $errstr,
+        'errorFile' => $errfile,
+        'errorLine' => $errline,
+        'errorCode' => $errno  
+        //Error sendo capturado para ser transmitido via JSON
+    );
+
+    // Envia a resposta como JSON
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;  // Aqui ele sai quando captura o erro
+}
+
+// Define a função de tratamento de erro personalizada
+set_error_handler('customErrorHandler');
+
+function phpLogin(){
+    session_start();
+    $login = $_POST['key1'];
+    $senha = $_POST['key2'];
+
+    $db    = "db_users";
+    $host  = "127.0.0.1";
+    $user  = "postgres";
+    $pass  = "22091992";
+
+    $connection = pg_connect("host=$host dbname=$db user=$user password=$pass");
+
+
+    $query = "SELECT * FROM aluno WHERE login='$login' AND password='$senha'";
+    $dbConnQuery = pg_query($connection, $query);
+
+        if(pg_num_rows($dbConnQuery) > 0){
+            $_SESSION['sessionStart'] = true;
+            echo(pg_num_rows($dbConnQuery));
+
+        }else{
+                echo '<br><br>' .'Usuário ou Senha incorreto';
+             
+        }
+             
+
+}
+phpLogin();
+
+
+?>
+
+//FETCH
+
+let phpJsLogin = function(){
+    let a, b, url;
+    a = document.querySelector("input#num1").value;
+    b = document.querySelector("input#num2").value;
+
+    d = document.querySelector("p#result");
+    url = "/php/phpLogin.php";
+
+    let formData = new FormData();
+    formData.append("key1", a);
+    formData.append("key2", b);
+
+    let options = {
+        method: "POST",
+        mode: "cors",
+        body: formData,
+    }
+
+    fetch(url, options)
+        .then(
+            function promisse(response){
+                if(!response.ok){
+                    throw new Error('Network response was not ok');
+                }
+
+                return response.text();
+            }
+        )
+        
+        .then(
+            function handlerPromisses(data){
+                if(data == 1){
+                    window.location.replace("http://10.61.10.61/wiki.php");
+                }else{
+                    d.innerHTML = data;
+                }
+                
+            }
+        )
+
+        .catch(
+            function handleError(error){
+                d.innerHTML = error;
+            }
+        )
+
+   
+    
+}
+
+
+
+######################################################################
+#                                                                    #   
+#                   PHP LOGIN + POSTGRESQL TEXT                      #    
 #                                                                    #   
 ######################################################################
 
@@ -841,6 +1115,221 @@ let phpJsTest = function(){
 ######################################################################
 #                                                                    #   
 #            //PHP Test Connection, Select, Insert JSON              #    
+#                                                                    #   
+######################################################################
+
+######################################################################
+#                                                                    #   
+#                   PHP LOGIN + POSTGRESQL JSON                      #    
+#                                                                    #   
+######################################################################
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script src="/js/phpJsLogin.js"></script>
+	
+</head>
+<body>
+	
+	<div class="container">
+		<div class="container-login">
+			<div class="wrap-login">
+				<div class="login-form">
+					<span class="login-form-title">
+						Faça o login
+					</span>
+
+					<div class="wrap-input margin-top-35 margin-bottom-35">
+						<input class="input-form" type="text" id="num1" autocomplete="off">
+						<span class="focus-input-form" data-placeholder="E-mail"></span>
+					</div>
+
+					<div class="wrap-input margin-bottom-35">
+						<input class="input-form" type="password" id="num2">
+						<span class="focus-input-form" data-placeholder="Senha"></span>
+					</div>
+
+					<div class="container-login-form-btn">
+						<button class="login-form-btn" onclick="phpJsLogin()">Login</button>
+				
+					</div>
+
+					<ul class="login-utils">
+						<li class="margin-bottom-8 margin-top-8">
+							<span class="text1">
+								Esqueceu sua
+							</span>
+
+							<a href="reset.php" class="text2">
+								senha?
+							</a>
+						</li>
+
+						<li>
+							<span class="text1">
+								Não tem conta?
+							</span>
+
+							<a href="register.php" class="text2">
+								Criar
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<img src="images/login.png" width="300" height="300" class="margin-left-50" />
+		</div>
+	</div>
+	
+	<p id="result"></p>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</body>
+</html>
+
+
+//PHP LOGIN
+
+<?php
+
+function customErrorHandler($errno, $errstr, $errfile, $errline) {
+    $response = array(
+        'success'   => false,
+        'error'     => $errstr,
+        'errorFile' => $errfile,
+        'errorLine' => $errline,
+        'errorCode' => $errno  
+        //Error sendo capturado para ser transmitido via JSON
+    );
+
+    // Envia a resposta como JSON
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;  // Aqui ele sai quando captura o erro
+}
+
+// Define a função de tratamento de erro personalizada
+set_error_handler('customErrorHandler');
+
+function phpLogin(){
+    session_start();
+    $login = $_POST['key1'];
+    $senha = $_POST['key2'];
+
+    $db    = "db_users";
+    $host  = "127.0.0.1";
+    $user  = "postgres";
+    $pass  = "22091992";
+
+    $connection = pg_connect("host=$host dbname=$db user=$user password=$pass");
+
+
+    $query = "SELECT * FROM aluno WHERE login='$login' AND password='$senha'";
+    $dbConnQuery = pg_query($connection, $query);
+
+        if(pg_num_rows($dbConnQuery) > 0){
+            $_SESSION['sessionStart'] = true;
+            $pgNumRow = pg_num_rows($dbConnQuery);
+
+            $responseRow = array(
+                'num' => $pgNumRow,
+            );
+
+            echo json_encode($responseRow);
+
+        }else{
+                echo '<br><br>' .'Usuário ou Senha incorreto';
+             
+        }
+             
+
+}
+phpLogin();
+
+
+?>
+
+
+//FETCH
+
+let phpJsLogin = function(){
+    let a, b, url;
+    a = document.querySelector("input#num1").value;
+    b = document.querySelector("input#num2").value;
+
+    d = document.querySelector("p#result");
+    url = "/php/phpLogin.php";
+
+    let formData = new FormData();
+    formData.append("key1", a);
+    formData.append("key2", b);
+
+    let options = {
+        method: "POST",
+        mode: "cors",
+        body: formData,
+    }
+
+    fetch(url, options)
+        .then(
+            function promisse(response){
+                if(!response.ok){
+                    throw new Error('Network response was not ok');
+                }
+
+                return response.json();
+            }
+        )
+        
+        .then(
+            function handlerPromisses(data){
+                if(data.num == 1){
+                    window.location.replace("http://10.61.10.61/wiki.php");
+                }else{
+                    d.innerHTML = data;
+                }
+                
+            }
+        )
+
+        .catch(
+            function handleError(error){
+                d.innerHTML = error;
+            }
+        )
+
+   
+    
+}
+
+######################################################################
+#                                                                    #   
+#                   PHP LOGIN + POSTGRESQL JSON                      #    
 #                                                                    #   
 ######################################################################
 
