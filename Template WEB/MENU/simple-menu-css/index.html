@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Pure CSS - Simple Menu Navigation</title>
+  <link rel="stylesheet" href="style-1.css">
+  <link rel="stylesheet" href="style-2.css">
+  <link rel="stylesheet" href="style-3.css">
+  <link rel="stylesheet" href="style-4.css">
+  <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+	<style>
+	/* Common Styles - Can ignore*/
+	body{
+	  background:#1b1b2b;
+	  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+	  padding:75px;
+	  text-align:center;
+	  font-family: 'Oswald', sans-serif;
+	  font-size: 18px;
+	  height: 100vh;
+	}
+	h1{
+	  color:#212121;
+	  font-weight:100;
+	}
+	.spacer {
+	 padding: 30px 0;
+	}
+	</style>
+</head>
+<body>
+
+<!-- Style 1 Start -->
+    <h1>Simple Btn Effect (Style 1)</h1>
+    <nav class="style-1">
+		<a href="#" class="btn">Home</a>
+		<a href="#" class="btn">About</a>
+		<a href="#" class="btn">Services</a>
+		<a href="#" class="btn">Contact</a>
+		<a href="#" class="btn">Faq</a>
+	</nav>
+<!-- Style 1 End -->	
+
+  <div class="spacer"></div>
+  
+<!-- Style 2 Start -->
+	<h1>StrikeThrough Effect + Delay (Style 2)</h1>
+
+	<nav class="style-2">
+		<a href="#" class="">Home</a>
+		<a href="#" class="">About</a>
+		<a href="#" class="">Services</a>
+		<a href="#" class="">Contact</a>
+		<a href="#" class="">Faq</a>
+	</nav>
+<!-- Style 2 End -->
+
+  <div class="spacer"></div>
+  
+<!-- Style 3 Start -->
+	<h1>Hover Line Effect (Style 3)</h1>
+
+	<nav class="style-3">
+	  <ul class="menu-3">
+		<li><a href="#!">Home</a></li>
+		<li><a href="#!">About</a></li>
+		<li><a href="#!">Services</a></li>
+		<li><a href="#!">Contact</a></li>
+		<li><a href="#!">Faq</a></li>
+	  </ul>
+	</nav>
+<!-- Style 3 End -->
+
+  <div class="spacer"></div>
+
+
+<!-- Style 4 Start -->
+	<h1>Slide Down Effect (Style 4)</h1>
+	<nav class="style-4">
+		<ul class="menu-4">
+		  <li class="current"><a href="#" data-hover="Home">Home</a></li>
+		  <li><a href="#" data-hover="About Us">About Us</a></li>
+		  <li><a href="#" data-hover="Blog">Blog</a></li>
+		  <li><a href="#" data-hover="Services">Services</a></li>
+		  <li><a href="#" data-hover="Products">Products</a></li>
+		  <li><a href="#" data-hover="Contact">Contact</a></li>
+		</ul>
+	</nav>
+<!-- Style 4 End -->
+
+</body>
+</html>
