@@ -48,3 +48,25 @@ extension=mysqli   //MYSQL
 ;extension=pdo_sqlite
 extension=pgsql  //PostgreSQL
 ;extension=shmop
+
+############################################################################################
+Se houver um erro igual ao de baixo
+
+Fatal error: Call to undefined function pg_connect()
+
+sudo apt-get install php-pgsql
+
+#OR
+
+Easy install for ubuntu:
+
+Just run:
+
+sudo apt-get install php5-pgsql
+
+then
+
+sudo service apache2 restart //restart apache
+
+
+  
