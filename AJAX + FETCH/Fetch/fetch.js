@@ -69,7 +69,7 @@ let phpJsTest = function(){
         )               
 }
 
-//Identifique o clique no botão.
+//Identifica o clique do botão, sem utilizar o onClick
 
 document.addEventListener('DOMContentLoaded', function () {
     const element = document.querySelector("button#myBtn");
