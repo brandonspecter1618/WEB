@@ -21,6 +21,79 @@
 
 
 /********************************************************************************/
+//Utilizado para identificar o clique no botão sem utilizar o onClick. 
+
+document.addEventListener('DOMContentLoaded', function () {
+    const element = document.getElementById("myBtn");
+    element.addEventListener("click", phpJsTest);
+});
+    function phpJsTest(){
+        let select, value, a, b, c, d, url, result;
+        a = document.querySelector("input#num1").value;
+        b = document.querySelector("input#num2").value;
+        d = document.querySelector("p#result");
+
+        result = parseInt(a) + parseInt(b);
+
+        d.innerHTML = "The result is " + result;
+    }
+
+//or
+
+let phpJsTest = function(){
+	let select, value, a, b, c, d, url, result;
+	a = document.querySelector("input#num1").value;
+	b = document.querySelector("input#num2").value;
+	d = document.querySelector("p#result");
+
+	result = parseInt(a) + parseInt(b);
+
+	d.innerHTML = "The result is " + result;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+	const element = document.getElementById("myBtn");
+	element.addEventListener("click", phpJsTest);
+});
+
+
+//Para Calculadora
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Pega todos os botões que possuem a classe 'num'
+    const numButtons = document.querySelectorAll('.num');
+
+    // Itera sobre cada botão e associa o evento de clique
+    numButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            const numValue = this.value;  // Pega o valor do botão clicado
+                if(numValue == '+'){
+                    calcParse('somar');
+                    return;
+                }if(numValue == '-'){
+                    calcParse('subtrair');
+                    return;
+                }if(numValue == '*'){
+                    calcParse('multiplicar')
+                    return;
+                }if(numValue == '/'){
+                    calcParse('dividir');
+                    return;
+                }if(numValue == '='){
+                    calcParse('resultado');
+                    return;
+                }if(numValue == 'C'){
+                    calcLimpar();
+                    return;             
+                }else{
+                    calcNum(numValue);            // Passa o valor para a função calcNum
+                }
+        });
+    });
+});
+
+
+/********************************************************************************/
 
 //Preenchimento dos campos em um formulário com CEP
 
