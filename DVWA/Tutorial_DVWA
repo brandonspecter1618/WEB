@@ -1,0 +1,110 @@
+OBS: o padrão para logar é
+
+login:admin
+password: password
+
+1 = Primeiro instale XAMPP que está na pasta /SECURITY/WEB VULNERABILITY
+
+2 = Descompacte o arquivo DVWA-master e o renomeie para DVWA
+
+3 = Em seguida vá em C:\xampp\htdocs e copie e cole a pasta DVWA.
+
+4 = Tente acessar através do endereço http://127.0.0.1/DVWA/, se aparecer o erro abaixo:
+
+Obs: Não esqueça de start Apache and MySql no XAMPP
+
+DVWA System error - config file not found. Copy config/config.inc.php.dist to config/config.inc.php and configure to your environment.
+
+Vá na pasta C:\xampp\htdocs\DVWA\config\config.inc.php.dist, depois renomeie para config.inc.php e depois edite esse arquivo com notepad++
+ou qualquer outro editor. 
+
+$_DVWA = array();
+$_DVWA[ 'db_server' ]   = getenv('DB_SERVER') ?: '127.0.0.1';  <-- Este campo está correto
+$_DVWA[ 'db_database' ] = 'dvwa';     <-- Aqui falta cria o banco 
+$_DVWA[ 'db_user' ]     = 'dvwa';     <-- E o usuário de acesso
+$_DVWA[ 'db_password' ] = 'p@ssw0rd'; <-- Junto com password
+$_DVWA[ 'db_port']      = '3306'; <-- Este campo está correto, pois o mysql utiliza esta porta.
+
+
+5 = Abra o XAMPP Control Panel v3.3.0 e na opção MySql vá em Admin, em seguida na tela que for abrir
+vá no canto esquerdo em Novo(New) e no campo Nome da base dados escreva dvwa e clique em criar.
+
+Pronto criamos o banco de dados chamado dvwa, solucionamos o problema da inexistência do banco aqui 
+
+$_DVWA[ 'db_database' ] = 'dvwa';     <-- Criamos o banco
+
+6 = Em seguida vamos criar um usuário com senha, neste caso no canto esquerdo na tela, estará o banco dvwa criado, clique sobre o banco e depois vá em
+
+########################################################### 
+
+Privilégio(Privileges) > Adicionar conta de utilizador(Add user Account)
+
+Nome Do utilizador(Username): dvwa
+
+Palavra-passe(Password): 22091992
+
+Confirmar(Re-type): 22091992
+
+
+############################################################
+Banco De dados para a conta de utilizador
+
+Conceder todos os privilégios ao banco de dados dvwa - OK
+
+
+7 = No fim de tudo as configurações do arquivo config.inc.php ficaram
+
+$_DVWA = array();
+$_DVWA[ 'db_server' ]   = getenv('DB_SERVER') ?: '127.0.0.1';
+$_DVWA[ 'db_database' ] = 'dvwa';
+$_DVWA[ 'db_user' ]     = 'dvwa';
+$_DVWA[ 'db_password' ] = '22091992';
+$_DVWA[ 'db_port']      = '3306';
+
+8 = Acesse novamente o endereço 127.0.0.1/DVWA e o mesmo deve entrar no site
+
+http://127.0.0.1/DVWA/login.php
+
+9 = Clique no final da página em Create/ Reset Database
+
+Obs: Caso não consiga mais logar vc pode ir no  endereço direto 
+
+http://127.0.0.1/dvwa/setup.php e clicar em Create/Reset Database para criar ou resetar
+o database
+
+10 = Agora o login da página padrão http://127.0.0.1/DVWA/login.php será 
+
+login: admin
+pass: password
+
+11 = Na próxima página aparecerá várias formas de exploração.   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
