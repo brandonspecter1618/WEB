@@ -1,0 +1,5 @@
+
+1. ImageKit.io
+Prós: CDN rápido, compressão automática, transformação de imagens em tempo real.
+Contras: Planos gratuitos limitados.
+Ideal para: Sites de e-commerce ou grandes portais que precisam de imagens rápidas e otimizadas.
