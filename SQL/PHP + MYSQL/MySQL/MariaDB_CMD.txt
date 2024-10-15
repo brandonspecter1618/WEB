@@ -1,0 +1,105 @@
+Obs: Alterando a senha do root
+
+MariaDB [(none)]> ALTER USER 'root'@'localhost' IDENTIFIED BY '22091992';
+
+Connection  Remote DB
+
+mysql -h 127.0.0.1 -u brandon -p22091992 db_users
+
+or
+
+mysql -h 127.0.0.1 -u root
+
+######################################################
+Criando um DB MariaDB XAMAPP
+
+1 = MariaDB [(none)]> help create;
+
+2 = Para criar um DB 
+
+--MariaDB [(none)]> create database db_users2;
+
+3= Selecione o DB 
+
+--MariaDB [(none)]> use db_users;
+
+4 = Listar todos os databases
+
+--MariaDB [(none)]> show databases;
+
+
+#######################################################
+
+Criando Tabela MySql
+
+1 = Crie a tabela com o comando abaixo:
+
+CREATE TABLE alunos(id_alunos INT NOT NULL AUTO_INCREMENT, nome VARCHAR(60), email VARCHAR(60), PRIMARY KEY(id_alunos));
+
+2 = Visualizar tabela criada:
+
+mysql> show tables;
+
+3 = Para excluir a tabela:
+
+mysql> drop table alunos;
+
+4 = Adicionar dados na tabela:
+
+
+
+####################################################
+
+Verificar todos os databases
+
+--MariaDB [(none)]> show databases;
+
+####################################################
+
+Apagar database
+
+MariaDB [(none)]> drop database db_users;
+
+####################################################
+
+Criar um usuário com acesso Full
+
+1 = Execute o comando abaixo:
+
+MariaDB [(none)]> CREATE USER 'brandon'@localhost IDENTIFIED BY '22091992';
+
+2 = Verificar se o usuário foi adicionado
+
+--SELECT User FROM mysql.user;
+
+3 = Para da permissão FULL à todos os bancos de dados:
+
+--GRANT ALL PRIVILEGES ON *.* TO 'brandon'@localhost IDENTIFIED BY '22091992';
+
+4 = Para da permissão FULL à somente um ou outro banco de dados:
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* TO 'brandon'@localhost IDENTIFIED BY '22091992';
+
+5 = Atualizar os privilégios depois de alterá-los:
+
+--MariaDB [(none)]> FLUSH PRIVILEGES;
+
+6 = Verificar se foi adicionado o usuário no privilégio:
+
+--MariaDB [(none)]> SHOW GRANTS FOR 'brandon'@localhost;
+
+7 = Já para remover uma conta:
+
+--MariaDB [(none)]> drop user brandon@localhost;
+
+###################################################
+
+Número de conexões até o último momento
+
+mysql> show status like 'Connections';
+
+or
+
+mysql> SHOW PROCESSLIST;
+
+Nomes dos usuários conectados atualmente
