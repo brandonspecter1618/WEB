@@ -1,0 +1,237 @@
+Obs: Way for file postgresql /etc/postgresql/13/main
+
+
+#########################################################################
+Modify Password PostgreSql
+
+sudo -u postgres psql
+postgres=# \password
+Enter new password: 
+Enter it again:
+
+#########################################################################
+
+Create User Out Database
+
+sudo -u postgres createuser brandon
+sudo -u postgres psql
+postgres=# alter user brandon with password '22091992';
+postgres=# grant all privileges on database db_aula to brandon;
+
+psql -h 127.0.0.1 -p 5432 -d db_aula -U brandon
+
+#########################################################################
+
+CONFIGURE DB db_aula
+
+1 = Entrando no banco
+
+ +--> # sudo su - postgres
+
+
+2 = Alterando senha
+
+postgres-# alter user postgres with password 22091992
+
+
+3 = Listar todos os bancos de dados que tem no momento
+
+postgres@debian:/$ psql -l
+
+4 = Criar banco de dados de teste
+
+postgres@debian:/$ createdb db_aula
+
+
+5 = Selecionar o banco de dados para criar tabela
+
+postgres@debian:/$ psql db_aula
+
+6 = Criando a tabela
+
+db_test=# CREATE TABLE aluno(id SERIAL PRIMARY KEY, nome VARCHAR(50) NOT NULL, sobrenome VARCHAR(50),telefone VARCHAR(40));
+
+CREATE TABLE
+
+&&
+
+db_test=#CREATE TABLE aluno(
+		id SERIAL PRIMARY KEY,
+		nome VARCHAR(50) NOT NULL,
+		sobrenome VARCHAR(50),
+		telefone VARCHAR(40));		
+CREATE TABLE
+
+
+7 = Inserir Dados
+
+db_test=# INSERT INTO aluno(nome, sobrenome, telefone) VALUES ('Brandon', 'Almeida', 998066520);
+
+8 = Buscar Dados Inseridos 
+
+db_test=# SELECT * FROM aluno;
+
+9 = Alterar nome de alguma coluna no DB
+
+db_test=# ALTER TABLE aluno RENAME COLUMN telefone to celular;
+ALTER TABLE
+
+10 = 
+
+= Ver informações da tabela criada
+
+db_aula-# \d <- mostra tudo
+db_aula-# \d aluno <- mostra só uma tabela
+
+
+ = Connect Banco De Dados 
+
+psql -h 127.0.0.1 -p 5432 -d db_aula -U postgres
+
+##########################################################################
+
+LIST OF USERS
+
+sudo su - postgres
+postgres@debian:~$ psql db_users
+db_users=# select usename from pg_user;
+
+
+####################################################
+
+DB or Users or Table
+
+//DB
+
+sudo su - postgres
+postgres@debian:~$ dropdb db_aula2
+postgres@debian:~$ dropdb db_caneta
+
+//User
+
+sudo su - postgres
+postgres@debian:~$ dropuser brandon
+sudo -u postgres dropuser brandon
+
+
+//Table
+
+drop table aluno;
+
+######################################################
+
+REVOKE SESSION USERNAME
+
+
+su - postgres
+postgres@debian:~$ psql db_aluno
+
+REVOKE CONNECT ON DATABASE db_aula FROM PUBLIC, brandon;
+
+
+
+##########################################################################
+
+
+Configure Connection PHP with PostgreSQL in Linux
+
+
+<?php
+
+/*
+PHP Connection with PostgreSQL
+*/
+
+/*
+
+1 = Entre no caminho e execute o comando nano php.ini. 
+
++-[root]@[debian]:/etc/php/7.3/apache2
+nano php.ini
+
+2 = Em seguida Ctrl + W, para pesquisar as duas "Extension"
+que são:
+
+;extension=pdo_pgsql
+;extension=pgsql
+
+Obs: Retire o ";" que é um comentário dos dois.
+
+
+3 = Execute o comando abaixo, para ver a versão do PHP 
+
++-[root]@[debian]:/etc/php/7.3/apache2
++--> # php -v
+
+PHP 7.3.31-1~deb10u1 (cli) (built: Oct 24 2021 15:18:08) ( NTS )
+Copyright (c) 1997-2018 The PHP Group
+Zend Engine v3.3.31, Copyright (c) 1998-2018 Zend Technologies
+
+4 = Com a versão em mãos, é necessário baixar o "module" do PHP
+correspondente ao DB usado, neste caso, o PostgreSQL.
+
++-[root]@[debian]:/etc/php/7.3/apache2
++--> # apt-get install php7.3-pgsql
+
+
+5 = Agora ative o Postgres PDO drivers para ativar o drive
+dentro do mesmo.
+
+
++-[root]@[debian]:/etc/php/7.3/apache2
++--> # sudo phpenmod pdo_pgsql
+
+6 = Agora tente conectar o banco de dados com o código abaixo:
+
+*/
+
+<?php
+
+	// Initialize connection variables.
+	$host = "127.0.0.1";
+	$database = "db_users";
+	$user = "brandon";
+	$password = "22091992";
+
+$connection = pg_connect("host=$host dbname=$database user=$user password=$password") 
+or die("Failed to create connection to database: ". pg_last_error(). "<br/>");
+print "Successfully created connection to database.<br/>";
+
+?>
+
+
+/*Obs: É importante habilitar a popção de mostrar o erro na página
+quando tiver em fase de desenvolvimento, depois e só comentar 
+novamente a linha. Para fazer isso 
+
+1 Entre aqui 
+
++-[root]@[debian]:/etc/php/7.3/apache2
++--> # nano php.ini
+
+2 Procure por 
+
+;error_reporting
+;Default Value: E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED
+;Development Value: E_ALL
+;Production Value: E_ALL & ~E_DEPRECATED & ~E_STRICT
+
+e descomente tudo
+
+error_reporting
+Default Value: E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED
+Development Value: E_ALL
+Production Value: E_ALL & ~E_DEPRECATED & ~E_STRICT
+
+*/
+
+
+
+
+
+
+
+
+
+
+
