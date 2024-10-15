@@ -1,0 +1,64 @@
+DVWA CSP BYPASS
+
+O CSP (Content Security Policy, ou Política de Segurança de Conteúdo) 
+é um mecanismo de segurança implementado em navegadores para ajudar a 
+prevenir ataques como Cross-Site Scripting (XSS), injeção de dados e clickjacking. 
+Ele permite que administradores de sites definam políticas sobre quais tipos de 
+conteúdo podem ser carregados e de quais fontes, restringindo o que é permitido na página.
+
+Exemplo de cabeçalho CSP:
+
+Content-Security-Policy: default-src 'self'; script-src 'self' https://apis.google.com; img-src 'self' data:;
+
+
+
+Tipos de Diretivas
+
+As políticas do CSP são compostas por diretivas que controlam diferentes tipos de recursos. Alguns exemplos incluem:
+
+    default-src: Fonte padrão para todos os recursos não especificados.
+    script-src: Controla de onde os scripts JavaScript podem ser carregados.
+    style-src: Especifica de onde os arquivos de estilo (CSS) podem ser carregados.
+    img-src: Define de onde imagens podem ser carregadas.
+    frame-src: Determina de onde frames (ex. <iframe>) podem ser carregados.
+
+
+
+LOW
+
+1 = Vamos mudar as configurações do arquivo source "low"
+
+C:\xampp\htdocs\DVWA\vulnerabilities\csp\source
+
+$headerCSP = "Content-Security-Policy: script-src 'self' http://10.60.4.61/csp/;"; 
+// allows js from self, pastebin.com, hastebin.com, jquery, digi.ninja, and google analytics.
+
+Colocando o endereço "http://10.60.4.61/csp/", que seria o caminho onde existe os
+arquivos alert.js and cookie.js
+
+<ul>
+	<li>http://10.60.4.61/csp/alert.js</li>
+	<li>http://10.60.4.61/csp/cookie.js</li>
+
+</ul>
+
+E alterei também para ficar nos conformes, na página WEB. 
+
+2 = Agora é só pegar os links e inserir em include
+
+
+###############################################################################################
+
+MEDIUM
+
+1 =  Podemos também utilizar um código de identificação para poder rodar o script
+através da opção "nonce".
+
+<script nonce="TmV2ZXIgZ29pbmcgdG8gZ2l2ZSB5b3UgdXA=">alert("Hello Brandon")</script>
+
+###############################################################################################
+
+HARD 
+
+
+

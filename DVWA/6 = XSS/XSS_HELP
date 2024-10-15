@@ -1,0 +1,45 @@
+XSS - Ataque XSS sem XSS
+
+Vamos fazer um ataque controlado de roubo de cookie para que
+possamos acessar o DVWA, sem qualquer tipo de login, neste
+caso vamos roubar os cookie do navegador chrome e vamos 
+colocar no firefox através de editor de cookie utilizando
+os plugins Cookie Manager ou Cookie-Editor
+
+1 = Primeiro de tudo precisamos de dois navegadores, o chrome e o firefox.
+No navegador chrome logue na conta do DVWA
+
+login: admin
+password: password
+
+2 = No chrome mouse botão direito > Inspecionar > Application > Cookies 
+> http://10.60.4.63 > PHPSESSID:"5sk2nedeqmmuc10cksffiu3f96"
+
+Esse número na frente de PHPSESSID: 5sk2nedeqmmuc10cksffiu3f96
+
+É o nosso cookie de sessão agora vamos lá no navegador firefox e 
+vamos colocar o Cookie no respectivo site utilizando o Cookie Manager.
+
+3 = Abra o firefox e vamos editor o Cookie correspondente do site DVWA
+Portanto vamos entrar no site do mesmo http://10.60.4.63/DVWA/login.php   
+    
+Em seguida vamos clicar no plugin Cookie Manager+ > Open Cookie for the current page
+
+Em Value: 5sk2nedeqmmuc10cksffiu3f96 depois SAVE
+
+Logo em seguida volte a parte principal do site http://10.60.4.63/DVWA/index.php
+
+E pronto funcionou.
+
+Obs:Isso seria um ataque de roubo de cookie e como restaurar o cookie em um navegador
+porém sem a vulnerbailidade necessária. Seria basicamente o que iria ocorrer depois
+de um ataque de XSS. 
+
+
+###########################################################################################
+
+
+
+
+
+

