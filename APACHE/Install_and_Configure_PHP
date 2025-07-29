@@ -9,6 +9,13 @@ apt-get install -f apache2
 
 apt-get install -f php7.3
 
+apt install php8.2
+
+3 = A página principal do teste http://ip_address
+
+/var/www/html/index.html
+
+
 
 ########################################################################################
 
@@ -64,16 +71,19 @@ OBS: Se de alguma forma não funcionar o CSS verificar o caminho do css. É impo
 
 #########################################################################
 
-Obs: Caso ocorra erro de permissão, verificar a permissão da pasta.
+Obs: Caso ocorra erro de permissão, faça o seguinte:
 
-chmod -R 777 /home/brandon/Documentos/PHP   <---- Permissão Da Pasta
-chown brandon:brandon JavaMyServlet/        <---- Proprietário Da Pasta	
+1 = Mova ou copia o arquivo PHP para /var/www, e, seguida coloque as permissões abaixo
+juntamente com o dono do arquivo
 
-##########################################################################
+chmod -R 777 /var/www/PHP   <---- Permissão Da Pasta
+chown -R brandon:brandon /var/www/PHP        <---- Proprietário Da Pasta	
 
-Caso ainda não funcione, copie a pasta com site PHP para /var/www
+Obs: pode deixar como root:root que vai funcionar pois o 
+/var/www o proprietário natural é o root. 
 
-##########################################################################
+
+2 = Configure o arquivo apache2.conf
 #apache2.conf
 
 <Directory />
@@ -87,7 +97,7 @@ Caso ainda não funcione, copie a pasta com site PHP para /var/www
 	Require all granted
 </Directory>
 
-<Directory /var/www/PHP>
+<Directory /var/www/PHP>    <<<< Esse é o caminho
 	Options Indexes FollowSymLinks
 	AllowOverride None
 	Require all granted
@@ -99,7 +109,7 @@ Caso ainda não funcione, copie a pasta com site PHP para /var/www
 #	Require all granted
 #</Directory>
 
-##########################################################################
+3 = Configure o /etc/apache2/sites-available/000-default.conf
 
 #000-default.conf
 
