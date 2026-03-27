@@ -142,7 +142,7 @@ Configure Connection PHP with PostgreSQL in Linux
 PHP Connection with PostgreSQL
 */
 
-/*
+
 
 1 = Entre no caminho e execute o comando nano php.ini. 
 
@@ -181,35 +181,17 @@ dentro do mesmo.
 +-[root]@[debian]:/etc/php/7.3/apache2
 +--> # sudo phpenmod pdo_pgsql
 
-6 = Agora tente conectar o banco de dados com o código abaixo:
 
-*/
-
-<?php
-
-	// Initialize connection variables.
-	$host = "127.0.0.1";
-	$database = "db_users";
-	$user = "brandon";
-	$password = "22091992";
-
-$connection = pg_connect("host=$host dbname=$database user=$user password=$password") 
-or die("Failed to create connection to database: ". pg_last_error(). "<br/>");
-print "Successfully created connection to database.<br/>";
-
-?>
-
-
-/*Obs: É importante habilitar a popção de mostrar o erro na página
+6 = É importante habilitar a popção de mostrar o erro na página
 quando tiver em fase de desenvolvimento, depois e só comentar 
 novamente a linha. Para fazer isso 
 
-1 Entre aqui 
+Entre aqui 
 
 +-[root]@[debian]:/etc/php/7.3/apache2
 +--> # nano php.ini
 
-2 Procure por 
+Procure por 
 
 ;error_reporting
 ;Default Value: E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED
@@ -223,12 +205,377 @@ Default Value: E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED
 Development Value: E_ALL
 Production Value: E_ALL & ~E_DEPRECATED & ~E_STRICT
 
-*/
+
+7 = Pode também executar o comando dentro do código php para verificar
+se os drivers do postgresql estão funcionando.
+
+<?php
+
+function phpTest(){
+
+    $db    = "db_server_postgresql";
+    $host  = "10.61.10.250";
+    $user  = "postgres";
+    $pass  = "22091992";
+
+    $connection = pg_connect("host=$host dbname=$db user=$user password=$pass");
+    $status     = pg_connection_status($connection);
+
+    
+    var_dump(defined('PGSQL_CONNECTION_OK'));
+}    
+
+phpTest()
+?>
 
 
 
+8 = Agora tente conectar o banco de dados com o código abaixo:
 
 
+<?php
+
+function phpTest(){
+    // Função de tratamento de erro personalizada para converter erros em respostas JSON
+    
+    $db    = "db_server_postgresql";
+    $host  = "10.61.10.250";
+    $user  = "postgres";
+    $pass  = "22091992";
+
+    $connection = pg_connect("host=$host dbname=$db user=$user password=$pass");
+    $status     = pg_connection_status($connection);
+
+
+    if($status === PGSQL_CONNECTION_OK){
+        echo("Sucessfully connection" ."<br>".pg_dbname($connection)); //$connection é necessário para que o PHP saiba corretamente de onde puxar a conexão, e não fazer a coisa automaticamente e fazer um coneão que não deveria iria dá algum tipo de erro, principalmente conectando na ultima conexão que ele conhece para um bando diferente.
+    }else{
+        echo("<br>Fail Connection" .pg_last_error() ."<br><br>");
+    }
+}
+
+phpTest()
+?>
+
+//OR
+
+<?php
+
+function phpTest(){
+    // Função de tratamento de erro personalizada para converter erros em respostas JSON
+    
+    $db    = "db_server_postgresql";
+    $host  = "10.61.10.250";
+    $user  = "postgres";
+    $pass  = "22091992";
+
+$connection = pg_connect("host=$host dbname=$db user=$user password=$pass") 
+or die("Failed to create connection to database: ". pg_last_error(). "<br/>");
+print "Successfully created connection to database.<br/>";
+}
+
+phpTest()
+?>
+
+9 = Se funcionou corretamente o código html + JS + php completo está bem aqui. 
+
+    <div class="projectJs">
+        <p>PHP/JAVASCRIPT</p> 
+        <label for="">Login:</label>
+        <input type="text" id="num1" placeholder="Nome">
+        <label for="">Senha: </label>
+        <input type="text" id="num2" placeholder="Senha">
+        <br><br><br>
+        <!--
+        <label for="">Phone: </label>
+        <input type="text" id="num3" placeholder="Input 3">
+        -->
+        <label for="subject">Database: </label>
+
+        <select class="var_input_select" id="database">
+            <option value="conn">Test Connection</option>
+            <option value="select">SELECT</option>
+            <option value="insert">INSERT</option>
+            <option value="drop">DROP</option>
+            <option value="login">LOGIN</option>
+
+        </select>
+
+        <label for="">DROP </label>
+        <input type="text" id="num3" placeholder="Digite um ID">
+        
+        <p>    
+        <button type="button" class="var_1button" id="myBtn">ClickHere</button>
+        <p class="p_result" id="result"></p>
+    </div>
+
+/********************************HTML****************************************/
+
+/********************************JavaScript**********************************/
+
+const phpJsTest = () => {
+    let select, value, a, b, c, d, url, result;
+    a = document.querySelector("#num1").value;
+    b = document.querySelector("#num2").value;
+    c = parseInt(document.querySelector("input#num3").value);
+    
+    
+    d = document.querySelector("#result");
+    url = "/php/phpTest.php";
+
+    
+    //Verificar o <select> com id database para que o usuário possa
+    //Escolher qual tipo de consultar realizar entre
+    //Test Connection, Select, Insert and Drop
+    
+    select = document.getElementById("database");
+   
+    //O valor obtido da verificação select 
+    // select.options[select.selectedIndex].text <-- Esta opção captura o texto exato do select
+    
+    value  = select.options[select.selectedIndex].value;  
+    
+    //Este value captura o value do select exemplo value="connection"
+
+    let formData = new FormData();
+    formData.append("key1", a);
+    formData.append("key2", b);
+    formData.append("key3", c); 
+    formData.append("key4", value);
+
+    let options = {
+        method: "POST",
+        mode: "cors",
+        body: formData
+    }
+
+    fetch(url, options)
+        .then(
+            response => {
+                if(!response.ok){  //É diferente de ok ? Se true então..
+
+                    throw new Error('Network response was not ok');
+                }
+
+                return response.text();
+            }
+
+        )
+
+        .then(
+            data => {
+              d.innerHTML = data;
+            }
+                        
+        )
+
+        .catch(
+            error =>{
+               d.innerHTML = error;
+            }
+
+        )            
+}
+
+document.addEventListener('DOMContentLoaded', () =>  {
+    document.querySelector("button#myBtn").addEventListener("click", phpJsTest);
+});
+
+
+        /*
+
+        //JSON RESPONSE
+
+        let result = d.innerHTML = JSON.stringify(data) 
+        + "<br><br>" 
+        + data.responseConn.message 
+        + "<br><br>" 
+        + data.responseInsert.messages
+        
+        */
+        
+
+/********************************JavaScript**********************************/
+
+/********************************PHP*****************************************/
+
+<?php
+
+function phpTest(){
+    $login    = $_POST['key1'];
+    $password = $_POST['key2'];
+    $drop     = $_POST['key3'];  
+    $options  = $_POST['key4'];
+    
+    $db    = "db_server_postgresql";  //Nome do DB utilizado
+    $table = "table_user_postgresql"; // Nome da tabela, estou utilizando para mexer o menos possível no código
+    $tableNameColumn1 = "username";
+    $tableNameColumn2 = "pass"; //Aqui coloque o nome das colunas para automatizar se tiver mais só ir registrando
+    //$tableNameColumn3 = "";
+    $host  = "10.61.10.250";
+    $user  = "postgres";
+    $pass  = "22091992";
+
+    
+
+    $connection = pg_connect("host=$host dbname=$db user=$user password=$pass");
+    $status     = pg_connection_status($connection);
+
+
+    if($options === 'conn'){
+        if($status === PGSQL_CONNECTION_OK){
+            echo("Sucessfully connection" ."<br>".pg_dbname($connection)); //$connection é necessário para que o PHP saiba corretamente de onde puxar a conexão, e não fazer a coisa automaticamente e fazer um coneão que não deveria iria dá algum tipo de erro, principalmente conectando na ultima conexão que ele conhece para um bando diferente.
+        }else{
+            echo("<br>Fail Connection" .pg_last_error() ."<br><br>");
+        }    
+    }else
+        if($options === 'insert'){  //Se retirar as aspas aparece um erro no PHP
+            $queryInsert = "INSERT into $table($tableNameColumn1, $tableNameColumn2) values('$login', '$password');";
+            $query = "SELECT * FROM $table WHERE $tableNameColumn1='$login'";
+
+        
+            $dbSelectQuery = pg_query($connection, $query);
+                
+                if(pg_num_rows($dbSelectQuery) > 0){
+                    echo("Já existe um usuário cadastrado");
+                }else{
+                    $dbConnQuery = pg_query($connection, $queryInsert);
+                        if($dbConnQuery){
+                            echo("Insert Data Sucess");
+                        }else{
+                            echo("Failed Insert Data");
+                        }
+                }              
+                
+    }else
+        if($options === 'select') {
+            $query = "SELECT * FROM $table";
+            $dbConnQuery = pg_query($connection, $query);
+        
+            echo '<table style="border-collapse: collapse; width: 100%;">';
+            echo '<tr>';
+            echo '<th style="padding: 30px; border: 5px solid #fff; color: #fff;">ID</th>';
+            echo '<th style="padding: 30px; border: 5px solid #fff; color: #fff;">Login</th>';
+            echo '<th style="padding: 30px; border: 5px solid #fff; color: #fff;">Password</th>';
+            echo '</tr>';
+        
+            while ($row = pg_fetch_row($dbConnQuery)) {
+                echo '<tr>';
+                echo '<td style="padding: 30px; border: 5px solid #000; color: #fff;">' . $row[0] . '</td>';
+                echo '<td style="padding: 30px; border: 5px solid #000; color: #fff;">' . $row[1] . '</td>';
+                echo '<td style="padding: 30px; border: 5px solid #000; color: #fff;">' . $row[2] . '</td>';
+                echo '</tr>';
+            }
+        
+            echo '</table>';
+    }else 
+    
+        if($options === 'drop'){
+            $query = "DELETE FROM $table WHERE id = $drop";
+            $dbConnQuery = pg_query($connection, $query);
+            $rowsAffected = pg_affected_rows($dbConnQuery);
+
+                if($rowsAffected > 0){
+                    echo("Foi apagado o ID: " . $drop);
+                }else{
+                    echo("Não foi apagado");
+                }
+                    
+    }else
+
+        if($options === 'login'){
+            $query = "SELECT * FROM $table WHERE $tableNameColumn1 = $1 AND $tableNameColumn2 = $2"; //Aqui o $1 É um dado puro onde ele vai ser tratado para depois ser injetado como string
+            $dbConnQuery = pg_query_params($connection, $query, [$login, $pass]); // Impede Sql Injection ' OR 1=1 --
+
+                if(pg_num_rows($dbConnQuery) > 0){
+                    echo 'Login Com Sucesso' .'<br><br>';
+
+                    echo '<table style="border-collapse: collapse; width: 100%;">';
+                    echo '<th style="padding: 30px; border: 5px solid #000;">Login</th>';
+                    echo '<th style="padding: 30px; border: 5px solid #000;">Password</th>';
+
+                    while ($row = pg_fetch_row($dbConnQuery)) {
+                        echo '<tr>';
+                        echo '<td style="padding: 30px; border: 5px solid #000;">' . $row[1] . '</td>';
+                        echo '<td style="padding: 30px; border: 5px solid #000;">' . $row[2] . '</td>';
+                        echo '</tr>';
+                    }
+                    echo '</table>';
+
+                }else{
+                    echo 'Usuário ou Senha incorreto';
+                }
+        }else{
+            echo("Não tem autorização de acesso");
+        }
+    pg_close($connection);
+
+}
+
+phpTest()
+?>
+
+/********************************PHP*****************************************/
+
+
+
+/*PHP LOGIN*/
+
+
+
+<?php
+
+function customErrorHandler($errno, $errstr, $errfile, $errline) {
+    $response = array(
+        'success'   => false,
+        'error'     => $errstr,
+        'errorFile' => $errfile,
+        'errorLine' => $errline,
+        'errorCode' => $errno  
+        //Error sendo capturado para ser transmitido via JSON
+    );
+
+    // Envia a resposta como JSON
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;  // Aqui ele sai quando captura o erro
+}
+
+
+// Define a função de tratamento de erro personalizada
+set_error_handler('customErrorHandler');
+
+
+function phpLogin(){
+    session_start();
+    $login = $_POST['key1'];
+    $senha = $_POST['key2'];
+
+    $db    = "db_server_postgresql";  //Nome do DB utilizado
+    $table = "table_user_postgresql"; // Nome da tabela, estou utilizando para mexer o menos possível no código
+    $tableNameColumn1 = "username";
+    $tableNameColumn2 = "pass"; //Aqui coloque o nome das colunas para automatizar se tiver mais só ir registrando
+    //$tableNameColumn3 = "";
+    $host  = "10.61.10.250";
+    $user  = "postgres";
+    $pass  = "22091992";
+    $connection = pg_connect("host=$host dbname=$db user=$user password=$pass");
+
+
+    $query = "SELECT * FROM $table WHERE $tableNameColumn1 = $1 AND $tableNameColumn2 = $2"; //Aqui o $1 É um dado puro onde ele vai ser tratado para depois ser injetado como string
+    $dbConnQuery = pg_query_params($connection, $query, [$login, $senha]); // Impede Sql Injection ' OR 1=1 --
+
+    if (pg_num_rows($dbConnQuery) > 0) {
+        $_SESSION['sessionStart'] = true;
+        echo pg_num_rows($dbConnQuery);
+    } else {
+        echo '<br><br>Usuário ou Senha incorreto';
+    }
+             
+
+}
+phpLogin();
+?>
 
 
 
