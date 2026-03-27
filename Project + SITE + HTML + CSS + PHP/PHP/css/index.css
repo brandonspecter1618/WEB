@@ -1,0 +1,114 @@
+/*CSS PHP Index*/
+body {
+  background: radial-gradient(circle, #322538, #1f1f1f);
+  padding:75px;
+  font-size: 18px;
+
+}
+
+
+/*Menu Site*/
+
+nav {
+  position: relative;
+  top: -50px;
+  font-family: 'Oswald', sans-serif;
+}
+
+.menu-4 {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.menu-4 * {
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+  z-index: 100;
+}
+.menu-4 li {
+  display: inline-block;
+  list-style: outside none none;
+  margin: 0 1.5em;
+  overflow: hidden;
+}
+.menu-4 a {
+  padding: 0.3em 0;
+  color: #fff;   /*Cor Do menu*/
+  position: relative;
+  display: inline-block;
+  letter-spacing: 1px;
+  margin: 0;
+  text-decoration: none;
+}
+.menu-4 a:before,
+.menu-4 a:after {
+  position: absolute;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.menu-4 a:before {
+  bottom: 100%;
+  display: block;
+  height: 3px;
+  width: 100%;
+  content: "";
+  background-color: #e67e22;
+}
+.menu-4 a:after {
+  padding: 0.3em 0;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  content: attr(data-hover);
+  color: #fff;  /*Cor Do menu mouse hover*/
+  white-space: nowrap;
+}
+.menu-4 li:hover a,
+.menu-4 .current a {
+  transform: translateY(100%);
+}
+
+/*Menu Site*/
+
+
+
+
+
+/*Image*/
+
+.div_img_1{
+  text-align: center;
+  
+}
+
+.img_1{
+border-top-left-radius: 70px;
+border-top-right-radius: 70px;
+border-bottom-left-radius: 70px;
+border-bottom-right-radius: 70px;
+}
+
+/*Image*/
+/*Text*/
+
+.div_p {
+  font-family:'Courier New', Courier, monospace;
+	font-size: 20px;
+	margin-left: 400px;
+	margin-right: 300px;
+	color: #fff;
+  box-sizing: border-box;
+
+}
+
+h1{
+  margin-left: 420px;
+  font-size: 60px;
+
+}
+
+h2{
+  margin-left: 50px;
+  margin-top: -20px;
+}
